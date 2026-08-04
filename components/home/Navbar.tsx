@@ -47,18 +47,24 @@ export default function Navbar() {
       inset-x-0
       top-0
       z-50
-      h-24
       border-b
       border-white/10
-      bg-[#050816]/90
+      bg-[#050816]/95
       backdrop-blur-xl
       "
     >
 
       <Container>
 
-        <div className="flex h-24 items-center justify-between">
-
+        <div
+          className="
+          flex
+          min-h-24
+          items-center
+          justify-between
+          py-3
+          "
+        >
 
           {/* Logo */}
 
@@ -73,18 +79,39 @@ export default function Navbar() {
               alt="Isapre Cotiza Inteligente"
               width={80}
               height={80}
-              className="h-16 w-16 object-contain"
+              className="
+              h-12
+              w-12
+              object-contain
+              lg:h-16
+              lg:w-16
+              "
               priority
             />
 
 
             <div>
 
-              <h2 className="text-xl font-black tracking-tight text-white">
+              <h2
+                className="
+                text-lg
+                font-black
+                tracking-tight
+                text-white
+                lg:text-xl
+                "
+              >
                 Isapre
               </h2>
 
-              <p className="text-sm font-medium text-blue-400">
+              <p
+                className="
+                text-xs
+                font-medium
+                text-blue-400
+                lg:text-sm
+                "
+              >
                 Cotiza Inteligente
               </p>
 
@@ -94,7 +121,7 @@ export default function Navbar() {
 
 
 
-          {/* Menú Desktop */}
+          {/* Desktop */}
 
           <nav className="hidden items-center gap-10 lg:flex">
 
@@ -107,8 +134,7 @@ export default function Navbar() {
                 text-sm
                 font-medium
                 text-slate-300
-                transition-colors
-                duration-300
+                transition
                 hover:text-white
                 "
               >
@@ -123,7 +149,7 @@ export default function Navbar() {
 
 
 
-          {/* Botón CTA */}
+          {/* CTA */}
 
           <div className="hidden lg:block">
 
@@ -135,7 +161,7 @@ export default function Navbar() {
 
 
 
-          {/* Menú móvil */}
+          {/* Mobile */}
 
           <button
             onClick={() => setOpen(!open)}
@@ -169,13 +195,13 @@ export default function Navbar() {
 
 
 
-        {/* Menú móvil desplegable */}
+        {/* Menú móvil */}
 
         {open && (
 
           <div
             className="
-            mt-2
+            mb-4
             rounded-3xl
             border
             border-white/10
@@ -216,7 +242,6 @@ export default function Navbar() {
               ))}
 
 
-
               <Button
                 onClick={goToQuote}
                 className="mt-3 w-full"
@@ -229,11 +254,9 @@ export default function Navbar() {
 
             </nav>
 
-
           </div>
 
         )}
-
 
       </Container>
 
