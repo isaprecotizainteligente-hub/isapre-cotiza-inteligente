@@ -25,6 +25,16 @@ const benefits = [
 ];
 
 export default function Hero() {
+
+  function goToQuote() {
+    document
+      .getElementById("cotizacion")
+      ?.scrollIntoView({
+        behavior: "smooth",
+      });
+  }
+
+
   return (
     <Section className="relative overflow-hidden bg-[#050816]">
 
@@ -32,17 +42,21 @@ export default function Hero() {
 
       <div className="absolute inset-0 -z-30 bg-[#050816]" />
 
+
       {/* Glow izquierda */}
 
       <div className="absolute left-[-250px] top-[-250px] -z-20 h-[650px] w-[650px] rounded-full bg-blue-600/20 blur-[180px]" />
+
 
       {/* Glow derecha */}
 
       <div className="absolute right-[-250px] bottom-[-250px] -z-20 h-[650px] w-[650px] rounded-full bg-cyan-500/10 blur-[180px]" />
 
+
       {/* Glow centro */}
 
       <div className="absolute left-1/2 top-56 -z-20 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-blue-700/10 blur-[160px]" />
+
 
       {/* Grid */}
 
@@ -57,13 +71,16 @@ export default function Hero() {
         }}
       />
 
+
       <Container>
 
         <div className="grid items-center gap-24 lg:grid-cols-2">
 
+
           {/* Columna izquierda */}
 
           <div>
+
 
             <div className="inline-flex items-center gap-3 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-300 backdrop-blur-xl">
 
@@ -77,9 +94,12 @@ export default function Hero() {
 
             </div>
 
+
+
             <h1 className="mt-8 text-5xl font-black leading-[1.05] tracking-tight text-white lg:text-7xl">
 
               ¿Estás pagando de más por tu
+
 
               <span className="mt-2 block bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 bg-clip-text text-transparent">
 
@@ -87,18 +107,24 @@ export default function Hero() {
 
               </span>
 
+
             </h1>
+
+
 
             <p className="mt-8 max-w-xl text-xl leading-9 text-slate-300">
 
-              Descubre en menos de <strong className="text-white">2 minutos</strong> 
-               si puedes acceder a una mejor cobertura o pagar menos por tu plan.
+              Descubre en menos de <strong className="text-white">2 minutos</strong>
+              si puedes acceder a una mejor cobertura o pagar menos por tu plan.
               Comparamos las principales Isapres de Chile para ayudarte a tomar
               una mejor decisión.
 
             </p>
 
+
+
             <div className="mt-10 space-y-4">
+
 
               {benefits.map((item) => (
 
@@ -113,6 +139,7 @@ export default function Hero() {
 
                   </div>
 
+
                   <div>
 
                     <p className="font-semibold text-white">
@@ -121,47 +148,70 @@ export default function Hero() {
 
                     </p>
 
+
                     <p className="text-sm text-slate-400">
 
                       {item.text}
 
                     </p>
 
+
                   </div>
+
 
                 </div>
 
               ))}
 
+
             </div>
+
+
+
 
             <div className="mt-12 flex flex-wrap gap-4">
 
-              <Button>
+
+              <Button onClick={goToQuote}>
 
                 🔎 Revisar mi plan
 
               </Button>
 
+
+
               <a
                 href="#como-funciona"
                 className="rounded-2xl border border-white/10 bg-white/[0.03] px-7 py-4 font-semibold text-white backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 hover:bg-blue-500/10"
               >
+
                 Cómo funciona
+
               </a>
+
 
             </div>
 
+
+
             <TrustBar />
 
+
           </div>
-           {/* Formulario */}
 
-          <div className="relative lg:-mt-8">
 
-            {/* Glow */}
+
+          {/* Formulario */}
+
+          <div
+            id="cotizacion"
+            className="relative lg:-mt-8"
+          >
+
 
             <div className="absolute -inset-6 rounded-[40px] bg-blue-600/15 blur-3xl" />
+
+
 
             <div className="relative">
 
@@ -169,15 +219,22 @@ export default function Hero() {
 
             </div>
 
+
           </div>
+
+
 
         </div>
 
+
       </Container>
+
+
 
       {/* Degradado inferior */}
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050816] to-transparent" />
+
 
     </Section>
   );
