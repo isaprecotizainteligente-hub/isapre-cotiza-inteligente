@@ -45,7 +45,10 @@ const benefits = [
 
 export default function Benefits() {
     return (
-        <Section className="bg-slate-950">
+        <Section 
+        id="beneficios"
+        className="relative overflow-hidden scroll-mt-24"
+        >
 
             <Container>
 

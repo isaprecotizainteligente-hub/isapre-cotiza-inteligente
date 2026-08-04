@@ -56,7 +56,7 @@ export default function Testimonials() {
 
         </div>
 
-        <div className="mt-20 grid gap-8 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 lg:grid-cols-3">
 
           {testimonials.map((item) => (
 

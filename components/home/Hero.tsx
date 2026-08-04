@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 
 import Button from "@/components/ui/Button";
@@ -8,6 +9,7 @@ import Section from "@/components/ui/Section";
 
 import QuoteForm from "@/components/forms/QuoteForm";
 import TrustBar from "./TrustBar";
+
 
 const benefits = [
   {
@@ -24,19 +26,38 @@ const benefits = [
   },
 ];
 
+
 export default function Hero() {
 
+
+  const [highlightForm, setHighlightForm] = useState(false);
+
+
   function goToQuote() {
-    document
-      .getElementById("cotizacion")
-      ?.scrollIntoView({
-        behavior: "smooth",
-      });
+
+    const form = document.getElementById("cotizacion");
+
+
+    form?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+
+    setHighlightForm(true);
+
+
+    setTimeout(() => {
+      setHighlightForm(false);
+    }, 1500);
+
   }
 
 
+
   return (
-    <Section className="relative overflow-hidden bg-[#050816]">
+    <Section className="relative overflow-hidden bg-[#050816] pt-32 lg:pt-32">
+
 
       {/* Fondo */}
 
@@ -58,6 +79,7 @@ export default function Hero() {
       <div className="absolute left-1/2 top-56 -z-20 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-blue-700/10 blur-[160px]" />
 
 
+
       {/* Grid */}
 
       <div
@@ -72,14 +94,18 @@ export default function Hero() {
       />
 
 
+
       <Container>
+
 
         <div className="grid items-center gap-24 lg:grid-cols-2">
 
 
-          {/* Columna izquierda */}
+
+          {/* IZQUIERDA */}
 
           <div>
+
 
 
             <div className="inline-flex items-center gap-3 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-300 backdrop-blur-xl">
@@ -96,7 +122,9 @@ export default function Hero() {
 
 
 
+
             <h1 className="mt-8 text-5xl font-black leading-[1.05] tracking-tight text-white lg:text-7xl">
+
 
               ¿Estás pagando de más por tu
 
@@ -112,14 +140,24 @@ export default function Hero() {
 
 
 
+
             <p className="mt-8 max-w-xl text-xl leading-9 text-slate-300">
 
-              Descubre en menos de <strong className="text-white">2 minutos</strong>
+
+              Descubre en menos de {" "}
+              <strong className="text-white">
+                2 minutos
+              </strong> {" "}
+
+
+
               si puedes acceder a una mejor cobertura o pagar menos por tu plan.
               Comparamos las principales Isapres de Chile para ayudarte a tomar
               una mejor decisión.
 
+
             </p>
+
 
 
 
@@ -128,19 +166,24 @@ export default function Hero() {
 
               {benefits.map((item) => (
 
+
                 <div
                   key={item.title}
                   className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/30 hover:bg-white/[0.05]"
                 >
 
+
                   <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 shadow-lg shadow-blue-600/30">
 
+
                     <CheckCircle2 className="h-5 w-5 text-white" />
+
 
                   </div>
 
 
                   <div>
+
 
                     <p className="font-semibold text-white">
 
@@ -161,10 +204,12 @@ export default function Hero() {
 
                 </div>
 
+
               ))}
 
 
             </div>
+
 
 
 
@@ -190,6 +235,7 @@ export default function Hero() {
               </a>
 
 
+
             </div>
 
 
@@ -197,16 +243,31 @@ export default function Hero() {
             <TrustBar />
 
 
+
           </div>
 
 
 
-          {/* Formulario */}
+
+
+          {/* FORMULARIO */}
+
 
           <div
             id="cotizacion"
-            className="relative lg:-mt-8"
+            className={`
+              relative
+              lg:-mt-8
+              transition-all
+              duration-500
+              ${
+                highlightForm
+                  ? "scale-[1.02] drop-shadow-[0_0_35px_rgba(37,99,235,0.8)]"
+                  : ""
+              }
+            `}
           >
+
 
 
             <div className="absolute -inset-6 rounded-[40px] bg-blue-600/15 blur-3xl" />
@@ -215,25 +276,30 @@ export default function Hero() {
 
             <div className="relative">
 
+
               <QuoteForm />
 
+
             </div>
+
 
 
           </div>
 
 
 
+
         </div>
+
 
 
       </Container>
 
 
 
-      {/* Degradado inferior */}
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050816] to-transparent" />
+
 
 
     </Section>

@@ -2,30 +2,20 @@
 
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 20);
-    }
-
-    window.addEventListener("scroll", onScroll);
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   function goToQuote() {
     document
       .getElementById("cotizacion")
       ?.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
 
     setOpen(false);
@@ -52,35 +42,45 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-white/10 bg-[#050816]/80 shadow-2xl backdrop-blur-2xl"
-          : "bg-transparent"
-      }`}
+      className="
+      fixed
+      inset-x-0
+      top-0
+      z-50
+      h-24
+      border-b
+      border-white/10
+      bg-[#050816]/90
+      backdrop-blur-xl
+      "
     >
+
       <Container>
 
         <div className="flex h-24 items-center justify-between">
+
 
           {/* Logo */}
 
           <a
             href="#"
-            className="flex items-center gap-4"
             onClick={() => setOpen(false)}
+            className="flex items-center gap-4"
           >
 
             <Image
-              src="/logos/logo.png"
+              src="/logos/logo-v3.png"
               alt="Isapre Cotiza Inteligente"
-              width={52}
-              height={52}
+              width={80}
+              height={80}
+              className="h-16 w-16 object-contain"
               priority
             />
 
+
             <div>
 
-              <h2 className="text-xl font-black text-white">
+              <h2 className="text-xl font-black tracking-tight text-white">
                 Isapre
               </h2>
 
@@ -93,11 +93,13 @@ export default function Navbar() {
           </a>
 
 
-          {/* Desktop */}
+
+          {/* Menú Desktop */}
 
           <nav className="hidden items-center gap-10 lg:flex">
 
             {menuItems.map((item) => (
+
               <a
                 key={item.title}
                 href={item.href}
@@ -105,16 +107,23 @@ export default function Navbar() {
                 text-sm
                 font-medium
                 text-slate-300
-                transition
+                transition-colors
+                duration-300
                 hover:text-white
                 "
               >
+
                 {item.title}
+
               </a>
+
             ))}
 
           </nav>
-                    {/* Botón escritorio */}
+
+
+
+          {/* Botón CTA */}
 
           <div className="hidden lg:block">
 
@@ -125,7 +134,8 @@ export default function Navbar() {
           </div>
 
 
-          {/* Botón móvil */}
+
+          {/* Menú móvil */}
 
           <button
             onClick={() => setOpen(!open)}
@@ -140,7 +150,6 @@ export default function Navbar() {
             border-white/10
             bg-white/5
             text-white
-            backdrop-blur-xl
             transition
             hover:border-blue-500/40
             lg:hidden
@@ -155,20 +164,22 @@ export default function Navbar() {
 
           </button>
 
+
         </div>
 
 
-        {/* Menú móvil */}
+
+        {/* Menú móvil desplegable */}
 
         {open && (
 
           <div
             className="
-            mb-6
+            mt-2
             rounded-3xl
             border
             border-white/10
-            bg-[#050816]/95
+            bg-[#050816]
             p-6
             shadow-2xl
             backdrop-blur-xl
@@ -176,7 +187,8 @@ export default function Navbar() {
             "
           >
 
-            <nav className="flex flex-col gap-5">
+            <nav className="flex flex-col gap-3">
+
 
               {menuItems.map((item) => (
 
@@ -204,6 +216,7 @@ export default function Navbar() {
               ))}
 
 
+
               <Button
                 onClick={goToQuote}
                 className="mt-3 w-full"
@@ -220,6 +233,7 @@ export default function Navbar() {
           </div>
 
         )}
+
 
       </Container>
 

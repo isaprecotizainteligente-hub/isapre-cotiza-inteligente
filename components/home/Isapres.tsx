@@ -39,7 +39,7 @@ export default function Isapres() {
   return (
     <Section
       id="isapres"
-      className="relative overflow-hidden bg-[#08101f]"
+      className="scroll-mt-24 relative"
     >
       {/* Glow */}
 
