@@ -19,11 +19,14 @@ const geistMono = Geist_Mono({
 });
 
 
+
 export const metadata: Metadata = {
+
 
   metadataBase: new URL(
     "https://isaprecotizainteligente.cl"
   ),
+
 
 
   title: {
@@ -37,22 +40,33 @@ export const metadata: Metadata = {
   },
 
 
+
   description:
+
     "Compara tu plan de Isapre gratis. Te ayudamos a encontrar una alternativa más conveniente según tu renta, edad y necesidades en Chile.",
+
 
 
   keywords: [
 
     "isapre",
+
     "cotizar isapre",
+
     "comparar isapres",
+
     "planes de salud",
+
     "isapre chile",
+
     "cambiarse de isapre",
+
     "mejor isapre",
+
     "asesor isapre",
 
   ],
+
 
 
   alternates: {
@@ -61,6 +75,7 @@ export const metadata: Metadata = {
       "https://isaprecotizainteligente.cl/",
 
   },
+
 
 
   openGraph: {
@@ -86,6 +101,7 @@ export const metadata: Metadata = {
   },
 
 
+
   twitter: {
 
     card:
@@ -102,6 +118,9 @@ export const metadata: Metadata = {
 };
 
 
+
+
+
 export default function RootLayout({
 
   children,
@@ -114,6 +133,7 @@ export default function RootLayout({
 
 
   return (
+
 
     <html
 
@@ -129,6 +149,7 @@ export default function RootLayout({
     >
 
 
+
       <body
 
         className="
@@ -140,10 +161,15 @@ export default function RootLayout({
       >
 
 
+
         {children}
 
 
+
         <WhatsAppButton />
+
+
+
 
 
         <script
@@ -154,28 +180,52 @@ export default function RootLayout({
 
             __html: JSON.stringify({
 
+
               "@context":
                 "https://schema.org",
 
 
+
               "@type":
-                "Organization",
+                "LocalBusiness",
+
 
 
               "name":
                 "Isapre Cotiza Inteligente",
 
 
+
               "url":
                 "https://isaprecotizainteligente.cl/",
 
 
+
               "description":
-                "Asesoría gratuita para comparar planes de Isapre en Chile.",
+                "Asesoría gratuita para comparar planes de Isapre en Chile y encontrar alternativas de cobertura según las necesidades de cada persona.",
 
 
-              "areaServed":
-                "Chile",
+
+              "areaServed": {
+
+                "@type":
+                  "Country",
+
+                "name":
+                  "Chile"
+
+              },
+
+
+
+              "serviceType":
+                "Asesoría y comparación de planes de Isapre",
+
+
+
+              "priceRange":
+                "Gratis",
+
 
 
               "contactPoint": {
@@ -189,17 +239,30 @@ export default function RootLayout({
                 "availableLanguage":
                   "Spanish"
 
-              }
+              },
+
+
+
+              "sameAs": [
+
+                "https://www.instagram.com/isaprecotizainteligente.cl/"
+
+              ]
+
 
 
             })
 
           }}
 
+
+
         />
 
 
+
       </body>
+
 
 
       <GoogleTagManager
@@ -209,7 +272,9 @@ export default function RootLayout({
       />
 
 
+
     </html>
+
 
   );
 
