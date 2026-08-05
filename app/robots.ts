@@ -1,14 +1,27 @@
 import type { MetadataRoute } from "next";
 
+
 export default function robots(): MetadataRoute.Robots {
+
   return {
+
     rules: [
+
       {
         userAgent: "*",
         allow: "/",
       },
+
     ],
-    sitemap: "https://www.isaprecotizainteligente.cl/sitemap.xml",
-    host: "https://www.isaprecotizainteligente.cl",
+
+
+    sitemap:
+      "https://isaprecotizainteligente.cl/sitemap.xml",
+
+
+    host:
+      "https://isaprecotizainteligente.cl",
+
   };
+
 }
