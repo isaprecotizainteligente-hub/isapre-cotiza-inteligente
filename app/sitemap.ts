@@ -1,14 +1,28 @@
 import type { MetadataRoute } from "next";
 
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.isaprecotizainteligente.cl";
+
+
+  const baseUrl =
+    "https://isaprecotizainteligente.cl";
+
+
 
   return [
+
     {
+
       url: baseUrl,
+
       lastModified: new Date(),
+
       changeFrequency: "weekly",
+
       priority: 1,
+
     },
+
   ];
+
 }
