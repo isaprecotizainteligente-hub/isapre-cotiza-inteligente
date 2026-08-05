@@ -49,6 +49,34 @@ export default function WhatsAppButton() {
 
 
 
+  function handleWhatsAppClick() {
+
+
+    if(typeof window !== "undefined") {
+
+
+      window.dataLayer = window.dataLayer || [];
+
+
+      window.dataLayer.push({
+
+        event: "click_whatsapp",
+
+        button_name: "whatsapp_flotante",
+
+      });
+
+
+    }
+
+
+  }
+
+
+
+
+
+
   return (
 
 
@@ -133,6 +161,7 @@ export default function WhatsAppButton() {
 
 
 
+
       <a
 
 
@@ -146,6 +175,9 @@ export default function WhatsAppButton() {
 
 
         aria-label="Contactar por WhatsApp"
+
+
+        onClick={handleWhatsAppClick}
 
 
 
