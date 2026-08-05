@@ -19,14 +19,11 @@ const geistMono = Geist_Mono({
 });
 
 
-
 export const metadata: Metadata = {
-
 
   metadataBase: new URL(
     "https://isaprecotizainteligente.cl"
   ),
-
 
 
   title: {
@@ -40,42 +37,30 @@ export const metadata: Metadata = {
   },
 
 
-
   description:
-
     "Compara tu plan de Isapre gratis. Te ayudamos a encontrar una alternativa más conveniente según tu renta, edad y necesidades en Chile.",
-
 
 
   keywords: [
 
     "isapre",
-
     "cotizar isapre",
-
     "comparar isapres",
-
     "planes de salud",
-
     "isapre chile",
-
     "cambiarse de isapre",
-
     "mejor isapre",
-
     "asesor isapre",
 
   ],
 
 
-
   alternates: {
 
     canonical:
-      "https://isaprecotizainteligente.cl",
+      "https://isaprecotizainteligente.cl/",
 
   },
-
 
 
   openGraph: {
@@ -87,7 +72,7 @@ export const metadata: Metadata = {
       "Revisamos tu plan actual y buscamos una alternativa más conveniente para ti.",
 
     url:
-      "https://isaprecotizainteligente.cl",
+      "https://isaprecotizainteligente.cl/",
 
     siteName:
       "Isapre Cotiza Inteligente",
@@ -99,7 +84,6 @@ export const metadata: Metadata = {
       "website",
 
   },
-
 
 
   twitter: {
@@ -118,9 +102,6 @@ export const metadata: Metadata = {
 };
 
 
-
-
-
 export default function RootLayout({
 
   children,
@@ -134,40 +115,35 @@ export default function RootLayout({
 
   return (
 
-
     <html
 
       lang="es"
 
       className={`
-      ${geistSans.variable}
-      ${geistMono.variable}
-      h-full
-      antialiased
+        ${geistSans.variable}
+        ${geistMono.variable}
+        h-full
+        antialiased
       `}
 
     >
 
 
-
       <body
 
         className="
-        min-h-full
-        bg-slate-950
-        text-white
+          min-h-full
+          bg-slate-950
+          text-white
         "
 
       >
 
 
-
         {children}
 
 
-
         <WhatsAppButton />
-
 
 
         <script
@@ -191,7 +167,7 @@ export default function RootLayout({
 
 
               "url":
-                "https://isaprecotizainteligente.cl",
+                "https://isaprecotizainteligente.cl/",
 
 
               "description":
@@ -223,9 +199,7 @@ export default function RootLayout({
         />
 
 
-
       </body>
-
 
 
       <GoogleTagManager
@@ -235,9 +209,7 @@ export default function RootLayout({
       />
 
 
-
     </html>
-
 
   );
 
