@@ -9,6 +9,7 @@ import Stats from "@/components/home/Stats";
 import Testimonials from "@/components/home/Testimonials";
 import WhyUs from "@/components/home/WhyUs";
 
+
 export default function Home() {
   return (
     <>
@@ -16,9 +17,9 @@ export default function Home() {
 
       <Hero />
 
-      <Stats />
-
       <WhyUs />
+
+      <Stats />
 
       <Isapres />
 

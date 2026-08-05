@@ -3,6 +3,7 @@ import { Star, Quote } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
+
 const testimonials = [
   {
     initials: "JP",
@@ -21,127 +22,401 @@ const testimonials = [
   },
 ];
 
+
+
 export default function Testimonials() {
+
+
   return (
-    <Section className="relative overflow-hidden bg-[#08101f]">
+
+
+    <Section
+      className="
+      relative
+      overflow-hidden
+      bg-[#081B35]
+      "
+    >
+
+
 
       {/* Glow */}
 
-      <div className="absolute right-0 top-0 -z-10 h-96 w-96 rounded-full bg-blue-600/10 blur-[150px]" />
+
+      <div
+        className="
+        absolute
+        right-0
+        top-0
+        -z-10
+        h-96
+        w-96
+        rounded-full
+        bg-emerald-500/10
+        blur-[150px]
+        "
+      />
+
+
+
+      <div
+        className="
+        absolute
+        left-0
+        bottom-0
+        -z-10
+        h-72
+        w-72
+        rounded-full
+        bg-blue-500/10
+        blur-[140px]
+        "
+      />
+
+
+
+
 
       <Container>
 
+
         <div className="mx-auto max-w-3xl text-center">
 
-          <span className="inline-flex rounded-full border border-blue-500/20 bg-blue-500/10 px-5 py-2 text-sm font-semibold text-blue-300">
+
+
+          <span
+            className="
+            inline-flex
+            rounded-full
+            border
+            border-emerald-400/20
+            bg-emerald-400/10
+            px-5
+            py-2
+            text-sm
+            font-semibold
+            text-emerald-300
+            "
+          >
 
             Opiniones
 
+
           </span>
 
-          <h2 className="mt-6 text-4xl font-black tracking-tight text-white lg:text-5xl">
+
+
+
+
+          <h2
+            className="
+            mt-6
+            text-4xl
+            font-black
+            tracking-tight
+            text-white
+            lg:text-5xl
+            "
+          >
 
             La confianza se gana
             con resultados.
 
+
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-400">
+
+
+
+
+          <p
+            className="
+            mt-6
+            text-lg
+            leading-8
+            text-slate-400
+            "
+          >
 
             Nuestro compromiso es ayudarte a encontrar el plan que mejor se
             adapte a tus necesidades, con una asesoría clara, cercana y sin
             costo.
 
+
           </p>
+
+
 
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-3">
 
-          {testimonials.map((item) => (
+
+
+
+
+
+        <div
+          className="
+          mt-12
+          grid
+          gap-8
+          lg:grid-cols-3
+          "
+        >
+
+
+
+
+
+          {testimonials.map((item)=>(
+
+
 
             <article
+
               key={item.initials}
+
               className="
-                relative
-                overflow-hidden
-                rounded-[30px]
-                border
-                border-white/10
-                bg-[#111C34]/80
-                p-8
-                backdrop-blur-xl
-                transition-all
-                duration-500
-                hover:-translate-y-2
-                hover:border-blue-500/30
-                hover:shadow-[0_25px_70px_rgba(37,99,235,.18)]
+              relative
+              overflow-hidden
+              rounded-[30px]
+              border
+              border-white/10
+              bg-[#111C34]/80
+              p-8
+              backdrop-blur-xl
+              transition-all
+              duration-500
+              hover:-translate-y-2
+              hover:border-emerald-400/30
+              hover:shadow-[0_25px_70px_rgba(16,185,129,.15)]
               "
+
             >
 
-              <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-blue-500/10 blur-3xl" />
+
+
+
+
+              <div
+                className="
+                absolute
+                -right-8
+                -top-8
+                h-28
+                w-28
+                rounded-full
+                bg-emerald-500/10
+                blur-3xl
+                "
+              />
+
+
+
+
+
+
 
               <div className="relative">
 
-                <div className="flex items-center justify-between">
+
+
+
+
+                <div
+                  className="
+                  flex
+                  items-center
+                  justify-between
+                  "
+                >
+
+
 
                   <div className="flex gap-1">
 
-                    {[1, 2, 3, 4, 5].map((star) => (
+
+                    {[1,2,3,4,5].map((star)=>(
+
+
                       <Star
+
                         key={star}
-                        className="h-5 w-5 fill-yellow-400 text-yellow-400"
+
+                        className="
+                        h-5
+                        w-5
+                        fill-yellow-400
+                        text-yellow-400
+                        "
+
                       />
+
+
                     ))}
+
 
                   </div>
 
-                  <Quote className="h-8 w-8 text-blue-400/40" />
+
+
+
+
+                  <Quote
+                    className="
+                    h-8
+                    w-8
+                    text-emerald-400/40
+                    "
+                  />
+
+
 
                 </div>
 
-                <p className="mt-8 leading-8 text-slate-300">
+
+
+
+
+
+
+                <p
+                  className="
+                  mt-8
+                  leading-8
+                  text-slate-300
+                  "
+                >
 
                   "{item.text}"
 
                 </p>
 
-                <div className="mt-10 flex items-center gap-4 border-t border-white/10 pt-6">
 
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 text-lg font-bold text-white">
+
+
+
+
+
+
+                <div
+                  className="
+                  mt-10
+                  flex
+                  items-center
+                  gap-4
+                  border-t
+                  border-white/10
+                  pt-6
+                  "
+                >
+
+
+
+
+                  <div
+                    className="
+                    flex
+                    h-14
+                    w-14
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-gradient-to-br
+                    from-emerald-500
+                    to-teal-400
+                    text-lg
+                    font-bold
+                    text-white
+                    "
+                  >
 
                     {item.initials}
 
+
                   </div>
+
+
+
+
 
                   <div>
 
-                    <h3 className="font-bold text-white">
+
+                    <h3
+                      className="
+                      font-bold
+                      text-white
+                      "
+                    >
 
                       Cliente verificado
 
+
                     </h3>
 
-                    <p className="text-sm text-slate-400">
+
+
+
+                    <p
+                      className="
+                      text-sm
+                      text-slate-400
+                      "
+                    >
 
                       {item.city}
 
+
                     </p>
+
+
 
                   </div>
 
+
+
+
+
                 </div>
+
+
+
+
 
               </div>
 
+
+
+
+
             </article>
+
+
+
 
           ))}
 
+
+
+
+
         </div>
+
+
+
+
 
       </Container>
 
+
+
+
+
     </Section>
+
+
   );
+
+
 }

@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+  /* =========================
+     ISAPRE COTIZA INTELIGENTE
+     NUEVA IDENTIDAD VISUAL
+     ========================= */
+
+
+  /* Fondo principal */
+  --background: #081B35;
+
+
+  /* Texto general */
+  --foreground: #F8FAFC;
+
+
+  /* Marca */
+  --brand-blue: #2563EB;
+  --brand-blue-light: #60A5FA;
+
+  /* Conversión */
+  --brand-green: #22C55E;
+  --brand-green-dark: #16A34A;
+
+
+  /* Superficies */
+  --surface: #102542;
+  --surface-light: rgba(255,255,255,0.08);
+
+  /* Bordes */
+  --border: rgba(255,255,255,0.15);
+
+
+  /* Textos */
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+
 }
+
+
 
 @theme inline {
+
   --color-background: var(--background);
+
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
+
   --font-mono: var(--font-geist-mono);
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+
+
+html {
+
+  scroll-behavior: smooth;
+
 }
+
+
 
 body {
+
   background: var(--background);
+
   color: var(--foreground);
+
   font-family: Arial, Helvetica, sans-serif;
+
+  overflow-x: hidden;
+
+}
+
+
+
+/* =========================
+   UTILIDADES DE MARCA
+   ========================= */
+
+
+.brand-text {
+
+  color: var(--brand-green);
+
+}
+
+
+
+.card-glass {
+
+  background: var(--surface-light);
+
+  border: 1px solid var(--border);
+
+  backdrop-filter: blur(20px);
+
+}
+
+
+
+.btn-success {
+
+  background: var(--brand-green);
+
+  color: white;
+
+  transition: all .3s ease;
+
+}
+
+
+.btn-success:hover {
+
+  background: var(--brand-green-dark);
+
+  transform: translateY(-2px);
+
 }

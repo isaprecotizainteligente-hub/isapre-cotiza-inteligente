@@ -4,12 +4,15 @@ import {
   BadgeCheck,
 } from "lucide-react";
 
+
 export default function TrustBar() {
+
+
   const items = [
     {
       icon: BadgeCheck,
-      title: "+10 años",
-      subtitle: "de experiencia",
+      title: "+10",
+      subtitle: "años de experiencia",
     },
     {
       icon: Clock3,
@@ -23,68 +26,176 @@ export default function TrustBar() {
     },
   ];
 
+
+
   return (
-    <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
+
+    <div
+
+      className="
+      mt-10
+      grid
+      grid-cols-3
+      gap-4
+      "
+
+    >
+
+
 
       {items.map((item) => {
 
+
         const Icon = item.icon;
 
+
+
         return (
+
+
           <div
+
             key={item.title}
+
             className="
-              group
-              rounded-2xl
-              border
-              border-white/10
-              bg-white/[0.03]
-              p-5
-              backdrop-blur-xl
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:border-blue-500/30
-              hover:bg-white/[0.05]
+            flex
+            h-[110px]
+            items-center
+            rounded-3xl
+            border
+            border-white/10
+            bg-white/[0.05]
+            px-4
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:border-emerald-400/30
+            hover:bg-white/[0.08]
             "
+
           >
-            <div className="flex items-center gap-4">
+
+
+
+
+            <div
+
+              className="
+              flex
+              items-center
+              gap-3
+              "
+
+            >
+
+
+
+
 
               <div
+
                 className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-xl
-                  bg-gradient-to-br
-                  from-blue-500
-                  to-cyan-500
-                  shadow-lg
-                  shadow-blue-600/30
+                flex
+                h-14
+                w-14
+                shrink-0
+                items-center
+                justify-center
+                rounded-2xl
+                bg-gradient-to-br
+                from-emerald-500
+                to-green-600
+                shadow-lg
+                shadow-emerald-500/30
                 "
+
               >
-                <Icon className="h-6 w-6 text-white" />
+
+
+                <Icon
+
+                  className="
+                  h-7
+                  w-7
+                  text-white
+                  "
+
+                />
+
+
               </div>
+
+
+
+
+
 
               <div>
 
-                <p className="text-xl font-bold text-white">
+
+                <p
+
+                  className="
+                  text-xl
+                  font-black
+                  leading-none
+                  text-white
+                  "
+
+                >
+
                   {item.title}
+
+
                 </p>
 
-                <p className="text-sm text-slate-400">
+
+
+
+                <p
+
+                  className="
+                  mt-2
+                  max-w-[90px]
+                  text-sm
+                  leading-tight
+                  text-slate-300
+                  "
+
+                >
+
                   {item.subtitle}
+
+
                 </p>
+
+
 
               </div>
 
+
+
+
             </div>
+
+
+
+
           </div>
+
+
         );
+
+
       })}
 
+
+
     </div>
+
+
   );
+
+
 }

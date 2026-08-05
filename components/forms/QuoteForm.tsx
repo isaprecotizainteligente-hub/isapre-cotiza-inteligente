@@ -1,283 +1,837 @@
 "use client";
 
-import { useState } from "react";
 import {
   User,
   Phone,
-  Cake,
-  Users,
-  Building2,
   DollarSign,
-  Hospital,
+  Calendar,
+  Users,
   MessageSquare,
-  ArrowRight,
-  ShieldCheck,
-  Clock3,
 } from "lucide-react";
 
-import FormCard from "./FormCard";
-import Input from "./Input";
-import TextArea from "./TextArea";
+import { useState } from "react";
+
+import Button from "@/components/ui/Button";
+
+
 
 export default function QuoteForm() {
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+
 
   const [form, setForm] = useState({
-    nombre: "",
-    whatsapp: "",
-    edad: "",
-    beneficiarios: "",
-    sistema: "",
-    renta: "",
-    clinica: "",
-    comentario: "",
+
+    nombre:"",
+    telefono:"",
+    renta:"",
+    edad:"",
+    cargas:"",
+    comentario:"",
+
   });
 
-  async function handleSubmit(e: React.FormEvent) {
+
+
+  const [loading,setLoading] = useState(false);
+
+
+
+
+
+
+
+  function handleChange(
+    e:
+    React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) {
+
+
+    setForm({
+
+      ...form,
+
+      [e.target.name]: e.target.value,
+
+    });
+
+
+  }
+
+
+
+
+
+
+
+  async function handleSubmit(
+    e: React.FormEvent
+  ) {
+
+
     e.preventDefault();
 
-    if (!form.nombre.trim()) {
-      alert("Por favor ingresa tu nombre.");
+
+
+
+
+    if(!form.nombre.trim()){
+
+      alert(
+        "Por favor ingresa tu nombre."
+      );
+
       return;
+
     }
 
-    if (!form.whatsapp.trim()) {
-      alert("Por favor ingresa tu WhatsApp.");
+
+
+
+    if(!form.telefono.trim()){
+
+      alert(
+        "Por favor ingresa tu número de teléfono."
+      );
+
       return;
+
     }
+
+
+
+
+
+
+    setLoading(true);
+
+
+
+
+
+
 
     try {
-      setLoading(true);
 
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
 
-      if (!response.ok) {
-        throw new Error();
+
+      const response = await fetch(
+        "/api/contact",
+        {
+
+          method:"POST",
+
+          headers:{
+
+            "Content-Type":"application/json",
+
+          },
+
+
+          body:JSON.stringify({
+
+            nombre:
+            form.nombre,
+
+
+            whatsapp:
+            form.telefono,
+
+
+            edad:
+            form.edad || "No informado",
+
+
+            beneficiarios:
+            form.cargas || "Sin cargas",
+
+
+            sistema:
+            "No informado",
+
+
+            renta:
+            form.renta || "No informado",
+
+
+            clinica:
+            "No informado",
+
+
+            comentario:
+            form.comentario || "Sin comentarios",
+
+
+          }),
+
+
+        }
+      );
+
+
+
+
+
+
+
+      if(!response.ok){
+
+        throw new Error(
+          "Error enviando formulario"
+        );
+
       }
 
-      setSuccess(true);
 
-      // ========= Google Tag Manager + Google Analytics =========
-      window.dataLayer = window.dataLayer || [];
 
-      window.dataLayer.push({
-        event: "generate_lead",
-        form_name: "Cotización Isapre",
-        lead_type: "Formulario Web",
-        });
 
-     window.gtag?.("event", "generate_lead", {
-        form_name: "Cotización Isapre",
-        method: "Formulario",
-        });
-    
+
+
+      alert(
+        "¡Solicitud enviada correctamente! Te contactaremos pronto."
+      );
+
+
+
+
+
+
       setForm({
-        nombre: "",
-        whatsapp: "",
-        edad: "",
-        beneficiarios: "",
-        sistema: "",
-        renta: "",
-        clinica: "",
-        comentario: "",
+
+        nombre:"",
+        telefono:"",
+        renta:"",
+        edad:"",
+        cargas:"",
+        comentario:"",
+
       });
 
-    } catch {
-      alert("Ocurrió un error enviando la cotización.");
+
+
+
+
+
+
+    } catch(error){
+
+
+      console.error(error);
+
+
+
+      alert(
+        "Ocurrió un problema al enviar la solicitud."
+      );
+
+
+
     } finally {
+
+
       setLoading(false);
+
+
     }
+
+
   }
 
-  if (success) {
+
+
+
+
+
+
+
+
+  const fields = [
+
+
+    {
+
+      name:"nombre",
+
+      label:"Nombre",
+
+      placeholder:"Juan Pérez",
+
+      icon:User,
+
+      type:"text",
+
+      required:true,
+
+    },
+
+
+
+    {
+
+      name:"telefono",
+
+      label:"Número de teléfono",
+
+      placeholder:"+56 9 1234 5678",
+
+      icon:Phone,
+
+      type:"tel",
+
+      required:true,
+
+    },
+
+
+
+    {
+
+      name:"renta",
+
+      label:"Renta imponible",
+
+      placeholder:"$1.500.000",
+
+      icon:DollarSign,
+
+      type:"text",
+
+      required:false,
+
+    },
+
+
+
+    {
+
+      name:"edad",
+
+      label:"Edad",
+
+      placeholder:"34",
+
+      icon:Calendar,
+
+      type:"number",
+
+      required:false,
+
+    },
+
+
+
+    {
+
+      name:"cargas",
+
+      label:"Edad de las cargas (si tiene)",
+
+      placeholder:"Ej: 5, 8, 12",
+
+      icon:Users,
+
+      type:"text",
+
+      required:false,
+
+    },
+
+
+  ];
     return (
-      <FormCard
-        title="🎉 ¡Solicitud enviada!"
-        subtitle="Recibimos tu información correctamente."
-      >
-        <div className="rounded-3xl border border-green-500/20 bg-green-500/10 p-8 text-center">
 
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20 text-3xl">
-            ✅
-          </div>
 
-          <h3 className="mt-6 text-2xl font-bold text-white">
-            ¡Muchas gracias!
-          </h3>
+<form
 
-          <p className="mt-4 leading-8 text-slate-300">
-            Un asesor revisará tu caso y te contactará por
-            <span className="font-semibold text-white">
-              {" "}WhatsApp lo antes posible.
-            </span>
-          </p>
+onSubmit={handleSubmit}
 
-        </div>
-      </FormCard>
-    );
-  }
+className="
 
-  return (
-    <FormCard
-      title="Recibe tu cotización gratuita"
-      subtitle="Completa estos datos. Nosotros nos encargamos de encontrar la mejor alternativa para ti."
-    >
+rounded-[32px]
 
-      <div className="mb-8 grid grid-cols-2 gap-3">
+border
 
-        <div className="flex items-center gap-3 rounded-2xl border border-blue-500/15 bg-blue-500/10 p-4">
+border-white/15
 
-          <Clock3 className="h-5 w-5 text-blue-400" />
+bg-[#0D2747]/95
 
-          <div>
+p-6
 
-            <p className="text-xs text-slate-400">
-              Tiempo de respuesta
-            </p>
+shadow-2xl
 
-            <p className="font-semibold text-white">
-              Menos de 15 min
-            </p>
+shadow-black/20
 
-          </div>
+backdrop-blur-xl
 
-        </div>
+"
 
-        <div className="flex items-center gap-3 rounded-2xl border border-emerald-500/15 bg-emerald-500/10 p-4">
+>
 
-          <ShieldCheck className="h-5 w-5 text-emerald-400" />
 
-          <div>
 
-            <p className="text-xs text-slate-400">
-              Información
-            </p>
 
-            <p className="font-semibold text-white">
-              100% confidencial
-            </p>
 
-          </div>
 
-        </div>
 
-      </div>
-            <form onSubmit={handleSubmit}>
+<div className="mb-6">
 
-        <div className="grid gap-5 md:grid-cols-2">
 
-          <Input
-            icon={User}
-            label="¿Cómo te llamas?"
-            placeholder="Juan Pérez"
-            value={form.nombre}
-            onChange={(value) => setForm({ ...form, nombre: value })}
-          />
 
-          <Input
-            icon={Phone}
-            label="¿Cuál es tu WhatsApp?"
-            placeholder="+56 9 1234 5678"
-            value={form.whatsapp}
-            onChange={(value) => setForm({ ...form, whatsapp: value })}
-          />
 
-          <Input
-            icon={Cake}
-            label="¿Cuál es tu edad?"
-            placeholder="34"
-            value={form.edad}
-            onChange={(value) => setForm({ ...form, edad: value })}
-          />
 
-          <Input
-            icon={Users}
-            label="Edad de beneficiarios"
-            placeholder="32, 5 y 8"
-            value={form.beneficiarios}
-            onChange={(value) =>
-              setForm({ ...form, beneficiarios: value })
-            }
-          />
+<span
 
-          <Input
-            icon={Building2}
-            label="Fonasa o Isapre"
-            placeholder="Fonasa, Colmena..."
-            value={form.sistema}
-            onChange={(value) =>
-              setForm({ ...form, sistema: value })
-            }
-          />
+className="
 
-          <Input
-            icon={DollarSign}
-            label="Renta imponible"
-            placeholder="$1.200.000"
-            value={form.renta}
-            onChange={(value) =>
-              setForm({ ...form, renta: value })
-            }
-          />
+inline-flex
 
-        </div>
+rounded-full
 
-        <div className="mt-5">
+border
 
-          <Input
-            icon={Hospital}
-            label="Clínica de preferencia"
-            placeholder="Alemana, Indisa..."
-            value={form.clinica}
-            onChange={(value) =>
-              setForm({ ...form, clinica: value })
-            }
-          />
+border-emerald-400/30
 
-        </div>
+bg-emerald-400/10
 
-        <div className="mt-5">
+px-4
 
-          <TextArea
-            icon={MessageSquare}
-            label="¿Qué estás buscando?"
-            placeholder="Cuéntanos qué te gustaría mejorar..."
-            value={form.comentario}
-            onChange={(value) =>
-              setForm({ ...form, comentario: value })
-            }
-          />
+py-1.5
 
-        </div>
+text-xs
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="mt-8 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500 py-5 text-lg font-bold text-white shadow-xl shadow-blue-600/30 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-blue-500/40 disabled:opacity-50"
-        >
-          {loading ? (
-            "Enviando..."
-          ) : (
-            <>
-              Obtener mi mejor plan
-              <ArrowRight className="h-5 w-5" />
-            </>
-          )}
-        </button>
+font-bold
 
-        <p className="mt-5 text-center text-sm leading-6 text-slate-500">
-          🔒 Nunca compartiremos tu información con terceros.
-        </p>
+tracking-[0.18em]
 
-      </form>
+text-emerald-300
 
-    </FormCard>
-  );
+"
+
+>
+
+COTIZACIÓN GRATUITA
+
+</span>
+
+
+
+
+
+
+
+<h2
+
+className="
+
+mt-4
+
+text-2xl
+
+font-black
+
+leading-tight
+
+text-white
+
+"
+
+>
+
+Recibe tu cotización gratuita
+
+</h2>
+
+
+
+
+
+
+
+<p
+
+className="
+
+mt-2
+
+text-sm
+
+leading-6
+
+text-slate-300
+
+"
+
+>
+
+Analizamos tu situación y buscamos la mejor alternativa para ti.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div className="space-y-3">
+
+
+
+{
+
+fields.map((field)=>{
+
+
+const Icon = field.icon;
+
+
+
+return (
+
+
+
+<div
+
+key={field.name}
+
+>
+
+
+<label
+
+className="
+
+mb-1.5
+
+flex
+
+items-center
+
+gap-2
+
+text-sm
+
+font-semibold
+
+text-slate-100
+
+"
+
+>
+
+
+
+<Icon
+
+className="
+
+h-4
+
+w-4
+
+text-emerald-400
+
+"
+
+/>
+
+
+
+{field.label}
+
+
+
+</label>
+
+
+
+
+
+
+
+<input
+
+
+name={field.name}
+
+
+type={field.type}
+
+
+required={field.required}
+
+
+value={
+form[field.name as keyof typeof form]
+}
+
+
+onChange={handleChange}
+
+
+placeholder={field.placeholder}
+
+
+className="
+
+w-full
+
+rounded-xl
+
+border
+
+border-white/10
+
+bg-[#071A33]
+
+px-4
+
+py-3
+
+text-white
+
+outline-none
+
+transition-all
+
+placeholder:text-slate-500
+
+focus:border-emerald-400
+
+focus:ring-4
+
+focus:ring-emerald-400/10
+
+"
+
+/>
+
+
+
+</div>
+
+
+
+);
+
+
+})
+
+}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* COMENTARIO DEL CLIENTE */}
+
+
+
+
+
+<div className="mt-3">
+
+
+
+
+
+<label
+
+className="
+
+mb-1.5
+
+flex
+
+items-center
+
+gap-2
+
+text-sm
+
+font-semibold
+
+text-slate-100
+
+"
+
+>
+
+
+
+<MessageSquare
+
+className="
+
+h-4
+
+w-4
+
+text-emerald-400
+
+"
+
+/>
+
+
+
+
+
+¿Qué estás buscando mejorar o revisar?
+
+
+
+
+
+</label>
+
+
+
+
+
+
+
+
+<textarea
+
+
+name="comentario"
+
+
+value={form.comentario}
+
+
+onChange={handleChange}
+
+
+placeholder="Ej: Quiero pagar menos, mejorar mi cobertura, revisar mi plan actual..."
+
+
+rows={3}
+
+
+
+className="
+
+w-full
+
+resize-none
+
+rounded-xl
+
+border
+
+border-white/10
+
+bg-[#071A33]
+
+px-4
+
+py-3
+
+text-white
+
+outline-none
+
+transition-all
+
+placeholder:text-slate-500
+
+focus:border-emerald-400
+
+focus:ring-4
+
+focus:ring-emerald-400/10
+
+"
+
+
+
+/>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<Button
+
+
+type="submit"
+
+
+disabled={loading}
+
+
+className="
+
+mt-6
+
+w-full
+
+py-3
+
+"
+
+
+
+>
+
+
+
+{
+
+loading
+
+?
+
+"Enviando..."
+
+:
+
+"🔎 Revisar mi plan"
+
+}
+
+
+
+</Button>
+
+
+
+
+
+
+
+</form>
+
+
+
+);
+
+
 }

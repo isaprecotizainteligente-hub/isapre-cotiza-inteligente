@@ -3,28 +3,42 @@
 import { MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
+
 export default function WhatsAppButton() {
+
 
   const [showBubble, setShowBubble] = useState(true);
 
 
+
   useEffect(() => {
 
+
     const handleScroll = () => {
+
       setShowBubble(window.scrollY < 250);
+
     };
 
 
     window.addEventListener("scroll", handleScroll);
 
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+
+      window.removeEventListener("scroll", handleScroll);
+
+    };
+
 
   }, []);
 
 
 
+
+
   const phone = "56974171917";
+
 
 
   const message = encodeURIComponent(
@@ -33,57 +47,107 @@ export default function WhatsAppButton() {
 
 
 
+
+
   return (
 
-    <div className="fixed bottom-6 right-6 z-50 flex items-end gap-3">
+
+    <div
+      className="
+      fixed
+      bottom-6
+      right-6
+      z-50
+      flex
+      flex-col
+      items-end
+      "
+    >
+
+
+
 
 
       {showBubble && (
 
+
         <div
           className="
           hidden
+          absolute
+          bottom-24
+          right-0
+          w-[220px]
           rounded-2xl
           bg-white
-          px-5
-          py-4
+          px-3
+          py-3
           shadow-2xl
           md:block
           animate-in
           fade-in
-          slide-in-from-right-3
+          slide-in-from-bottom-3
           "
         >
 
-          <p className="font-semibold text-slate-900">
 
-            💬 ¿Tienes dudas?
+
+          <p
+            className="
+            text-sm
+            font-semibold
+            text-slate-900
+            "
+          >
+
+            💬 ¿Estás pagando de más?
+
 
           </p>
 
 
-          <p className="text-sm text-slate-600">
 
-            Conversemos por WhatsApp.
+          <p
+            className="
+            mt-1
+            text-xs
+            text-slate-600
+            "
+          >
+
+            Revísalo gratis por WhatsApp.
+
 
           </p>
+
 
 
         </div>
+
 
       )}
 
 
 
+
+
+
+
       <a
+
 
         href={`https://wa.me/${phone}?text=${message}`}
 
+
         target="_blank"
+
 
         rel="noopener noreferrer"
 
+
         aria-label="Contactar por WhatsApp"
+
+
 
         className="
         flex
@@ -103,12 +167,16 @@ export default function WhatsAppButton() {
 
       >
 
+
         <MessageCircle className="h-8 w-8" />
+
 
       </a>
 
 
+
     </div>
+
 
   );
 

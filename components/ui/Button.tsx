@@ -1,46 +1,68 @@
 "use client";
 
-type ButtonProps = {
+import React from "react";
+
+
+interface ButtonProps
+extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+
   children: React.ReactNode;
-  type?: "button" | "submit" | "reset";
-  onClick?: () => void;
-  className?: string;
-};
+
+}
+
 
 export default function Button({
+
   children,
-  type = "button",
-  onClick,
+
   className = "",
+
+  ...props
+
 }: ButtonProps) {
+
+
   return (
+
     <button
-      type={type}
-      onClick={onClick}
+
+      {...props}
+
       className={`
-        inline-flex
-        items-center
-        justify-center
-        rounded-2xl
-        bg-gradient-to-r
-        from-blue-600
-        to-blue-500
-        px-7
-        py-4
-        font-semibold
-        text-white
-        shadow-lg
-        shadow-blue-600/30
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:scale-[1.02]
-        hover:shadow-blue-500/50
-        active:scale-95
-        ${className}
+      
+      rounded-2xl
+
+      bg-gradient-to-r
+      from-emerald-400
+      to-green-500
+
+      px-7
+      py-4
+
+      font-bold
+      text-white
+
+      shadow-lg
+      shadow-emerald-500/30
+
+      transition-all
+
+      hover:scale-105
+
+      disabled:cursor-not-allowed
+      disabled:opacity-60
+
+      ${className}
+
       `}
+
     >
+
       {children}
+
     </button>
+
   );
+
+
 }

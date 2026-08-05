@@ -8,179 +8,451 @@ import {
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
+
 const steps = [
   {
-    number: "01",
-    icon: ClipboardList,
-    title: "Cuéntanos sobre ti",
+    number:"01",
+    icon:ClipboardList,
+    title:"Cuéntanos sobre ti",
     description:
       "Completa el formulario con tu edad, renta, sistema de salud y la clínica donde prefieres atenderte.",
   },
   {
-    number: "02",
-    icon: SearchCheck,
-    title: "Analizamos las alternativas",
+    number:"02",
+    icon:SearchCheck,
+    title:"Analizamos las alternativas",
     description:
       "Comparamos las principales Isapres para encontrar la opción que mejor se adapte a tu situación.",
   },
   {
-    number: "03",
-    icon: MessageCircleMore,
-    title: "Recibe una propuesta",
+    number:"03",
+    icon:MessageCircleMore,
+    title:"Recibe una propuesta",
     description:
       "Te contactaremos por WhatsApp con una recomendación clara y resolveremos todas tus dudas.",
   },
 ];
 
-export default function HowItWorks() {
-  return (
-    <Section
-      id="como-funciona"
-      className="relative scroll-mt-24 !py-12 lg:!py-16"
-    >
 
-      {/* Glow */}
 
-      <div className="absolute left-1/2 top-0 -z-10 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-[170px]" />
+export default function HowItWorks(){
 
 
-      <Container>
+return (
 
-        <div className="mx-auto -mt-4 max-w-3xl text-center">
 
+<Section
 
-          <span className="inline-flex rounded-full border border-blue-500/20 bg-blue-500/10 px-5 py-2 text-sm font-semibold text-blue-300">
+id="como-funciona"
 
-            ¿Cómo funciona?
+className="
+relative
+scroll-mt-24
+!py-12
+lg:!py-16
+"
 
-          </span>
+>
 
 
-          <h2 className="mt-4 text-4xl font-black tracking-tight text-white lg:text-5xl">
 
-            En solo 3 pasos
-            <br />
-            encuentras tu mejor alternativa.
 
-          </h2>
 
+{/* GLOW */}
 
-          <p className="mt-4 text-lg leading-8 text-slate-400">
 
-            Nuestro proceso es rápido, gratuito y completamente personalizado.
+<div
 
-          </p>
+className="
+absolute
+left-1/2
+top-0
+-z-10
+h-[450px]
+w-[450px]
+-translate-x-1/2
+rounded-full
+bg-emerald-400/10
+blur-[170px]
+"
 
+/>
 
-        </div>
 
 
 
-        <div className="relative mt-12 grid gap-8 lg:grid-cols-3">
 
 
-          {steps.map((step, index) => {
 
-            const Icon = step.icon;
+<Container>
 
 
-            return (
 
-              <div
-                key={step.number}
-                className="
-                group
-                relative
-                overflow-hidden
-                rounded-[30px]
-                border
-                border-white/10
-                bg-[#111C34]/80
-                p-7
-                lg:p-8
-                backdrop-blur-xl
-                transition-all
-                duration-500
-                hover:-translate-y-2
-                hover:border-blue-500/30
-                hover:shadow-[0_25px_70px_rgba(37,99,235,.18)]
-                "
-              >
 
 
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-blue-500/10 blur-3xl transition group-hover:scale-150" />
+<div
 
+className="
+mx-auto
+-mt-4
+max-w-3xl
+text-center
+"
 
-                <span className="absolute right-8 top-6 text-6xl font-black text-white/5">
+>
 
-                  {step.number}
 
-                </span>
 
 
+<span
 
-                <div className="relative">
+className="
+inline-flex
+rounded-full
+border
+border-emerald-400/20
+bg-emerald-400/10
+px-5
+py-2
+text-sm
+font-semibold
+text-emerald-300
+"
 
+>
 
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg shadow-blue-600/30">
+¿Cómo funciona?
 
-                    <Icon className="h-8 w-8 text-white" />
+</span>
 
-                  </div>
 
 
 
-                  <h3 className="mt-8 text-2xl font-bold text-white">
 
-                    {step.title}
 
-                  </h3>
 
+<h2
 
+className="
+mt-4
+text-4xl
+font-black
+tracking-tight
+text-white
+lg:text-5xl
+"
 
-                  <p className="mt-5 leading-8 text-slate-400">
+>
 
-                    {step.description}
 
-                  </p>
+En solo 3 pasos
 
+<br/>
 
-                </div>
+encuentras tu mejor alternativa.
 
 
+</h2>
 
-                {index < steps.length - 1 && (
 
-                  <ArrowRight
-                    className="
-                    absolute
-                    -right-4
-                    top-1/2
-                    hidden
-                    h-8
-                    w-8
-                    -translate-y-1/2
-                    text-blue-500
-                    xl:block
-                    "
-                  />
 
-                )}
 
 
-              </div>
 
-            );
 
-          })}
+<p
 
+className="
+mt-4
+text-lg
+leading-8
+text-slate-400
+"
 
-        </div>
+>
 
+Nuestro proceso es rápido, gratuito y completamente personalizado.
 
-      </Container>
 
+</p>
 
-    </Section>
-  );
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div
+
+className="
+relative
+mt-12
+grid
+gap-8
+lg:grid-cols-3
+"
+
+>
+
+
+
+
+
+{
+steps.map((step,index)=>{
+
+
+const Icon = step.icon;
+
+
+
+return (
+
+
+
+<div
+
+key={step.number}
+
+className="
+group
+relative
+overflow-hidden
+rounded-[30px]
+border
+border-white/10
+bg-[#102B4E]/80
+p-7
+backdrop-blur-xl
+transition-all
+duration-500
+hover:-translate-y-2
+hover:border-emerald-400/30
+hover:shadow-[0_25px_70px_rgba(16,185,129,.15)]
+"
+
+>
+
+
+
+
+
+
+
+<div
+
+className="
+absolute
+right-0
+top-0
+h-24
+w-24
+rounded-full
+bg-emerald-400/10
+blur-3xl
+transition
+group-hover:scale-150
+"
+
+/>
+
+
+
+
+
+
+
+<span
+
+className="
+absolute
+right-8
+top-6
+text-6xl
+font-black
+text-white/5
+"
+
+>
+
+{step.number}
+
+</span>
+
+
+
+
+
+
+
+
+
+<div className="relative">
+
+
+
+
+
+
+
+<div
+
+className="
+flex
+h-16
+w-16
+items-center
+justify-center
+rounded-2xl
+bg-gradient-to-br
+from-emerald-500
+to-green-600
+shadow-lg
+shadow-emerald-500/30
+"
+
+>
+
+
+<Icon
+
+className="
+h-8
+w-8
+text-white
+"
+
+/>
+
+
+</div>
+
+
+
+
+
+
+
+
+<h3
+
+className="
+mt-8
+text-2xl
+font-bold
+text-white
+"
+
+>
+
+{step.title}
+
+</h3>
+
+
+
+
+
+
+
+
+<p
+
+className="
+mt-5
+leading-8
+text-slate-400
+"
+
+>
+
+{step.description}
+
+</p>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{
+index < steps.length - 1 && (
+
+
+<ArrowRight
+
+className="
+absolute
+-right-4
+top-1/2
+hidden
+h-8
+w-8
+-translate-y-1/2
+text-emerald-400
+xl:block
+"
+
+/>
+
+
+)
+
+}
+
+
+
+
+
+</div>
+
+
+
+);
+
+
+})
+
+}
+
+
+
+
+</div>
+
+
+
+
+
+
+</Container>
+
+
+
+
+</Section>
+
+
+);
+
+
 }
