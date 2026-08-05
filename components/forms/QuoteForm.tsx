@@ -37,8 +37,6 @@ export default function QuoteForm() {
 
 
 
-
-
   function handleChange(
     e:
     React.ChangeEvent<
@@ -57,7 +55,6 @@ export default function QuoteForm() {
 
 
   }
-
 
 
 
@@ -88,6 +85,7 @@ export default function QuoteForm() {
 
 
 
+
     if(!form.telefono.trim()){
 
       alert(
@@ -102,17 +100,13 @@ export default function QuoteForm() {
 
 
 
-
     setLoading(true);
 
 
 
 
 
-
-
     try {
-
 
 
       const response = await fetch(
@@ -172,8 +166,6 @@ export default function QuoteForm() {
 
 
 
-
-
       if(!response.ok){
 
         throw new Error(
@@ -186,11 +178,31 @@ export default function QuoteForm() {
 
 
 
+      // GOOGLE TAG MANAGER / GA4
+
+      if(typeof window !== "undefined"){
+
+        window.dataLayer = window.dataLayer || [];
+
+
+        window.dataLayer.push({
+
+          event:"generate_lead",
+
+          form_name:"cotizacion_isapre",
+
+        });
+
+
+      }
+
+
+
+
 
       alert(
         "¡Solicitud enviada correctamente! Te contactaremos pronto."
       );
-
 
 
 
@@ -206,8 +218,6 @@ export default function QuoteForm() {
         comentario:"",
 
       });
-
-
 
 
 
@@ -236,109 +246,105 @@ export default function QuoteForm() {
 
 
   }
-
-
-
-
-
-
-
-
-
   const fields = [
 
 
-    {
+  {
 
-      name:"nombre",
+    name:"nombre",
 
-      label:"Nombre",
+    label:"Nombre",
 
-      placeholder:"Juan Pérez",
+    placeholder:"Juan Pérez",
 
-      icon:User,
+    icon:User,
 
-      type:"text",
+    type:"text",
 
-      required:true,
+    required:true,
 
-    },
-
-
-
-    {
-
-      name:"telefono",
-
-      label:"Número de teléfono",
-
-      placeholder:"+56 9 1234 5678",
-
-      icon:Phone,
-
-      type:"tel",
-
-      required:true,
-
-    },
+  },
 
 
 
-    {
+  {
 
-      name:"renta",
+    name:"telefono",
 
-      label:"Renta imponible",
+    label:"Número de teléfono",
 
-      placeholder:"$1.500.000",
+    placeholder:"+56 9 1234 5678",
 
-      icon:DollarSign,
+    icon:Phone,
 
-      type:"text",
+    type:"tel",
 
-      required:false,
+    required:true,
 
-    },
-
-
-
-    {
-
-      name:"edad",
-
-      label:"Edad",
-
-      placeholder:"34",
-
-      icon:Calendar,
-
-      type:"number",
-
-      required:false,
-
-    },
+  },
 
 
 
-    {
+  {
 
-      name:"cargas",
+    name:"renta",
 
-      label:"Edad de las cargas (si tiene)",
+    label:"Renta imponible",
 
-      placeholder:"Ej: 5, 8, 12",
+    placeholder:"$1.500.000",
 
-      icon:Users,
+    icon:DollarSign,
 
-      type:"text",
+    type:"text",
 
-      required:false,
+    required:false,
 
-    },
+  },
 
 
-  ];
-    return (
+
+  {
+
+    name:"edad",
+
+    label:"Edad",
+
+    placeholder:"34",
+
+    icon:Calendar,
+
+    type:"number",
+
+    required:false,
+
+  },
+
+
+
+  {
+
+    name:"cargas",
+
+    label:"Edad de las cargas (si tiene)",
+
+    placeholder:"Ej: 5, 8, 12",
+
+    icon:Users,
+
+    type:"text",
+
+    required:false,
+
+  },
+
+
+];
+
+
+
+
+
+return (
 
 
 <form
@@ -371,12 +377,7 @@ backdrop-blur-xl
 
 
 
-
-
 <div className="mb-6">
-
-
-
 
 
 <span
@@ -417,8 +418,6 @@ COTIZACIÓN GRATUITA
 
 
 
-
-
 <h2
 
 className="
@@ -445,8 +444,6 @@ Recibe tu cotización gratuita
 
 
 
-
-
 <p
 
 className="
@@ -468,7 +465,6 @@ Analizamos tu situación y buscamos la mejor alternativa para ti.
 </p>
 
 
-
 </div>
 
 
@@ -477,10 +473,7 @@ Analizamos tu situación y buscamos la mejor alternativa para ti.
 
 
 
-
-
 <div className="space-y-3">
-
 
 
 {
@@ -493,7 +486,6 @@ const Icon = field.icon;
 
 
 return (
-
 
 
 <div
@@ -526,7 +518,6 @@ text-slate-100
 >
 
 
-
 <Icon
 
 className="
@@ -542,14 +533,10 @@ text-emerald-400
 />
 
 
-
 {field.label}
 
 
-
 </label>
-
-
 
 
 
@@ -613,9 +600,7 @@ focus:ring-emerald-400/10
 />
 
 
-
 </div>
-
 
 
 );
@@ -626,7 +611,6 @@ focus:ring-emerald-400/10
 }
 
 
-
 </div>
 
 
@@ -635,18 +619,7 @@ focus:ring-emerald-400/10
 
 
 
-
-
-{/* COMENTARIO DEL CLIENTE */}
-
-
-
-
-
 <div className="mt-3">
-
-
-
 
 
 <label
@@ -672,7 +645,6 @@ text-slate-100
 >
 
 
-
 <MessageSquare
 
 className="
@@ -688,19 +660,10 @@ text-emerald-400
 />
 
 
-
-
-
 ¿Qué estás buscando mejorar o revisar?
 
 
-
-
-
 </label>
-
-
-
 
 
 
@@ -722,7 +685,6 @@ placeholder="Ej: Quiero pagar menos, mejorar mi cobertura, revisar mi plan actua
 
 
 rows={3}
-
 
 
 className="
@@ -760,16 +722,11 @@ focus:ring-emerald-400/10
 "
 
 
-
 />
 
 
 
-
-
-
 </div>
-
 
 
 
@@ -798,9 +755,7 @@ py-3
 "
 
 
-
 >
-
 
 
 {
@@ -818,7 +773,6 @@ loading
 }
 
 
-
 </Button>
 
 
@@ -826,9 +780,7 @@ loading
 
 
 
-
 </form>
-
 
 
 );
