@@ -6,52 +6,239 @@ import "./globals.css";
 
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
+
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.isaprecotizainteligente.cl"),
+
+
+  metadataBase: new URL(
+    "https://isaprecotizainteligente.cl"
+  ),
+
+
 
   title: {
-    default: "Isapre Cotiza Inteligente | Compara las principales Isapres de Chile",
-    template: "%s | Isapre Cotiza Inteligente",
+
+    default:
+      "Isapre Cotiza Inteligente | Compara planes de salud en Chile",
+
+    template:
+      "%s | Isapre Cotiza Inteligente",
+
   },
+
+
 
   description:
-    "Compara las principales Isapres de Chile y encuentra el plan ideal para ti con asesoría gratuita.",
+
+    "Compara tu plan de Isapre gratis. Te ayudamos a encontrar una alternativa más conveniente según tu renta, edad y necesidades en Chile.",
+
+
+
+  keywords: [
+
+    "isapre",
+
+    "cotizar isapre",
+
+    "comparar isapres",
+
+    "planes de salud",
+
+    "isapre chile",
+
+    "cambiarse de isapre",
+
+    "mejor isapre",
+
+    "asesor isapre",
+
+  ],
+
+
 
   alternates: {
-    canonical: "/",
+
+    canonical:
+      "https://isaprecotizainteligente.cl",
+
   },
+
+
+
+  openGraph: {
+
+    title:
+      "Isapre Cotiza Inteligente | Compara tu plan de salud",
+
+    description:
+      "Revisamos tu plan actual y buscamos una alternativa más conveniente para ti.",
+
+    url:
+      "https://isaprecotizainteligente.cl",
+
+    siteName:
+      "Isapre Cotiza Inteligente",
+
+    locale:
+      "es_CL",
+
+    type:
+      "website",
+
+  },
+
+
+
+  twitter: {
+
+    card:
+      "summary_large_image",
+
+    title:
+      "Isapre Cotiza Inteligente | Compara planes de salud",
+
+    description:
+      "Asesoría gratuita para encontrar una mejor alternativa de Isapre.",
+
+  },
+
 };
 
+
+
+
+
 export default function RootLayout({
+
   children,
+
 }: Readonly<{
+
   children: React.ReactNode;
+
 }>) {
+
+
   return (
+
+
     <html
+
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+
+      className={`
+      ${geistSans.variable}
+      ${geistMono.variable}
+      h-full
+      antialiased
+      `}
+
     >
-      <body className="min-h-full bg-slate-950 text-white">
+
+
+
+      <body
+
+        className="
+        min-h-full
+        bg-slate-950
+        text-white
+        "
+
+      >
+
+
 
         {children}
 
+
+
         <WhatsAppButton />
+
+
+
+        <script
+
+          type="application/ld+json"
+
+          dangerouslySetInnerHTML={{
+
+            __html: JSON.stringify({
+
+              "@context":
+                "https://schema.org",
+
+
+              "@type":
+                "Organization",
+
+
+              "name":
+                "Isapre Cotiza Inteligente",
+
+
+              "url":
+                "https://isaprecotizainteligente.cl",
+
+
+              "description":
+                "Asesoría gratuita para comparar planes de Isapre en Chile.",
+
+
+              "areaServed":
+                "Chile",
+
+
+              "contactPoint": {
+
+                "@type":
+                  "ContactPoint",
+
+                "contactType":
+                  "customer service",
+
+                "availableLanguage":
+                  "Spanish"
+
+              }
+
+
+            })
+
+          }}
+
+        />
+
+
 
       </body>
 
-      <GoogleTagManager gtmId="GTM-T67LJSHF" />
+
+
+      <GoogleTagManager
+
+        gtmId="GTM-T67LJSHF"
+
+      />
+
+
 
     </html>
+
+
   );
+
 }
