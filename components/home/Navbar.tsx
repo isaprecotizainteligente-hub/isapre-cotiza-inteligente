@@ -18,18 +18,23 @@ export default function Navbar() {
 
   function goToQuote() {
 
+
     document
       .getElementById("cotizacion")
       ?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
+
+        behavior:"smooth",
+
+        block:"center",
+
       });
+
 
 
     setOpen(false);
 
-  }
 
+  }
 
 
 
@@ -38,23 +43,28 @@ export default function Navbar() {
   const menuItems = [
 
     {
-      title: "Inicio",
-      href: "#",
+      title:"Inicio",
+      href:"#",
     },
 
     {
-      title: "Cómo funciona",
-      href: "#como-funciona",
+      title:"Cómo funciona",
+      href:"#como-funciona",
     },
 
     {
-      title: "Isapres",
-      href: "#isapres",
+      title:"Isapres",
+      href:"#isapres",
     },
 
     {
-      title: "Beneficios",
-      href: "#beneficios",
+      title:"Beneficios",
+      href:"#beneficios",
+    },
+
+    {
+      title:"Preguntas frecuentes",
+      href:"#faq",
     },
 
   ];
@@ -64,318 +74,440 @@ export default function Navbar() {
 
 
 
+
   return (
 
 
+<header
 
-    <header
+className="
 
-      className="
-      relative
-      z-50
-      h-20
-      border-b
-      border-white/10
-      bg-[#081B35]
-      "
+fixed
 
-    >
+top-0
 
+left-0
 
+right-0
 
+z-50
 
+h-20
 
-      <Container>
+border-b
 
+border-white/10
 
+bg-[#081B35]/95
 
+backdrop-blur-xl
 
-        <div
+"
 
-          className="
-          flex
-          h-20
-          items-center
-          justify-between
-          "
+>
 
-        >
 
+<Container>
 
 
+<div
 
+className="
 
+flex
 
+h-20
 
-          {/* LOGO */}
+items-center
 
+justify-between
 
+"
 
-          <a
+>
 
-            href="#"
 
-            className="
-            flex
-            items-center
-            gap-3
-            "
 
-          >
 
 
 
+{/* LOGO */}
 
-            <Image
 
-              src="/logos/logo-v3.png"
+<a
 
-              alt="Isapre Cotiza Inteligente"
+href="#"
 
-              width={70}
+className="flex items-center gap-3"
 
-              height={70}
+onClick={()=>setOpen(false)}
 
-              className="
-              h-14
-              w-14
-              object-contain
-              "
+>
 
-              priority
 
-            />
+<Image
 
+src="/logos/logo-v3.png"
 
+alt="Isapre Cotiza Inteligente"
 
+width={70}
 
+height={70}
 
+className="h-14 w-14 object-contain"
 
-            <div>
+priority
 
+/>
 
 
-              <h2
+<div>
 
-                className="
-                text-xl
-                font-black
-                text-white
-                "
 
-              >
+<h2
 
-                Isapre
+className="
+text-xl
+font-black
+text-white
+"
 
+>
 
-              </h2>
+Isapre
 
+</h2>
 
 
+<p
 
+className="
+text-sm
+font-medium
+text-emerald-400
+"
 
+>
 
-              <p
+Cotiza Inteligente
 
-                className="
-                text-sm
-                font-medium
-                text-emerald-400
-                "
+</p>
 
-              >
 
-                Cotiza Inteligente
+</div>
 
 
-              </p>
+</a>
 
 
 
 
 
 
-            </div>
 
+{/* DESKTOP MENU */}
 
 
 
+<nav
 
-          </a>
+className="
 
+hidden
 
+items-center
 
+gap-10
 
+lg:flex
 
+"
 
+>
 
 
+{
 
-          {/* MENU DESKTOP */}
+menuItems.map((item)=>(
 
 
+<a
 
-          <nav
+key={item.title}
 
-            className="
-            hidden
-            items-center
-            gap-10
-            lg:flex
-            "
+href={item.href}
 
-          >
+className="
 
+text-sm
 
+font-medium
 
-            {menuItems.map((item)=>(
+text-slate-300
 
+transition
 
+hover:text-white
 
-              <a
+"
 
-                key={item.title}
+>
 
-                href={item.href}
 
-                className="
-                text-sm
-                font-medium
-                text-slate-300
-                transition
-                hover:text-white
-                "
+{item.title}
 
-              >
 
-                {item.title}
+</a>
 
 
-              </a>
+))
 
+}
 
 
-            ))}
+</nav>
 
 
 
-          </nav>
 
 
 
 
+{/* DESKTOP BUTTON */}
 
 
 
+<div
 
+className="hidden lg:block"
 
-          {/* BOTON */}
+>
 
 
+<Button
 
+onClick={goToQuote}
 
-          <div
+>
 
-            className="
-            hidden
-            lg:block
-            "
+🚀 Cotizar gratis
 
-          >
 
+</Button>
 
 
-            <Button
+</div>
 
-              onClick={goToQuote}
 
-            >
 
-              🚀 Cotizar gratis
 
 
-            </Button>
 
 
+{/* MOBILE BUTTON */}
 
-          </div>
 
 
+<button
 
 
+onClick={()=>setOpen(!open)}
 
 
+className="
 
+flex
 
+h-11
 
-          {/* MOBILE */}
+w-11
 
+items-center
 
+justify-center
 
+rounded-xl
 
-          <button
+border
 
+border-white/10
 
-            onClick={()=>setOpen(!open)}
+bg-white/5
 
+text-white
 
-            className="
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
-            rounded-xl
-            border
-            border-white/10
-            bg-white/5
-            text-white
-            lg:hidden
-            "
+lg:hidden
 
-          >
+"
 
 
+>
 
-            {
 
-              open
+{
 
-              ?
+open
 
-              <X className="h-5 w-5"/>
+?
 
-              :
+<X className="h-5 w-5"/>
 
-              <Menu className="h-5 w-5"/>
+:
 
-            }
+<Menu className="h-5 w-5"/>
 
+}
 
 
-          </button>
+</button>
 
 
 
 
 
+</div>
 
 
-        </div>
 
 
 
 
 
+{/* MOBILE MENU */}
 
-      </Container>
 
 
+{
 
+open && (
 
 
+<div
 
-    </header>
+className="
+
+absolute
+
+left-0
+
+right-0
+
+top-20
+
+border-b
+
+border-white/10
+
+bg-[#081B35]
+
+px-6
+
+py-6
+
+shadow-2xl
+
+lg:hidden
+
+"
+
+>
+
+
+<nav
+
+className="
+
+flex
+
+flex-col
+
+gap-5
+
+"
+
+>
+
+
+{
+
+menuItems.map((item)=>(
+
+
+<a
+
+
+key={item.title}
+
+
+href={item.href}
+
+
+onClick={()=>setOpen(false)}
+
+
+className="
+
+text-base
+
+font-semibold
+
+text-slate-200
+
+hover:text-white
+
+"
+
+
+>
+
+
+{item.title}
+
+
+</a>
+
+
+))
+
+
+}
+
+
+
+
+<Button
+
+onClick={goToQuote}
+
+>
+
+
+🚀 Cotizar gratis
+
+
+</Button>
+
+
+
+</nav>
+
+
+</div>
+
+
+)
+
+}
+
+
+
+
+</Container>
+
+
+
+</header>
 
 
 

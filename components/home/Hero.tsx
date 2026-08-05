@@ -36,12 +36,16 @@ export default function Hero() {
 
   function goToQuote() {
 
+
     const form = document.getElementById("cotizacion");
 
 
     form?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
+
+      behavior:"smooth",
+
+      block:"center",
+
     });
 
 
@@ -50,11 +54,12 @@ export default function Hero() {
 
 
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
       setHighlightForm(false);
 
     },1500);
+
 
   }
 
@@ -65,539 +70,485 @@ export default function Hero() {
   return (
 
 
-    <Section
+<Section
 
-      className="
-      relative
-      min-h-[calc(100vh-80px)]
-      overflow-hidden
-      bg-[#081B35]
-      pt-8
-      pb-10
-      lg:pt-12
-      "
+className="
+relative
+min-h-[calc(100vh-80px)]
+overflow-hidden
+bg-[#081B35]
+pt-36
+pb-10
+lg:pt-32
+"
 
-    >
+>
 
 
+{/* FONDO */}
 
+<div
 
-      {/* Fondo */}
+className="
+absolute
+inset-0
+-z-30
+bg-[#081B35]
+"
 
+/>
 
-      <div
 
-        className="
-        absolute
-        inset-0
-        -z-30
-        bg-[#081B35]
-        "
 
-      />
+{/* GLOW AZUL */}
 
+<div
 
+className="
+absolute
+left-[-250px]
+top-[-250px]
+-z-20
+h-[650px]
+w-[650px]
+rounded-full
+bg-blue-500/20
+blur-[180px]
+"
 
+/>
 
 
-      {/* Glow azul */}
 
 
-      <div
+{/* GLOW VERDE */}
 
-        className="
-        absolute
-        left-[-250px]
-        top-[-250px]
-        -z-20
-        h-[650px]
-        w-[650px]
-        rounded-full
-        bg-blue-500/20
-        blur-[180px]
-        "
+<div
 
-      />
+className="
+absolute
+right-[-250px]
+bottom-[-250px]
+-z-20
+h-[650px]
+w-[650px]
+rounded-full
+bg-emerald-400/10
+blur-[180px]
+"
 
+/>
 
 
 
 
-      {/* Glow verde */}
+{/* GRID */}
 
+<div
 
-      <div
+className="
+absolute
+inset-0
+-z-10
+opacity-[0.035]
+"
 
-        className="
-        absolute
-        right-[-250px]
-        bottom-[-250px]
-        -z-20
-        h-[650px]
-        w-[650px]
-        rounded-full
-        bg-emerald-400/10
-        blur-[180px]
-        "
+style={{
 
-      />
+backgroundImage:`
 
+linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
 
+linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)
 
+`,
 
+backgroundSize:"60px 60px",
 
-      {/* Grid fondo */}
+}}
 
+/>
 
-      <div
 
-        className="
-        absolute
-        inset-0
-        -z-10
-        opacity-[0.035]
-        "
 
-        style={{
 
-          backgroundImage:`
 
-          linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+<Container>
 
-          linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)
 
-          `,
+<div
 
-          backgroundSize:"60px 60px",
+className="
+grid
+items-center
+gap-10
+lg:grid-cols-2
+lg:gap-12
+"
 
-        }}
+>
 
-      />
 
 
+{/* IZQUIERDA */}
 
 
 
+<div>
 
-      <Container>
 
 
+<div
 
+className="
+inline-flex
+items-center
+gap-3
+rounded-full
+border
+border-emerald-500/20
+bg-emerald-500/10
+px-4
+py-2
+text-sm
+font-semibold
+text-emerald-300
+"
 
-        <div
+>
 
-          className="
-          grid
-          items-center
-          gap-10
-          lg:grid-cols-2
-          lg:gap-12
-          "
 
-        >
+<span
 
+className="
+flex
+h-6
+w-6
+items-center
+justify-center
+rounded-full
+bg-emerald-500
+text-white
+"
 
+>
 
+✓
 
+</span>
 
-          {/* IZQUIERDA */}
 
+Más de 10 años ayudando a personas en todo Chile
 
 
-          <div>
+</div>
 
 
 
 
 
-            <div
+<h1
 
-              className="
-              inline-flex
-              items-center
-              gap-3
-              rounded-full
-              border
-              border-emerald-500/20
-              bg-emerald-500/10
-              px-4
-              py-2
-              text-sm
-              font-semibold
-              text-emerald-300
-              "
+className="
+mt-6
+text-4xl
+font-black
+leading-[1.05]
+tracking-tight
+text-white
+sm:text-5xl
+lg:text-6xl
+"
 
-            >
+>
 
 
+¿Estás pagando de más por tu
 
-              <span
 
-                className="
-                flex
-                h-6
-                w-6
-                items-center
-                justify-center
-                rounded-full
-                bg-emerald-500
-                text-white
-                "
 
-              >
+<span
 
-                ✓
+className="
+mt-2
+block
+bg-gradient-to-r
+from-emerald-400
+via-green-500
+to-teal-400
+bg-clip-text
+text-transparent
+"
 
-              </span>
+>
 
+plan de salud?
 
 
-              Más de 10 años ayudando a personas en todo Chile
+</span>
 
 
-            </div>
+</h1>
 
 
 
 
 
 
-            <h1
+<p
 
-              className="
-              mt-6
-              text-4xl
-              font-black
-              leading-[1.05]
-              tracking-tight
-              text-white
-              sm:text-5xl
-              lg:text-6xl
-              "
+className="
+mt-5
+max-w-xl
+text-lg
+leading-8
+text-slate-300
+"
 
-            >
+>
 
+Descubre en menos de{" "}
 
+<strong className="text-white">
 
-              ¿Estás pagando de más por tu
+2 minutos
 
+</strong>
 
+{" "}
 
-              <span
+si puedes acceder a una mejor cobertura o pagar menos por tu plan.
+Comparamos las principales Isapres de Chile.
 
-                className="
-                mt-2
-                block
-                bg-gradient-to-r
-                from-emerald-400
-                via-green-500
-                to-teal-400
-                bg-clip-text
-                text-transparent
-                "
 
-              >
+</p>
 
-                plan de salud?
 
 
-              </span>
 
 
 
-            </h1>
+<div className="mt-5 space-y-3">
 
 
+{
 
+benefits.map((item)=>(
 
 
-            <p
+<div
 
-              className="
-              mt-5
-              max-w-xl
-              text-lg
-              leading-8
-              text-slate-300
-              "
+key={item.title}
 
-            >
+className="
+flex
+items-center
+gap-3
+rounded-2xl
+border
+border-white/10
+bg-white/[0.06]
+p-3
+backdrop-blur-xl
+"
 
-              Descubre en menos de{" "}
+>
 
 
-              <strong className="text-white">
-                2 minutos
-              </strong>
+<div
 
+className="
+flex
+h-9
+w-9
+shrink-0
+items-center
+justify-center
+rounded-full
+bg-green-500
+shadow-lg
+shadow-green-500/30
+"
 
-              {" "}
-              si puedes acceder a una mejor cobertura o pagar menos por tu plan.
-              Comparamos las principales Isapres de Chile.
+>
 
+<CheckCircle2 className="h-5 w-5 text-white"/>
 
-            </p>
+</div>
 
 
 
 
+<div>
 
-            <div className="mt-5 space-y-3">
+<p className="font-semibold text-white">
 
+{item.title}
 
+</p>
 
-              {benefits.map((item)=>(
 
+<p className="text-sm text-slate-400">
 
-                <div
+{item.text}
 
-                  key={item.title}
+</p>
 
-                  className="
-                  flex
-                  items-center
-                  gap-3
-                  rounded-2xl
-                  border
-                  border-white/10
-                  bg-white/[0.06]
-                  p-3
-                  backdrop-blur-xl
-                  "
 
-                >
+</div>
 
 
 
-                  <div
+</div>
 
-                    className="
-                    flex
-                    h-9
-                    w-9
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-green-500
-                    shadow-lg
-                    shadow-green-500/30
-                    "
 
-                  >
+))
 
+}
 
-                    <CheckCircle2 className="h-5 w-5 text-white"/>
 
+</div>
 
-                  </div>
 
 
 
 
 
-                  <div>
 
+<div className="mt-6 flex flex-wrap gap-3">
 
-                    <p className="font-semibold text-white">
 
-                      {item.title}
+<Button onClick={goToQuote}>
 
-                    </p>
+🔎 Revisar mi plan
 
+</Button>
 
 
-                    <p className="text-sm text-slate-400">
 
-                      {item.text}
+<a
 
-                    </p>
+href="#como-funciona"
 
+className="
+rounded-2xl
+border
+border-white/10
+bg-white/[0.04]
+px-7
+py-4
+font-semibold
+text-white
+transition
+hover:border-emerald-400
+"
 
-                  </div>
+>
 
+Cómo funciona
 
 
+</a>
 
-                </div>
 
+</div>
 
 
-              ))}
 
 
 
-            </div>
-        
+<TrustBar />
 
 
 
+</div>
 
 
 
-            <div className="mt-6 flex flex-wrap gap-3">
 
 
 
 
 
-              <Button onClick={goToQuote}>
+{/* FORMULARIO */}
 
 
-                🔎 Revisar mi plan
 
+<div
 
-              </Button>
+id="cotizacion"
 
+className={`
 
+relative
 
+lg:-mt-12
 
+transition-all
 
-              <a
+duration-500
 
-                href="#como-funciona"
 
-                className="
-                rounded-2xl
-                border
-                border-white/10
-                bg-white/[0.04]
-                px-7
-                py-4
-                font-semibold
-                text-white
-                transition
-                hover:border-emerald-400
-                "
+${
 
-              >
+highlightForm
 
-                Cómo funciona
+?
 
+"scale-[1.02] drop-shadow-[0_0_35px_rgba(34,197,94,.35)]"
 
-              </a>
+:
 
+""
 
+}
 
 
-            </div>
+`}
 
+>
 
 
 
 
+<div
 
+className="
+absolute
+-inset-5
+rounded-[40px]
+bg-emerald-500/10
+blur-3xl
+"
 
-            <TrustBar />
+/>
 
 
 
-          </div>
+<div className="relative">
 
 
+<QuoteForm />
 
 
+</div>
 
 
 
+</div>
 
 
-          {/* FORMULARIO */}
 
 
 
+</div>
 
 
-          <div
+</Container>
 
-            id="cotizacion"
 
-            className={`
 
-            relative
-
-            lg:-mt-8
-
-            transition-all
-            duration-500
-
-
-            ${
-              highlightForm
-              ?
-              "scale-[1.02] drop-shadow-[0_0_35px_rgba(34,197,94,.35)]"
-              :
-              ""
-            }
-
-
-            `}
-
-          >
-
-
-
-
-
-
-
-            <div
-
-              className="
-              absolute
-              -inset-5
-              rounded-[40px]
-              bg-emerald-500/10
-              blur-3xl
-              "
-
-            />
-
-
-
-
-
-
-
-            <div className="relative">
-
-
-              <QuoteForm />
-
-
-            </div>
-
-
-
-
-
-
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-      </Container>
-
-
-
-
-
-
-
-    </Section>
+</Section>
 
 
   );

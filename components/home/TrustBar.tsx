@@ -35,8 +35,9 @@ export default function TrustBar() {
       className="
       mt-10
       grid
-      grid-cols-3
+      grid-cols-1
       gap-4
+      sm:grid-cols-3
       "
 
     >
@@ -59,13 +60,14 @@ export default function TrustBar() {
 
             className="
             flex
-            h-[110px]
+            min-h-[110px]
             items-center
             rounded-3xl
             border
             border-white/10
             bg-white/[0.05]
-            px-4
+            px-5
+            py-4
             backdrop-blur-xl
             transition-all
             duration-300
@@ -84,7 +86,7 @@ export default function TrustBar() {
               className="
               flex
               items-center
-              gap-3
+              gap-4
               "
 
             >
@@ -131,13 +133,14 @@ export default function TrustBar() {
 
 
 
+
               <div>
 
 
                 <p
 
                   className="
-                  text-xl
+                  text-2xl
                   font-black
                   leading-none
                   text-white
@@ -153,11 +156,11 @@ export default function TrustBar() {
 
 
 
+
                 <p
 
                   className="
                   mt-2
-                  max-w-[90px]
                   text-sm
                   leading-tight
                   text-slate-300
@@ -177,7 +180,9 @@ export default function TrustBar() {
 
 
 
+
             </div>
+
 
 
 
@@ -196,6 +201,5 @@ export default function TrustBar() {
 
 
   );
-
 
 }
