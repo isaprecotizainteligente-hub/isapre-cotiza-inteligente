@@ -34,6 +34,9 @@ export default function QuoteForm() {
   const [loading,setLoading] = useState(false);
 
 
+  const [success,setSuccess] = useState(false);
+
+
 
 
 
@@ -55,6 +58,8 @@ export default function QuoteForm() {
 
 
   }
+
+
 
 
 
@@ -166,6 +171,7 @@ export default function QuoteForm() {
 
 
 
+
       if(!response.ok){
 
         throw new Error(
@@ -178,11 +184,15 @@ export default function QuoteForm() {
 
 
 
+
       // GOOGLE TAG MANAGER / GA4
 
       if(typeof window !== "undefined"){
 
-        window.dataLayer = window.dataLayer || [];
+
+        window.dataLayer =
+        window.dataLayer || [];
+
 
 
         window.dataLayer.push({
@@ -200,9 +210,8 @@ export default function QuoteForm() {
 
 
 
-      alert(
-        "¡Solicitud enviada correctamente! Te contactaremos pronto."
-      );
+
+      setSuccess(true);
 
 
 
@@ -218,6 +227,7 @@ export default function QuoteForm() {
         comentario:"",
 
       });
+
 
 
 
@@ -246,10 +256,13 @@ export default function QuoteForm() {
 
 
   }
+
+
+
+
+
   const fields = [
-
-
-  {
+      {
 
     name:"nombre",
 
@@ -264,7 +277,6 @@ export default function QuoteForm() {
     required:true,
 
   },
-
 
 
   {
@@ -284,7 +296,6 @@ export default function QuoteForm() {
   },
 
 
-
   {
 
     name:"renta",
@@ -302,7 +313,6 @@ export default function QuoteForm() {
   },
 
 
-
   {
 
     name:"edad",
@@ -318,7 +328,6 @@ export default function QuoteForm() {
     required:false,
 
   },
-
 
 
   {
@@ -339,6 +348,241 @@ export default function QuoteForm() {
 
 
 ];
+
+
+
+
+
+
+
+if(success){
+
+return (
+
+<div
+
+className="
+
+rounded-[32px]
+
+border
+
+border-emerald-400/30
+
+bg-[#0D2747]/95
+
+p-8
+
+text-center
+
+shadow-2xl
+
+"
+
+>
+
+
+<div
+
+className="
+
+mx-auto
+
+mb-5
+
+flex
+
+h-16
+
+w-16
+
+items-center
+
+justify-center
+
+rounded-full
+
+bg-emerald-400/20
+
+text-3xl
+
+text-emerald-400
+
+"
+
+>
+
+✓
+
+</div>
+
+
+
+
+
+<h2
+
+className="
+
+text-2xl
+
+font-black
+
+text-white
+
+"
+
+>
+
+🚀 ¡Excelente decisión!
+
+</h2>
+
+
+
+
+
+<p
+
+className="
+
+mt-4
+
+leading-7
+
+text-slate-300
+
+"
+
+>
+
+Recibimos tu solicitud correctamente.
+
+<br />
+
+Un asesor especializado revisará tu situación y te contactará en los próximos minutos para ayudarte a encontrar una mejor alternativa de salud.
+
+</p>
+
+
+
+
+
+<div
+
+className="
+
+mt-6
+
+rounded-xl
+
+border
+
+border-emerald-400/20
+
+bg-emerald-400/10
+
+p-4
+
+text-sm
+
+text-emerald-300
+
+"
+
+>
+
+✓ Revisaremos tu plan actual
+
+<br />
+
+✓ Evaluaremos cobertura y costos
+
+<br />
+
+✓ Buscaremos oportunidades de mejora
+
+</div>
+
+
+
+
+
+
+
+<a
+
+href="https://wa.me/56974171917"
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+
+onClick={() => {
+
+
+if(typeof window !== "undefined"){
+
+
+window.dataLayer =
+window.dataLayer || [];
+
+
+
+window.dataLayer.push({
+
+event:"click_whatsapp_success",
+
+});
+
+
+}
+
+
+}}
+
+
+className="
+
+mt-6
+
+block
+
+rounded-xl
+
+bg-green-500
+
+px-5
+
+py-3
+
+font-bold
+
+text-white
+
+transition
+
+hover:bg-green-600
+
+"
+
+>
+
+💬 Hablar ahora por WhatsApp
+
+</a>
+
+
+
+
+
+</div>
+
+);
+
+}
+
 
 
 
@@ -669,6 +913,8 @@ text-emerald-400
 
 
 
+
+
 <textarea
 
 
@@ -734,7 +980,6 @@ focus:ring-emerald-400/10
 
 
 
-
 <Button
 
 
@@ -764,11 +1009,11 @@ loading
 
 ?
 
-"Enviando..."
+"⏳ Analizando información..."
 
 :
 
-"🔎 Revisar mi plan"
+"🚀 Quiero mejorar mi plan"
 
 }
 
