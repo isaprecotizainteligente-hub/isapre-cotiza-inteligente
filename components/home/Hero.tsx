@@ -193,8 +193,7 @@ lg:gap-12
 {/* IZQUIERDA */}
 
 
-
-<div>
+<div className="order-2 lg:order-1">
 
 
 
@@ -472,40 +471,21 @@ Cómo funciona
 
 {/* FORMULARIO */}
 
-
-
 <div
+  id="cotizacion"
+  className={`
+    order-1 lg:order-2
+    relative
+    lg:-mt-12
+    transition-all
+    duration-500
 
-id="cotizacion"
-
-className={`
-
-relative
-
-lg:-mt-12
-
-transition-all
-
-duration-500
-
-
-${
-
-highlightForm
-
-?
-
-"scale-[1.02] drop-shadow-[0_0_35px_rgba(34,197,94,.35)]"
-
-:
-
-""
-
-}
-
-
-`}
-
+    ${
+      highlightForm
+        ? "scale-[1.02] drop-shadow-[0_0_35px_rgba(34,197,94,.35)]"
+        : ""
+    }
+  `}
 >
 
 
