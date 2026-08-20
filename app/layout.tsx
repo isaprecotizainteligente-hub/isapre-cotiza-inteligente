@@ -1,85 +1,54 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Script from "next/script";
 
 import "./globals.css";
 
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
-
-
 export const metadata: Metadata = {
-
-
   metadataBase: new URL(
     "https://isaprecotizainteligente.cl"
   ),
 
-
-
   title: {
-
     default:
       "Isapre Cotiza Inteligente | Compara planes de salud en Chile",
-
     template:
       "%s | Isapre Cotiza Inteligente",
-
   },
-
-
 
   description:
-
     "Compara tu plan de Isapre gratis. Te ayudamos a encontrar una alternativa más conveniente según tu renta, edad y necesidades en Chile.",
 
-
-
   keywords: [
-
     "isapre",
-
     "cotizar isapre",
-
     "comparar isapres",
-
     "planes de salud",
-
     "isapre chile",
-
     "cambiarse de isapre",
-
     "mejor isapre",
-
     "asesor isapre",
-
   ],
 
-
-
   alternates: {
-
     canonical:
       "https://isaprecotizainteligente.cl/",
-
   },
 
-
-
   openGraph: {
-
     title:
       "Isapre Cotiza Inteligente | Compara tu plan de salud",
 
@@ -97,13 +66,9 @@ export const metadata: Metadata = {
 
     type:
       "website",
-
   },
 
-
-
   twitter: {
-
     card:
       "summary_large_image",
 
@@ -112,170 +77,105 @@ export const metadata: Metadata = {
 
     description:
       "Asesoría gratuita para encontrar una mejor alternativa de Isapre.",
-
   },
-
 };
 
-
-
-
-
 export default function RootLayout({
-
   children,
-
 }: Readonly<{
-
   children: React.ReactNode;
-
 }>) {
-
-
   return (
-
-
     <html
-
       lang="es"
-
       className={`
         ${geistSans.variable}
         ${geistMono.variable}
         h-full
         antialiased
       `}
-
     >
-
-
-
       <body
-
         className="
           min-h-full
           bg-slate-950
           text-white
         "
-
       >
-
-
-
         {children}
 
+        {/* Meta Pixel */}
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
 
+              fbq('init', '2257622715018696');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
 
         <WhatsAppButton />
 
-
-
-
-
+        {/* Schema.org */}
         <script
-
           type="application/ld+json"
-
           dangerouslySetInnerHTML={{
-
             __html: JSON.stringify({
+              "@context": "https://schema.org",
 
-
-              "@context":
-                "https://schema.org",
-
-
-
-              "@type":
-                "LocalBusiness",
-
-
+              "@type": "LocalBusiness",
 
               "name":
                 "Isapre Cotiza Inteligente",
 
-
-
               "url":
                 "https://isaprecotizainteligente.cl/",
-
-
 
               "description":
                 "Asesoría gratuita para comparar planes de Isapre en Chile y encontrar alternativas de cobertura según las necesidades de cada persona.",
 
-
-
               "areaServed": {
-
-                "@type":
-                  "Country",
-
-                "name":
-                  "Chile"
-
+                "@type": "Country",
+                "name": "Chile",
               },
-
-
 
               "serviceType":
                 "Asesoría y comparación de planes de Isapre",
 
-
-
               "priceRange":
                 "Gratis",
 
-
-
               "contactPoint": {
-
-                "@type":
-                  "ContactPoint",
-
+                "@type": "ContactPoint",
                 "contactType":
                   "customer service",
-
                 "availableLanguage":
-                  "Spanish"
-
+                  "Spanish",
               },
 
-
-
               "sameAs": [
-
-                "https://www.instagram.com/isaprecotizainteligente.cl/"
-
-              ]
-
-
-
-            })
-
+                "https://www.instagram.com/isaprecotizainteligente.cl/",
+              ],
+            }),
           }}
-
-
-
         />
-
-
-
       </body>
 
-
-
+      {/* Google Tag Manager */}
       <GoogleTagManager
-
         gtmId="GTM-T67LJSHF"
-
       />
-
-
-
     </html>
-
-
   );
-
 }
