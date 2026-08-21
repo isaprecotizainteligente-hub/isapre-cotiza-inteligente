@@ -259,27 +259,24 @@ export default function QuoteForm() {
 
 
 
-      setSuccess(true);
+      /*
+       *
+       * REDIRECCIÓN
+       *
+       * El formulario fue enviado correctamente.
+       *
+       * Redirigimos al usuario a:
+       *
+       * /cotizacion-enviada
+       *
+       */
 
 
+      window.location.href =
+        "/cotizacion-enviada";
 
 
-
-      setForm({
-
-        nombre: "",
-        telefono: "",
-        renta: "",
-        edad: "",
-        cargas: "",
-        comentario: "",
-
-      });
-
-
-
-
-
+      return;
 
 
     } catch (error) {
