@@ -248,6 +248,15 @@ export default function QuoteForm() {
           );
 
 
+          metaWindow.fbq(
+
+            "track",
+
+            "Lead"
+
+          );
+
+
         }
 
 
@@ -259,24 +268,16 @@ export default function QuoteForm() {
 
 
 
-      /*
-       *
-       * REDIRECCIÓN
-       *
-       * El formulario fue enviado correctamente.
-       *
-       * Redirigimos al usuario a:
-       *
-       * /cotizacion-enviada
-       *
-       */
-
-
       window.location.href =
         "/cotizacion-enviada";
 
 
       return;
+
+
+
+
+
 
 
     } catch (error) {
@@ -396,7 +397,6 @@ export default function QuoteForm() {
       required: false,
 
     },
-
 
   ];
 
