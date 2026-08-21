@@ -15,36 +15,53 @@ import Button from "@/components/ui/Button";
 
 
 
+declare global {
+
+  interface Window {
+
+    fbq?: (
+      command: string,
+      eventName: string,
+      parameters?: Record<string, unknown>
+    ) => void;
+
+  }
+
+}
+
+
+
 export default function QuoteForm() {
 
 
   const [form, setForm] = useState({
 
-    nombre:"",
-    telefono:"",
-    renta:"",
-    edad:"",
-    cargas:"",
-    comentario:"",
+    nombre: "",
+    telefono: "",
+    renta: "",
+    edad: "",
+    cargas: "",
+    comentario: "",
 
   });
 
 
 
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
-  const [success,setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
 
 
 
 
 
   function handleChange(
-    e:
-    React.ChangeEvent<
+
+    e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
     >
+
   ) {
 
 
@@ -63,12 +80,10 @@ export default function QuoteForm() {
 
 
 
-
-
-
-
   async function handleSubmit(
+
     e: React.FormEvent
+
   ) {
 
 
@@ -78,7 +93,7 @@ export default function QuoteForm() {
 
 
 
-    if(!form.nombre.trim()){
+    if (!form.nombre.trim()) {
 
       alert(
         "Por favor ingresa tu nombre."
@@ -92,7 +107,7 @@ export default function QuoteForm() {
 
 
 
-    if(!form.telefono.trim()){
+    if (!form.telefono.trim()) {
 
       alert(
         "Por favor ingresa tu número de teléfono."
@@ -116,64 +131,63 @@ export default function QuoteForm() {
 
 
       const response = await fetch(
+
         "/api/contact",
+
         {
 
-          method:"POST",
+          method: "POST",
 
-          headers:{
+          headers: {
 
-            "Content-Type":"application/json",
+            "Content-Type": "application/json",
 
           },
 
-
-          body:JSON.stringify({
+          body: JSON.stringify({
 
             nombre:
-            form.nombre,
+              form.nombre,
 
 
             whatsapp:
-            form.telefono,
+              form.telefono,
 
 
             edad:
-            form.edad || "No informado",
+              form.edad || "No informado",
 
 
             beneficiarios:
-            form.cargas || "Sin cargas",
+              form.cargas || "Sin cargas",
 
 
             sistema:
-            "No informado",
+              "No informado",
 
 
             renta:
-            form.renta || "No informado",
+              form.renta || "No informado",
 
 
             clinica:
-            "No informado",
+              "No informado",
 
 
             comentario:
-            form.comentario || "Sin comentarios",
-
+              form.comentario || "Sin comentarios",
 
           }),
 
-
         }
+
       );
 
 
 
 
 
-
-      if(!response.ok){
+      if (!response.ok) {
 
         throw new Error(
           "Error enviando formulario"
@@ -188,52 +202,51 @@ export default function QuoteForm() {
       /*
        * META PIXEL
        *
-       * El Lead se registra solamente después
-       * de que el formulario fue enviado correctamente.
+       * El evento Lead se dispara solamente
+       * después de que el formulario fue enviado
+       * correctamente al servidor.
        */
 
-      if(typeof window !== "undefined"){
+      if (
+        typeof window !== "undefined" &&
+        window.fbq
+      ) {
 
-        const fbq = (
-          window as typeof window & {
-            fbq?: (
-              ...args: unknown[]
-            ) => void;
-          }
-        ).fbq;
+        window.fbq(
+          "track",
+          "Lead"
+        );
 
-
-        if(typeof fbq === "function"){
-
-          fbq(
-            "track",
-            "Lead"
-          );
-
-        }
+      }
 
 
 
 
 
-        // GOOGLE TAG MANAGER / GA4
+      // GOOGLE TAG MANAGER / GA4
+
+      if (
+        typeof window !== "undefined"
+      ) {
+
 
         window.dataLayer =
-        window.dataLayer || [];
+          window.dataLayer || [];
 
 
 
         window.dataLayer.push({
 
-          event:"generate_lead",
+          event:
+            "generate_lead",
 
-          form_name:"cotizacion_isapre",
+          form_name:
+            "cotizacion_isapre",
 
         });
 
 
       }
-
 
 
 
@@ -247,12 +260,12 @@ export default function QuoteForm() {
 
       setForm({
 
-        nombre:"",
-        telefono:"",
-        renta:"",
-        edad:"",
-        cargas:"",
-        comentario:"",
+        nombre: "",
+        telefono: "",
+        renta: "",
+        edad: "",
+        cargas: "",
+        comentario: "",
 
       });
 
@@ -260,8 +273,7 @@ export default function QuoteForm() {
 
 
 
-
-    } catch(error){
+    } catch (error) {
 
 
       console.error(error);
@@ -271,7 +283,6 @@ export default function QuoteForm() {
       alert(
         "Ocurrió un problema al enviar la solicitud."
       );
-
 
 
     } finally {
@@ -289,94 +300,93 @@ export default function QuoteForm() {
 
 
 
-
   const fields = [
-      {
 
-    name:"nombre",
+    {
 
-    label:"Nombre",
+      name: "nombre",
 
-    placeholder:"Juan Pérez",
+      label: "Nombre",
 
-    icon:User,
+      placeholder: "Juan Pérez",
 
-    type:"text",
+      icon: User,
 
-    required:true,
+      type: "text",
 
-  },
+      required: true,
 
+    },
 
-  {
 
-    name:"telefono",
+    {
 
-    label:"Número de teléfono",
+      name: "telefono",
 
-    placeholder:"+56 9 1234 5678",
+      label: "Número de teléfono",
 
-    icon:Phone,
+      placeholder: "+56 9 1234 5678",
 
-    type:"tel",
+      icon: Phone,
 
-    required:true,
+      type: "tel",
 
-  },
+      required: true,
 
+    },
 
-  {
 
-    name:"renta",
+    {
 
-    label:"Renta imponible",
+      name: "renta",
 
-    placeholder:"$1.500.000",
+      label: "Renta imponible",
 
-    icon:DollarSign,
+      placeholder: "$1.500.000",
 
-    type:"text",
+      icon: DollarSign,
 
-    required:false,
+      type: "text",
 
-  },
+      required: false,
 
+    },
 
-  {
 
-    name:"edad",
+    {
 
-    label:"Edad",
+      name: "edad",
 
-    placeholder:"34",
+      label: "Edad",
 
-    icon:Calendar,
+      placeholder: "34",
 
-    type:"number",
+      icon: Calendar,
 
-    required:false,
+      type: "number",
 
-  },
+      required: false,
 
+    },
 
-  {
 
-    name:"cargas",
+    {
 
-    label:"Edad de las cargas (si tiene)",
+      name: "cargas",
 
-    placeholder:"Ej: 5, 8, 12",
+      label: "Edad de las cargas (si tiene)",
 
-    icon:Users,
+      placeholder: "Ej: 5, 8, 12",
 
-    type:"text",
+      icon: Users,
 
-    required:false,
+      type: "text",
 
-  },
+      required: false,
 
+    },
 
-];
+  ];
 
 
 
@@ -384,680 +394,701 @@ export default function QuoteForm() {
 
 
 
-if(success){
+  if (success) {
 
-return (
 
-<div
+    return (
 
-className="
+      <div
 
-rounded-[32px]
+        className="
 
-border
+          rounded-[32px]
 
-border-emerald-400/30
+          border
 
-bg-[#0D2747]/95
+          border-emerald-400/30
 
-p-8
+          bg-[#0D2747]/95
 
-text-center
+          p-8
 
-shadow-2xl
+          text-center
 
-"
+          shadow-2xl
 
->
+        "
 
+      >
 
-<div
 
-className="
 
-mx-auto
+        <div
 
-mb-5
+          className="
 
-flex
+            mx-auto
 
-h-16
+            mb-5
 
-w-16
+            flex
 
-items-center
+            h-16
 
-justify-center
+            w-16
 
-rounded-full
+            items-center
 
-bg-emerald-400/20
+            justify-center
 
-text-3xl
+            rounded-full
 
-text-emerald-400
+            bg-emerald-400/20
 
-"
+            text-3xl
 
->
+            text-emerald-400
 
-✓
+          "
 
-</div>
+        >
 
+          ✓
 
+        </div>
 
 
 
-<h2
 
-className="
 
-text-2xl
+        <h2
 
-font-black
+          className="
 
-text-white
+            text-2xl
 
-"
+            font-black
 
->
+            text-white
 
-🚀 ¡Excelente decisión!
+          "
 
-</h2>
+        >
 
+          🚀 ¡Excelente decisión!
 
+        </h2>
 
 
 
-<p
 
-className="
 
-mt-4
+        <p
 
-leading-7
+          className="
 
-text-slate-300
+            mt-4
 
-"
+            leading-7
 
->
+            text-slate-300
 
-Recibimos tu solicitud correctamente.
+          "
 
-<br />
+        >
 
-Un asesor especializado revisará tu situación y te contactará en los próximos minutos para ayudarte a encontrar una mejor alternativa de salud.
+          Recibimos tu solicitud correctamente.
 
-</p>
+          <br />
 
+          Un asesor especializado revisará tu situación y te contactará en los próximos minutos para ayudarte a encontrar una mejor alternativa de salud.
 
+        </p>
 
 
 
-<div
 
-className="
 
-mt-6
+        <div
 
-rounded-xl
+          className="
 
-border
+            mt-6
 
-border-emerald-400/20
+            rounded-xl
 
-bg-emerald-400/10
+            border
 
-p-4
+            border-emerald-400/20
 
-text-sm
+            bg-emerald-400/10
 
-text-emerald-300
+            p-4
 
-"
+            text-sm
 
->
+            text-emerald-300
 
-✓ Revisaremos tu plan actual
+          "
 
-<br />
+        >
 
-✓ Evaluaremos cobertura y costos
+          ✓ Revisaremos tu plan actual
 
-<br />
+          <br />
 
-✓ Buscaremos oportunidades de mejora
+          ✓ Evaluaremos cobertura y costos
 
-</div>
+          <br />
 
+          ✓ Buscaremos oportunidades de mejora
 
+        </div>
 
 
 
 
 
-<a
+        <a
 
-href="https://wa.me/56974171917"
+          href="https://wa.me/56974171917"
 
-target="_blank"
+          target="_blank"
 
-rel="noopener noreferrer"
+          rel="noopener noreferrer"
 
 
-onClick={() => {
+          onClick={() => {
 
 
-if(typeof window !== "undefined"){
+            if (
+              typeof window !== "undefined"
+            ) {
 
 
-window.dataLayer =
-window.dataLayer || [];
+              window.dataLayer =
+                window.dataLayer || [];
 
 
 
-window.dataLayer.push({
+              window.dataLayer.push({
 
-event:"click_whatsapp_success",
+                event:
+                  "click_whatsapp_success",
 
-});
+              });
 
 
-}
+            }
 
 
-}}
+          }}
 
 
-className="
+          className="
 
-mt-6
+            mt-6
 
-block
+            block
 
-rounded-xl
+            rounded-xl
 
-bg-green-500
+            bg-green-500
 
-px-5
+            px-5
 
-py-3
+            py-3
 
-font-bold
+            font-bold
 
-text-white
+            text-white
 
-transition
+            transition
 
-hover:bg-green-600
+            hover:bg-green-600
 
-"
+          "
 
->
+        >
 
-💬 Hablar ahora por WhatsApp
+          💬 Hablar ahora por WhatsApp
 
-</a>
+        </a>
 
 
 
 
 
-</div>
+      </div>
 
-);
+    );
 
-}
+  }
 
 
 
 
 
 
-return (
 
+  return (
 
-<form
 
-onSubmit={handleSubmit}
+    <form
 
-className="
+      onSubmit={handleSubmit}
 
-rounded-[32px]
+      className="
 
-border
+        rounded-[32px]
 
-border-white/15
+        border
 
-bg-[#0D2747]/95
+        border-white/15
 
-p-6
+        bg-[#0D2747]/95
 
-shadow-2xl
+        p-6
 
-shadow-black/20
+        shadow-2xl
 
-backdrop-blur-xl
+        shadow-black/20
 
-"
+        backdrop-blur-xl
 
->
+      "
 
+    >
 
 
 
 
-<div className="mb-6">
 
+      <div className="mb-6">
 
-<span
 
-className="
+        <span
 
-inline-flex
+          className="
 
-rounded-full
+            inline-flex
 
-border
+            rounded-full
 
-border-emerald-400/30
+            border
 
-bg-emerald-400/10
+            border-emerald-400/30
 
-px-4
+            bg-emerald-400/10
 
-py-1.5
+            px-4
 
-text-xs
+            py-1.5
 
-font-bold
+            text-xs
 
-tracking-[0.18em]
+            font-bold
 
-text-emerald-300
+            tracking-[0.18em]
 
-"
+            text-emerald-300
 
->
+          "
 
-COTIZACIÓN GRATUITA
+        >
 
-</span>
+          COTIZACIÓN GRATUITA
 
+        </span>
 
 
 
 
-<h2
 
-className="
+        <h2
 
-mt-4
+          className="
 
-text-2xl
+            mt-4
 
-font-black
+            text-2xl
 
-leading-tight
+            font-black
 
-text-white
+            leading-tight
 
-"
+            text-white
 
->
+          "
 
-Recibe tu cotización gratuita
+        >
 
-</h2>
+          Recibe tu cotización gratuita
 
+        </h2>
 
 
 
 
-<p
 
-className="
+        <p
 
-mt-2
+          className="
 
-text-sm
+            mt-2
 
-leading-6
+            text-sm
 
-text-slate-300
+            leading-6
 
-"
+            text-slate-300
 
->
+          "
 
-Analizamos tu situación y buscamos la mejor alternativa para ti.
+        >
 
-</p>
+          Analizamos tu situación y buscamos la mejor alternativa para ti.
 
+        </p>
 
-</div>
 
+      </div>
 
 
 
 
 
 
-<div className="space-y-3">
 
+      <div className="space-y-3">
 
-{
 
-fields.map((field)=>{
+        {
 
+          fields.map((field) => {
 
-const Icon = field.icon;
 
+            const Icon =
+              field.icon;
 
 
-return (
 
+            return (
 
-<div
 
-key={field.name}
+              <div
 
->
+                key={field.name}
 
+              >
 
-<label
 
-className="
+                <label
 
-mb-1.5
+                  className="
 
-flex
+                    mb-1.5
 
-items-center
+                    flex
 
-gap-2
+                    items-center
 
-text-sm
+                    gap-2
 
-font-semibold
+                    text-sm
 
-text-slate-100
+                    font-semibold
 
-"
+                    text-slate-100
 
->
+                  "
 
+                >
 
-<Icon
 
-className="
+                  <Icon
 
-h-4
+                    className="
 
-w-4
+                      h-4
 
-text-emerald-400
+                      w-4
 
-"
+                      text-emerald-400
 
-/>
+                    "
 
+                  />
 
-{field.label}
 
+                  {field.label}
 
-</label>
 
+                </label>
 
 
 
 
-<input
 
+                <input
 
-name={field.name}
 
+                  name={
+                    field.name
+                  }
 
-type={field.type}
 
+                  type={
+                    field.type
+                  }
 
-required={field.required}
 
+                  required={
+                    field.required
+                  }
 
-value={
-form[field.name as keyof typeof form]
-}
 
+                  value={
 
-onChange={handleChange}
+                    form[
+                      field.name as keyof typeof form
+                    ]
 
+                  }
 
-placeholder={field.placeholder}
 
+                  onChange={
+                    handleChange
+                  }
 
-className="
 
-w-full
+                  placeholder={
+                    field.placeholder
+                  }
 
-rounded-xl
 
-border
+                  className="
 
-border-white/10
+                    w-full
 
-bg-[#071A33]
+                    rounded-xl
 
-px-4
+                    border
 
-py-3
+                    border-white/10
 
-text-white
+                    bg-[#071A33]
 
-outline-none
+                    px-4
 
-transition-all
+                    py-3
 
-placeholder:text-slate-500
+                    text-white
 
-focus:border-emerald-400
+                    outline-none
 
-focus:ring-4
+                    transition-all
 
-focus:ring-emerald-400/10
+                    placeholder:text-slate-500
 
-"
+                    focus:border-emerald-400
 
-/>
+                    focus:ring-4
 
+                    focus:ring-emerald-400/10
 
-</div>
+                  "
 
+                />
 
-);
 
+              </div>
 
-})
 
-}
+            );
 
 
-</div>
+          })
 
+        }
 
 
+      </div>
 
 
 
 
-<div className="mt-3">
 
 
-<label
 
-className="
+      <div className="mt-3">
 
-mb-1.5
 
-flex
+        <label
 
-items-center
+          className="
 
-gap-2
+            mb-1.5
 
-text-sm
+            flex
 
-font-semibold
+            items-center
 
-text-slate-100
+            gap-2
 
-"
+            text-sm
 
->
+            font-semibold
 
+            text-slate-100
 
-<MessageSquare
+          "
 
-className="
+        >
 
-h-4
 
-w-4
+          <MessageSquare
 
-text-emerald-400
+            className="
 
-"
+              h-4
 
-/>
+              w-4
 
+              text-emerald-400
 
-¿Qué estás buscando mejorar o revisar?
+            "
 
+          />
 
-</label>
 
+          ¿Qué estás buscando mejorar o revisar?
 
 
+        </label>
 
 
 
 
-<textarea
 
 
-name="comentario"
 
+        <textarea
 
-value={form.comentario}
 
+          name="comentario"
 
-onChange={handleChange}
 
+          value={
+            form.comentario
+          }
 
-placeholder="Ej: Quiero pagar menos, mejorar mi cobertura, revisar mi plan actual..."
 
+          onChange={
+            handleChange
+          }
 
-rows={3}
 
+          placeholder="Ej: Quiero pagar menos, mejorar mi cobertura, revisar mi plan actual..."
 
-className="
 
-w-full
+          rows={3}
 
-resize-none
 
-rounded-xl
+          className="
 
-border
+            w-full
 
-border-white/10
+            resize-none
 
-bg-[#071A33]
+            rounded-xl
 
-px-4
+            border
 
-py-3
+            border-white/10
 
-text-white
+            bg-[#071A33]
 
-outline-none
+            px-4
 
-transition-all
+            py-3
 
-placeholder:text-slate-500
+            text-white
 
-focus:border-emerald-400
+            outline-none
 
-focus:ring-4
+            transition-all
 
-focus:ring-emerald-400/10
+            placeholder:text-slate-500
 
-"
+            focus:border-emerald-400
 
+            focus:ring-4
 
-/>
+            focus:ring-emerald-400/10
 
+          "
 
 
-</div>
+        />
 
 
 
+      </div>
 
 
 
 
-<Button
 
 
-type="submit"
 
+      <Button
 
-disabled={loading}
 
+        type="submit"
 
-className="
 
-mt-6
+        disabled={
+          loading
+        }
 
-w-full
 
-py-3
+        className="
 
-"
+          mt-6
 
+          w-full
 
->
+          py-3
 
+        "
 
-{
 
-loading
+      >
 
-?
 
-"⏳ Analizando información..."
+        {
 
-:
+          loading
 
-"🚀 Quiero mejorar mi plan"
+            ? "⏳ Analizando información..."
 
-}
+            : "🚀 Quiero mejorar mi plan"
 
+        }
 
-</Button>
 
+      </Button>
 
 
 
 
 
-</form>
 
+    </form>
 
-);
+
+  );
 
 
 }
