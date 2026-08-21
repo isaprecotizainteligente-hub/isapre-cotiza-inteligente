@@ -15,32 +15,21 @@ import Button from "@/components/ui/Button";
 
 
 
-declare global {
-
-  interface Window {
-
-    fbq?: (
-      command: string,
-      eventName: string,
-      parameters?: Record<string, unknown>
-    ) => void;
-
-  }
-
-}
-
-
-
 export default function QuoteForm() {
 
 
   const [form, setForm] = useState({
 
     nombre: "",
+
     telefono: "",
+
     renta: "",
+
     edad: "",
+
     cargas: "",
+
     comentario: "",
 
   });
@@ -57,11 +46,10 @@ export default function QuoteForm() {
 
 
   function handleChange(
-
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
-
+    e:
+      React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement
+      >
   ) {
 
 
@@ -81,9 +69,7 @@ export default function QuoteForm() {
 
 
   async function handleSubmit(
-
     e: React.FormEvent
-
   ) {
 
 
@@ -131,9 +117,7 @@ export default function QuoteForm() {
 
 
       const response = await fetch(
-
         "/api/contact",
-
         {
 
           method: "POST",
@@ -143,6 +127,7 @@ export default function QuoteForm() {
             "Content-Type": "application/json",
 
           },
+
 
           body: JSON.stringify({
 
@@ -179,8 +164,8 @@ export default function QuoteForm() {
 
           }),
 
-        }
 
+        }
       );
 
 
@@ -200,39 +185,57 @@ export default function QuoteForm() {
 
 
       /*
+       * =====================================================
        * META PIXEL
+       * Evento Lead
+       * =====================================================
        *
-       * El evento Lead se dispara solamente
-       * después de que el formulario fue enviado
-       * correctamente al servidor.
+       * Este evento se dispara solamente cuando el formulario
+       * fue enviado correctamente a /api/contact.
+       *
+       * No utilizamos una declaración global de dataLayer aquí
+       * para evitar conflictos de TypeScript.
        */
 
-      if (
-        typeof window !== "undefined" &&
-        window.fbq
-      ) {
 
-        window.fbq(
-          "track",
-          "Lead"
-        );
-
-      }
+      if (typeof window !== "undefined") {
 
 
+        const fbq = (
+
+          window as unknown as {
+
+            fbq?: (
+              ...args: unknown[]
+            ) => void;
+
+          }
+
+        ).fbq;
+
+
+        if (fbq) {
+
+          fbq(
+            "track",
+            "Lead"
+          );
+
+        }
 
 
 
-      // GOOGLE TAG MANAGER / GA4
 
-      if (
-        typeof window !== "undefined"
-      ) {
+
+        /*
+         * =====================================================
+         * GOOGLE TAG MANAGER / GA4
+         * =====================================================
+         */
 
 
         window.dataLayer =
           window.dataLayer || [];
-
 
 
         window.dataLayer.push({
@@ -252,6 +255,13 @@ export default function QuoteForm() {
 
 
 
+      /*
+       * =====================================================
+       * FORMULARIO ENVIADO CORRECTAMENTE
+       * =====================================================
+       */
+
+
       setSuccess(true);
 
 
@@ -261,10 +271,15 @@ export default function QuoteForm() {
       setForm({
 
         nombre: "",
+
         telefono: "",
+
         renta: "",
+
         edad: "",
+
         cargas: "",
+
         comentario: "",
 
       });
@@ -283,6 +298,7 @@ export default function QuoteForm() {
       alert(
         "Ocurrió un problema al enviar la solicitud."
       );
+
 
 
     } finally {
@@ -392,10 +408,7 @@ export default function QuoteForm() {
 
 
 
-
-
   if (success) {
-
 
     return (
 
@@ -420,7 +433,6 @@ export default function QuoteForm() {
         "
 
       >
-
 
 
         <div
@@ -501,7 +513,9 @@ export default function QuoteForm() {
 
           <br />
 
-          Un asesor especializado revisará tu situación y te contactará en los próximos minutos para ayudarte a encontrar una mejor alternativa de salud.
+          Un asesor especializado revisará tu situación
+          y te contactará en los próximos minutos para
+          ayudarte a encontrar una mejor alternativa de salud.
 
         </p>
 
@@ -561,14 +575,11 @@ export default function QuoteForm() {
           onClick={() => {
 
 
-            if (
-              typeof window !== "undefined"
-            ) {
+            if (typeof window !== "undefined") {
 
 
               window.dataLayer =
                 window.dataLayer || [];
-
 
 
               window.dataLayer.push({
@@ -624,8 +635,6 @@ export default function QuoteForm() {
     );
 
   }
-
-
 
 
 
@@ -747,7 +756,8 @@ export default function QuoteForm() {
 
         >
 
-          Analizamos tu situación y buscamos la mejor alternativa para ti.
+          Analizamos tu situación y buscamos la mejor
+          alternativa para ti.
 
         </p>
 
@@ -758,19 +768,16 @@ export default function QuoteForm() {
 
 
 
-
-
       <div className="space-y-3">
 
 
         {
 
+
           fields.map((field) => {
 
 
-            const Icon =
-              field.icon;
-
+            const Icon = field.icon;
 
 
             return (
@@ -833,38 +840,26 @@ export default function QuoteForm() {
                 <input
 
 
-                  name={
-                    field.name
-                  }
+                  name={field.name}
 
 
-                  type={
-                    field.type
-                  }
+                  type={field.type}
 
 
-                  required={
-                    field.required
-                  }
+                  required={field.required}
 
 
                   value={
-
                     form[
                       field.name as keyof typeof form
                     ]
-
                   }
 
 
-                  onChange={
-                    handleChange
-                  }
+                  onChange={handleChange}
 
 
-                  placeholder={
-                    field.placeholder
-                  }
+                  placeholder={field.placeholder}
 
 
                   className="
@@ -910,12 +905,11 @@ export default function QuoteForm() {
 
           })
 
+
         }
 
 
       </div>
-
-
 
 
 
@@ -971,22 +965,16 @@ export default function QuoteForm() {
 
 
 
-
-
         <textarea
 
 
           name="comentario"
 
 
-          value={
-            form.comentario
-          }
+          value={form.comentario}
 
 
-          onChange={
-            handleChange
-          }
+          onChange={handleChange}
 
 
           placeholder="Ej: Quiero pagar menos, mejorar mi cobertura, revisar mi plan actual..."
@@ -1033,10 +1021,7 @@ export default function QuoteForm() {
         />
 
 
-
       </div>
-
-
 
 
 
@@ -1048,9 +1033,7 @@ export default function QuoteForm() {
         type="submit"
 
 
-        disabled={
-          loading
-        }
+        disabled={loading}
 
 
         className="
@@ -1069,17 +1052,21 @@ export default function QuoteForm() {
 
         {
 
+
           loading
 
-            ? "⏳ Analizando información..."
+            ?
 
-            : "🚀 Quiero mejorar mi plan"
+            "⏳ Analizando información..."
+
+            :
+
+            "🚀 Quiero mejorar mi plan"
 
         }
 
 
       </Button>
-
 
 
 
