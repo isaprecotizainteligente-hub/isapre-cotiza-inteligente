@@ -66,6 +66,7 @@ export default function QuoteForm() {
 
 
 
+
   async function handleSubmit(
     e: React.FormEvent
   ) {
@@ -184,11 +185,38 @@ export default function QuoteForm() {
 
 
 
-
-      // GOOGLE TAG MANAGER / GA4
+      /*
+       * META PIXEL
+       *
+       * El Lead se registra solamente después
+       * de que el formulario fue enviado correctamente.
+       */
 
       if(typeof window !== "undefined"){
 
+        const fbq = (
+          window as typeof window & {
+            fbq?: (
+              ...args: unknown[]
+            ) => void;
+          }
+        ).fbq;
+
+
+        if(typeof fbq === "function"){
+
+          fbq(
+            "track",
+            "Lead"
+          );
+
+        }
+
+
+
+
+
+        // GOOGLE TAG MANAGER / GA4
 
         window.dataLayer =
         window.dataLayer || [];
@@ -256,6 +284,7 @@ export default function QuoteForm() {
 
 
   }
+
 
 
 
