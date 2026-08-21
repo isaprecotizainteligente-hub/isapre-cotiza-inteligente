@@ -21,15 +21,10 @@ export default function QuoteForm() {
   const [form, setForm] = useState({
 
     nombre: "",
-
     telefono: "",
-
     renta: "",
-
     edad: "",
-
     cargas: "",
-
     comentario: "",
 
   });
@@ -63,6 +58,8 @@ export default function QuoteForm() {
 
 
   }
+
+
 
 
 
@@ -162,11 +159,14 @@ export default function QuoteForm() {
             comentario:
               form.comentario || "Sin comentarios",
 
+
           }),
 
 
         }
       );
+
+
 
 
 
@@ -184,69 +184,71 @@ export default function QuoteForm() {
 
 
 
+
+
       /*
-       * =====================================================
+       *
        * META PIXEL
-       * Evento Lead
-       * =====================================================
        *
-       * Este evento se dispara solamente cuando el formulario
-       * fue enviado correctamente a /api/contact.
+       * Evento personalizado:
        *
-       * No utilizamos una declaración global de dataLayer aquí
-       * para evitar conflictos de TypeScript.
+       * CotizacionEnviada
+       *
+       * Este evento se dispara solamente
+       * cuando el formulario fue enviado
+       * correctamente al servidor.
+       *
        */
 
 
-      if (typeof window !== "undefined") {
+      if (
+        typeof window !== "undefined"
+      ) {
 
 
-        const fbq = (
-
-          window as unknown as {
+        const metaWindow =
+          window as Window & {
 
             fbq?: (
-              ...args: unknown[]
+
+              command: string,
+
+              eventName: string,
+
+              parameters?: Record<
+                string,
+                unknown
+              >
+
             ) => void;
 
-          }
-
-        ).fbq;
+          };
 
 
-        if (fbq) {
 
-          fbq(
-            "track",
-            "Lead"
+        if (
+          typeof metaWindow.fbq ===
+          "function"
+        ) {
+
+
+          metaWindow.fbq(
+
+            "trackCustom",
+
+            "CotizacionEnviada",
+
+            {
+
+              form_name:
+                "cotizacion_isapre",
+
+            }
+
           );
 
+
         }
-
-
-
-
-
-        /*
-         * =====================================================
-         * GOOGLE TAG MANAGER / GA4
-         * =====================================================
-         */
-
-
-        window.dataLayer =
-          window.dataLayer || [];
-
-
-        window.dataLayer.push({
-
-          event:
-            "generate_lead",
-
-          form_name:
-            "cotizacion_isapre",
-
-        });
 
 
       }
@@ -255,11 +257,6 @@ export default function QuoteForm() {
 
 
 
-      /*
-       * =====================================================
-       * FORMULARIO ENVIADO CORRECTAMENTE
-       * =====================================================
-       */
 
 
       setSuccess(true);
@@ -271,18 +268,15 @@ export default function QuoteForm() {
       setForm({
 
         nombre: "",
-
         telefono: "",
-
         renta: "",
-
         edad: "",
-
         cargas: "",
-
         comentario: "",
 
       });
+
+
 
 
 
@@ -311,6 +305,8 @@ export default function QuoteForm() {
 
 
   }
+
+
 
 
 
@@ -390,9 +386,11 @@ export default function QuoteForm() {
 
       name: "cargas",
 
-      label: "Edad de las cargas (si tiene)",
+      label:
+        "Edad de las cargas (si tiene)",
 
-      placeholder: "Ej: 5, 8, 12",
+      placeholder:
+        "Ej: 5, 8, 12",
 
       icon: Users,
 
@@ -402,13 +400,18 @@ export default function QuoteForm() {
 
     },
 
+
   ];
 
 
 
 
 
+
+
+
   if (success) {
+
 
     return (
 
@@ -513,9 +516,10 @@ export default function QuoteForm() {
 
           <br />
 
-          Un asesor especializado revisará tu situación
-          y te contactará en los próximos minutos para
-          ayudarte a encontrar una mejor alternativa de salud.
+          Un asesor especializado revisará
+          tu situación y te contactará en los
+          próximos minutos para ayudarte a
+          encontrar una mejor alternativa de salud.
 
         </p>
 
@@ -563,6 +567,8 @@ export default function QuoteForm() {
 
 
 
+
+
         <a
 
           href="https://wa.me/56974171917"
@@ -575,19 +581,47 @@ export default function QuoteForm() {
           onClick={() => {
 
 
-            if (typeof window !== "undefined") {
+            if (
+              typeof window !== "undefined"
+            ) {
 
 
-              window.dataLayer =
-                window.dataLayer || [];
+              const metaWindow =
+                window as Window & {
+
+                  fbq?: (
+
+                    command: string,
+
+                    eventName: string,
+
+                    parameters?: Record<
+                      string,
+                      unknown
+                    >
+
+                  ) => void;
+
+                };
 
 
-              window.dataLayer.push({
 
-                event:
-                  "click_whatsapp_success",
+              if (
+                typeof metaWindow.fbq ===
+                "function"
+              ) {
 
-              });
+
+                metaWindow.fbq(
+
+                  "trackCustom",
+
+                  "WhatsAppPostCotizacion"
+
+                );
+
+
+              }
 
 
             }
@@ -630,11 +664,16 @@ export default function QuoteForm() {
 
 
 
+
+
       </div>
 
     );
 
   }
+
+
+
 
 
 
@@ -756,13 +795,17 @@ export default function QuoteForm() {
 
         >
 
-          Analizamos tu situación y buscamos la mejor
-          alternativa para ti.
+          Analizamos tu situación y buscamos
+          la mejor alternativa para ti.
 
         </p>
 
 
       </div>
+
+
+
+
 
 
 
@@ -778,6 +821,7 @@ export default function QuoteForm() {
 
 
             const Icon = field.icon;
+
 
 
             return (
@@ -837,6 +881,8 @@ export default function QuoteForm() {
 
 
 
+
+
                 <input
 
 
@@ -850,9 +896,11 @@ export default function QuoteForm() {
 
 
                   value={
+
                     form[
                       field.name as keyof typeof form
                     ]
+
                   }
 
 
@@ -915,6 +963,8 @@ export default function QuoteForm() {
 
 
 
+
+
       <div className="mt-3">
 
 
@@ -960,6 +1010,8 @@ export default function QuoteForm() {
 
 
         </label>
+
+
 
 
 
@@ -1021,7 +1073,10 @@ export default function QuoteForm() {
         />
 
 
+
       </div>
+
+
 
 
 
@@ -1055,18 +1110,16 @@ export default function QuoteForm() {
 
           loading
 
-            ?
+            ? "⏳ Analizando información..."
 
-            "⏳ Analizando información..."
+            : "🚀 Quiero mejorar mi plan"
 
-            :
-
-            "🚀 Quiero mejorar mi plan"
 
         }
 
 
       </Button>
+
 
 
 
