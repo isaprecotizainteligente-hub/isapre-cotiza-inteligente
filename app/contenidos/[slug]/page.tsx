@@ -14,6 +14,12 @@ type PageProps = {
   }>;
 };
 
+type InternalLinkConfig = {
+  href: string;
+  title: string;
+  text: string;
+};
+
 export function generateStaticParams() {
   return contenidos.map((contenido) => ({
     slug: contenido.slug,
@@ -26,6 +32,61 @@ function formatDate(date: string) {
     month: "long",
     year: "numeric",
   });
+}
+
+function getInternalLink(slug: string): InternalLinkConfig {
+  const links: Record<string, InternalLinkConfig> = {
+    "como-elegir-un-plan-de-isapre": {
+      href: "/cotizador-isapre/",
+      title: "¿Quieres comparar planes de Isapre?",
+      text:
+        "Puedes utilizar nuestro cotizador de Isapres para revisar alternativas según tu renta, edad, cargas y necesidades de cobertura.",
+    },
+
+    "que-es-la-renta-imponible-para-cotizar-isapre": {
+      href: "/cotiza-isapre/",
+      title: "¿Quieres cotizar una Isapre?",
+      text:
+        "Conoce las alternativas disponibles y revisa una cotización considerando tu renta imponible y las características de tu situación.",
+    },
+
+    "isapre-o-fonasa-cual-conviene": {
+      href: "/cotiza-isapre/",
+      title: "¿Quieres conocer alternativas de Isapre?",
+      text:
+        "Puedes solicitar una cotización y comparar alternativas de planes de salud según tu situación actual.",
+    },
+
+    "como-comparar-planes-de-isapre": {
+      href: "/cotizador-isapre/",
+      title: "Compara planes de Isapre",
+      text:
+        "Nuestro cotizador te permite iniciar una comparación considerando precio, cobertura, prestadores y tus necesidades.",
+    },
+
+    "cuando-conviene-cambiarse-de-isapre": {
+      href: "/cotiza-isapre/",
+      title: "¿Estás evaluando cambiarte de Isapre?",
+      text:
+        "Antes de tomar una decisión puedes cotizar y comparar otras alternativas de planes de salud.",
+    },
+
+    "que-revisar-antes-de-contratar-un-plan-de-salud": {
+      href: "/cotizador-isapre/",
+      title: "¿Quieres comparar un plan de salud?",
+      text:
+        "Revisa alternativas mediante nuestro cotizador de Isapres y considera cobertura, precio, prestadores y necesidades personales.",
+    },
+  };
+
+  return (
+    links[slug] ?? {
+      href: "/cotiza-isapre/",
+      title: "¿Quieres cotizar una Isapre?",
+      text:
+        "Puedes revisar alternativas de planes de salud y solicitar una cotización personalizada.",
+    }
+  );
 }
 
 export async function generateMetadata({
@@ -80,6 +141,8 @@ export default async function ContenidoPage({ params }: PageProps) {
   }
 
   const articleUrl = `https://isaprecotizainteligente.cl/contenidos/${contenido.slug}`;
+
+  const internalLink = getInternalLink(contenido.slug);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -180,7 +243,56 @@ export default async function ContenidoPage({ params }: PageProps) {
               ))}
             </div>
 
-            <div className="mt-16 rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-8">
+            {/* ENLACE INTERNO SEO */}
+            <div
+              className="
+                mt-16
+                rounded-3xl
+                border
+                border-blue-400/20
+                bg-blue-500/5
+                p-8
+              "
+            >
+              <p className="text-sm font-bold uppercase tracking-[0.15em] text-emerald-400">
+                También puede interesarte
+              </p>
+
+              <h2 className="mt-3 text-2xl font-bold text-white">
+                {internalLink.title}
+              </h2>
+
+              <p className="mt-3 leading-7 text-slate-300">
+                {internalLink.text}
+              </p>
+
+              <Link
+                href={internalLink.href}
+                className="
+                  mt-6
+                  inline-flex
+                  items-center
+                  rounded-xl
+                  border
+                  border-emerald-400/30
+                  bg-emerald-500/10
+                  px-5
+                  py-3
+                  font-bold
+                  text-emerald-300
+                  transition
+                  hover:border-emerald-400
+                  hover:bg-emerald-500/20
+                  hover:text-white
+                "
+              >
+                Ver cotización
+                <span className="ml-2">→</span>
+              </Link>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-8 rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-8">
               <h2 className="text-2xl font-bold text-white">
                 ¿Quieres revisar tu plan de salud?
               </h2>
@@ -191,7 +303,7 @@ export default async function ContenidoPage({ params }: PageProps) {
               </p>
 
               <Link
-                href="/#cotizacion"
+                href="/cotiza-isapre/"
                 className="
                   mt-6
                   inline-flex
