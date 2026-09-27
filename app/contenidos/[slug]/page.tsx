@@ -77,6 +77,13 @@ function getInternalLink(slug: string): InternalLinkConfig {
       text:
         "Revisa alternativas mediante nuestro cotizador de Isapres y considera cobertura, precio, prestadores y necesidades personales.",
     },
+
+    "que-isapre-cubre-clinica-alemana": {
+      href: "/isapre-clinica-alemana/",
+      title: "Planes de Isapre con cobertura en Clínica Alemana",
+      text:
+        "Revisa qué aspectos debes comparar si Clínica Alemana es uno de tus prestadores de preferencia y conoce las alternativas disponibles según tu situación.",
+    },
   };
 
   return (
