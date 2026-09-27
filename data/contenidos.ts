@@ -329,4 +329,89 @@ export const contenidos: Contenido[] = [
       },
     ],
   },
+
+  {
+    slug: "que-isapre-cubre-clinica-alemana",
+    title: "¿Qué Isapre cubre Clínica Alemana? Guía para elegir tu plan",
+    description:
+      "¿Buscas una Isapre con cobertura en Clínica Alemana? Conoce cómo funcionan los convenios, los prestadores preferentes y qué debes revisar antes de contratar un plan.",
+    category: "Clínica Alemana",
+    date: "2026-09-26",
+    readingTime: "8 min de lectura",
+    keywords: [
+      "qué Isapre cubre Clínica Alemana",
+      "Isapres con convenio Clínica Alemana",
+      "plan Isapre Clínica Alemana",
+      "cobertura Clínica Alemana",
+      "Isapre Clínica Alemana Santiago",
+      "plan de salud Clínica Alemana",
+      "prestador preferente Clínica Alemana",
+      "cobertura hospitalaria Clínica Alemana",
+    ],
+    content: [
+      {
+        heading: "¿Una Isapre cubre automáticamente Clínica Alemana?",
+        paragraphs: [
+          "No necesariamente. Que una Isapre tenga un convenio con Clínica Alemana no significa que todos sus planes tengan las mismas condiciones de cobertura en ese prestador.",
+          "La cobertura que recibirás depende del plan de salud contratado, de la modalidad del plan y de las condiciones establecidas para los prestadores incluidos.",
+        ],
+      },
+      {
+        heading: "¿Qué significa que Clínica Alemana sea un prestador preferente?",
+        paragraphs: [
+          "En los planes con prestador preferente, la Isapre puede establecer condiciones de cobertura asociadas a determinados prestadores o redes de prestadores identificados en el plan.",
+          "Por eso, si Clínica Alemana es uno de tus centros médicos de preferencia, no basta con preguntar si existe convenio: también debes revisar qué cobertura específica entrega tu plan cuando te atiendes allí.",
+        ],
+      },
+      {
+        heading: "Convenio y cobertura no son exactamente lo mismo",
+        paragraphs: [
+          "Clínica Alemana informa en su sitio institucional cuáles son las Isapres con convenio vigente y señala que, cuando una Isapre no está en convenio, el paciente igualmente puede atenderse pagando el valor de la atención y luego gestionar el reembolso directamente con su Isapre.",
+          "Esto demuestra por qué es importante diferenciar entre tener acceso a un prestador y conocer las condiciones económicas reales de la atención según el plan contratado.",
+        ],
+      },
+      {
+        heading: "¿Qué debes revisar en un plan de Isapre para Clínica Alemana?",
+        paragraphs: [
+          "Si tu objetivo es atenderte habitualmente en Clínica Alemana, revisa especialmente la cobertura hospitalaria, la cobertura ambulatoria, los porcentajes de bonificación, los topes y las condiciones aplicables a los prestadores preferentes.",
+          "También conviene revisar qué ocurre en urgencias, qué prestaciones tienen límites particulares y si existen condiciones distintas para determinadas atenciones o profesionales.",
+        ],
+      },
+      {
+        heading: "No mires solamente el porcentaje de cobertura",
+        paragraphs: [
+          "Un porcentaje de cobertura alto no siempre significa que el costo final será bajo. Los topes por prestación, los montos máximos y las condiciones específicas pueden modificar considerablemente el copago.",
+          "Por eso, para comparar planes es recomendable analizar el conjunto de cobertura, topes, prestadores y precio mensual en lugar de fijarse en un solo indicador.",
+        ],
+      },
+      {
+        heading: "¿Y qué pasa con Isapre Esencial?",
+        paragraphs: [
+          "Actualmente Isapre Esencial ofrece alternativas específicamente vinculadas con Clínica Alemana. Entre ellas se encuentra el Plan Alemana Integral, orientado a la atención en Clínica Alemana de Santiago y con condiciones particulares de acceso y cobertura.",
+          "Si Clínica Alemana es tu principal prestador de salud, puede ser relevante comparar este tipo de alternativas con otras opciones disponibles y revisar siempre las condiciones vigentes del plan antes de contratar.",
+        ],
+      },
+      {
+        heading: "¿Qué plan elegir si tienes una renta alta o buscas mayor cobertura?",
+        paragraphs: [
+          "Si tienes una renta imponible alta o estás dispuesto a destinar un presupuesto mayor a salud, conviene priorizar el análisis de cobertura real y no solamente el precio mensual.",
+          "En estos casos es especialmente importante revisar los prestadores que utilizas habitualmente, la cobertura hospitalaria, los topes de alto costo y las condiciones para tu grupo familiar.",
+        ],
+      },
+      {
+        heading: "Clínica Alemana puede ser una prioridad dentro de tu decisión",
+        paragraphs: [
+          "Si ya sabes que quieres atenderte principalmente en Clínica Alemana, esa preferencia debe formar parte de la comparación desde el inicio.",
+          "Una buena cotización debería considerar tu renta, edad, cargas, presupuesto y los prestadores que realmente quieres utilizar para que puedas comparar alternativas con información relevante para tu situación.",
+        ],
+      },
+      {
+        heading: "¿Quieres revisar alternativas con cobertura en Clínica Alemana?",
+        paragraphs: [
+          "En Isapre Cotiza Inteligente podemos ayudarte a comparar alternativas considerando tu situación y tus preferencias de atención.",
+          "Puedes solicitar una cotización personalizada y revisar distintas opciones antes de tomar una decisión.",
+        ],
+      },
+    ],
+  },
 ];
