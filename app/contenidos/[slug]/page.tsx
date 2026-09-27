@@ -84,6 +84,13 @@ function getInternalLink(slug: string): InternalLinkConfig {
       text:
         "Revisa qué aspectos debes comparar si Clínica Alemana es uno de tus prestadores de preferencia y conoce las alternativas disponibles según tu situación.",
     },
+
+    "planes-isapre-clinica-alemana": {
+      href: "/isapre-clinica-alemana/",
+      title: "Compara planes con foco en Clínica Alemana",
+      text:
+        "Revisa cobertura, prestadores, topes, copagos y presupuesto para encontrar una alternativa que se ajuste a tus necesidades de atención.",
+    },
   };
 
   return (
@@ -250,7 +257,6 @@ export default async function ContenidoPage({ params }: PageProps) {
               ))}
             </div>
 
-            {/* ENLACE INTERNO SEO */}
             <div
               className="
                 mt-16
@@ -298,7 +304,6 @@ export default async function ContenidoPage({ params }: PageProps) {
               </Link>
             </div>
 
-            {/* CTA */}
             <div className="mt-8 rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-8">
               <h2 className="text-2xl font-bold text-white">
                 ¿Quieres revisar tu plan de salud?
