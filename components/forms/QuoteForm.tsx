@@ -1,1131 +1,633 @@
 "use client";
 
 import {
-  User,
-  Phone,
-  DollarSign,
   Calendar,
-  Users,
+  CheckCircle2,
+  DollarSign,
   MessageSquare,
+  Phone,
+  ShieldCheck,
+  User,
+  Users,
 } from "lucide-react";
 
 import { useState } from "react";
 
-import Button from "@/components/ui/Button";
+type FormState = {
+  nombre: string;
+  telefono: string;
+  renta: string;
+  edad: string;
+  cargas: string;
+  comentario: string;
+};
 
-
+const initialForm: FormState = {
+  nombre: "",
+  telefono: "",
+  renta: "",
+  edad: "",
+  cargas: "",
+  comentario: "",
+};
 
 export default function QuoteForm() {
-
-
-  const [form, setForm] = useState({
-
-    nombre: "",
-    telefono: "",
-    renta: "",
-    edad: "",
-    cargas: "",
-    comentario: "",
-
-  });
-
-
-
+  const [form, setForm] = useState<FormState>(initialForm);
   const [loading, setLoading] = useState(false);
-
-
   const [success, setSuccess] = useState(false);
 
-
-
-
-
   function handleChange(
-    e:
-      React.ChangeEvent<
-        HTMLInputElement | HTMLTextAreaElement
-      >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-
-
     setForm({
-
       ...form,
-
       [e.target.name]: e.target.value,
-
     });
-
-
   }
 
-
-
-
-
-
-
-  async function handleSubmit(
-    e: React.FormEvent
-  ) {
-
-
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-
-
-
-
     if (!form.nombre.trim()) {
-
-      alert(
-        "Por favor ingresa tu nombre."
-      );
-
+      alert("Por favor ingresa tu nombre.");
       return;
-
     }
-
-
-
-
 
     if (!form.telefono.trim()) {
-
-      alert(
-        "Por favor ingresa tu número de teléfono."
-      );
-
+      alert("Por favor ingresa tu número de teléfono.");
       return;
-
     }
 
+    if (!form.renta.trim()) {
+      alert("Por favor ingresa tu renta imponible.");
+      return;
+    }
 
-
-
+    if (!form.edad.trim()) {
+      alert("Por favor ingresa tu edad.");
+      return;
+    }
 
     setLoading(true);
 
-
-
-
-
     try {
-
-
-      const response = await fetch(
-        "/api/contact",
-        {
-
-          method: "POST",
-
-          headers: {
-
-            "Content-Type": "application/json",
-
-          },
-
-
-          body: JSON.stringify({
-
-            nombre:
-              form.nombre,
-
-
-            whatsapp:
-              form.telefono,
-
-
-            edad:
-              form.edad || "No informado",
-
-
-            beneficiarios:
-              form.cargas || "Sin cargas",
-
-
-            sistema:
-              "No informado",
-
-
-            renta:
-              form.renta || "No informado",
-
-
-            clinica:
-              "No informado",
-
-
-            comentario:
-              form.comentario || "Sin comentarios",
-
-
-          }),
-
-
-        }
-      );
-
-
-
-
-
-
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre: form.nombre,
+          whatsapp: form.telefono,
+          edad: form.edad,
+          beneficiarios: form.cargas || "Sin información",
+          sistema: "No informado",
+          renta: form.renta,
+          clinica: "No informado",
+          comentario: form.comentario || "Sin comentario",
+        }),
+      });
 
       if (!response.ok) {
-
-        throw new Error(
-          "Error enviando formulario"
-        );
-
+        throw new Error("Error enviando formulario");
       }
 
+      if (typeof window !== "undefined") {
+        const metaWindow = window as Window & {
+          fbq?: (
+            command: string,
+            eventName: string,
+            parameters?: Record<string, unknown>
+          ) => void;
+        };
 
+        if (typeof metaWindow.fbq === "function") {
+          metaWindow.fbq("trackCustom", "CotizacionEnviada", {
+            form_name: "cotizacion_isapre",
+          });
 
-
-
-
-
-      /*
-       *
-       * META PIXEL
-       *
-       * Evento personalizado:
-       *
-       * CotizacionEnviada
-       *
-       * Este evento se dispara solamente
-       * cuando el formulario fue enviado
-       * correctamente al servidor.
-       *
-       */
-
-
-      if (
-        typeof window !== "undefined"
-      ) {
-
-
-        const metaWindow =
-          window as Window & {
-
-            fbq?: (
-
-              command: string,
-
-              eventName: string,
-
-              parameters?: Record<
-                string,
-                unknown
-              >
-
-            ) => void;
-
-          };
-
-
-
-        if (
-          typeof metaWindow.fbq ===
-          "function"
-        ) {
-
-
-          metaWindow.fbq(
-
-            "trackCustom",
-
-            "CotizacionEnviada",
-
-            {
-
-              form_name:
-                "cotizacion_isapre",
-
-            }
-
-          );
-
-
-          metaWindow.fbq(
-
-            "track",
-
-            "Lead"
-
-          );
-
-
+          metaWindow.fbq("track", "Lead");
         }
-
-
       }
 
+      setSuccess(true);
 
-
-
-
-
-
-      window.location.href =
-        "/cotizacion-enviada";
-
-
-      return;
-
-
-
-
-
-
-
+      setTimeout(() => {
+        window.location.href = "/cotizacion-enviada";
+      }, 900);
     } catch (error) {
-
-
       console.error(error);
 
-
-
       alert(
-        "Ocurrió un problema al enviar la solicitud."
+        "Ocurrió un problema al enviar la solicitud. Inténtalo nuevamente."
       );
-
-
-
     } finally {
-
-
       setLoading(false);
-
-
     }
-
-
   }
-
-
-
-
-
-
-
-  const fields = [
-
-    {
-
-      name: "nombre",
-
-      label: "Nombre",
-
-      placeholder: "Juan Pérez",
-
-      icon: User,
-
-      type: "text",
-
-      required: true,
-
-    },
-
-
-    {
-
-      name: "telefono",
-
-      label: "Número de teléfono",
-
-      placeholder: "+56 9 1234 5678",
-
-      icon: Phone,
-
-      type: "tel",
-
-      required: true,
-
-    },
-
-
-    {
-
-      name: "renta",
-
-      label: "Renta imponible",
-
-      placeholder: "$1.500.000",
-
-      icon: DollarSign,
-
-      type: "text",
-
-      required: false,
-
-    },
-
-
-    {
-
-      name: "edad",
-
-      label: "Edad",
-
-      placeholder: "34",
-
-      icon: Calendar,
-
-      type: "number",
-
-      required: false,
-
-    },
-
-
-    {
-
-      name: "cargas",
-
-      label:
-        "Edad de las cargas (si tiene)",
-
-      placeholder:
-        "Ej: 5, 8, 12",
-
-      icon: Users,
-
-      type: "text",
-
-      required: false,
-
-    },
-
-  ];
-
-
-
-
-
-
-
 
   if (success) {
-
-
     return (
+      <div className="overflow-hidden rounded-2xl bg-white">
+        <div className="border-b border-[#E7EEF3] px-6 py-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#E8F7F0] text-[#16A66A]">
+              <CheckCircle2 className="h-5 w-5" />
+            </div>
 
-      <div
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#16A66A]">
+                Solicitud recibida
+              </p>
 
-        className="
-
-          rounded-[32px]
-
-          border
-
-          border-emerald-400/30
-
-          bg-[#0D2747]/95
-
-          p-8
-
-          text-center
-
-          shadow-2xl
-
-        "
-
-      >
-
-
-        <div
-
-          className="
-
-            mx-auto
-
-            mb-5
-
-            flex
-
-            h-16
-
-            w-16
-
-            items-center
-
-            justify-center
-
-            rounded-full
-
-            bg-emerald-400/20
-
-            text-3xl
-
-            text-emerald-400
-
-          "
-
-        >
-
-          ✓
-
+              <h2 className="mt-1 text-xl font-black text-[#123B63]">
+                Recibimos tus datos
+              </h2>
+            </div>
+          </div>
         </div>
 
-
-
-
-
-        <h2
-
-          className="
-
-            text-2xl
-
-            font-black
-
-            text-white
-
-          "
-
-        >
-
-          🚀 ¡Excelente decisión!
-
-        </h2>
-
-
-
-
-
-        <p
-
-          className="
-
-            mt-4
-
-            leading-7
-
-            text-slate-300
-
-          "
-
-        >
-
-          Recibimos tu solicitud correctamente.
-
-          <br />
-
-          Un asesor especializado revisará
-          tu situación y te contactará en los
-          próximos minutos para ayudarte a
-          encontrar una mejor alternativa de salud.
-
-        </p>
-
-
-
-
-
-        <div
-
-          className="
-
-            mt-6
-
-            rounded-xl
-
-            border
-
-            border-emerald-400/20
-
-            bg-emerald-400/10
-
-            p-4
-
-            text-sm
-
-            text-emerald-300
-
-          "
-
-        >
-
-          ✓ Revisaremos tu plan actual
-
-          <br />
-
-          ✓ Evaluaremos cobertura y costos
-
-          <br />
-
-          ✓ Buscaremos oportunidades de mejora
-
-        </div>
-
-
-
-
-
-
-
-        <a
-
-          href="https://wa.me/56974171917"
-
-          target="_blank"
-
-          rel="noopener noreferrer"
-
-
-          onClick={() => {
-
-
-            if (
-              typeof window !== "undefined"
-            ) {
-
-
-              const metaWindow =
-                window as Window & {
-
-                  fbq?: (
-
-                    command: string,
-
-                    eventName: string,
-
-                    parameters?: Record<
-                      string,
-                      unknown
-                    >
-
-                  ) => void;
-
-                };
-
-
-
-              if (
-                typeof metaWindow.fbq ===
-                "function"
-              ) {
-
-
-                metaWindow.fbq(
-
-                  "trackCustom",
-
-                  "WhatsAppPostCotizacion"
-
-                );
-
-
-              }
-
-
-            }
-
-
-          }}
-
-
-          className="
-
-            mt-6
-
-            block
-
-            rounded-xl
-
-            bg-green-500
-
-            px-5
-
-            py-3
-
-            font-bold
-
-            text-white
-
-            transition
-
-            hover:bg-green-600
-
-          "
-
-        >
-
-          💬 Hablar ahora por WhatsApp
-
-        </a>
-
-
-
-
-
-
-
-      </div>
-
-    );
-
-  }
-
-
-
-
-
-
-
-
-  return (
-
-
-    <form
-
-      onSubmit={handleSubmit}
-
-      className="
-
-        rounded-[32px]
-
-        border
-
-        border-white/15
-
-        bg-[#0D2747]/95
-
-        p-6
-
-        shadow-2xl
-
-        shadow-black/20
-
-        backdrop-blur-xl
-
-      "
-
-    >
-
-
-
-
-
-      <div className="mb-6">
-
-
-        <span
-
-          className="
-
-            inline-flex
-
-            rounded-full
-
-            border
-
-            border-emerald-400/30
-
-            bg-emerald-400/10
-
-            px-4
-
-            py-1.5
-
-            text-xs
-
-            font-bold
-
-            tracking-[0.18em]
-
-            text-emerald-300
-
-          "
-
-        >
-
-          COTIZACIÓN GRATUITA
-
-        </span>
-
-
-
-
-
-        <h2
-
-          className="
-
-            mt-4
-
-            text-2xl
-
-            font-black
-
-            leading-tight
-
-            text-white
-
-          "
-
-        >
-
-          Recibe tu cotización gratuita
-
-        </h2>
-
-
-
-
-
-        <p
-
-          className="
-
-            mt-2
-
-            text-sm
-
-            leading-6
-
-            text-slate-300
-
-          "
-
-        >
-
-          Analizamos tu situación y buscamos
-          la mejor alternativa para ti.
-
-        </p>
-
-
-      </div>
-
-
-
-
-
-
-
-
-
-      <div className="space-y-3">
-
-
-        {
-
-
-          fields.map((field) => {
-
-
-            const Icon = field.icon;
-
-
-
-            return (
-
-
-              <div
-
-                key={field.name}
-
-              >
-
-
-                <label
-
-                  className="
-
-                    mb-1.5
-
-                    flex
-
-                    items-center
-
-                    gap-2
-
-                    text-sm
-
-                    font-semibold
-
-                    text-slate-100
-
-                  "
-
-                >
-
-
-                  <Icon
-
-                    className="
-
-                      h-4
-
-                      w-4
-
-                      text-emerald-400
-
-                    "
-
-                  />
-
-
-                  {field.label}
-
-
-                </label>
-
-
-
-
-
-
-
-                <input
-
-
-                  name={field.name}
-
-
-                  type={field.type}
-
-
-                  required={field.required}
-
-
-                  value={
-
-                    form[
-                      field.name as keyof typeof form
-                    ]
-
-                  }
-
-
-                  onChange={handleChange}
-
-
-                  placeholder={field.placeholder}
-
-
-                  className="
-
-                    w-full
-
-                    rounded-xl
-
-                    border
-
-                    border-white/10
-
-                    bg-[#071A33]
-
-                    px-4
-
-                    py-3
-
-                    text-white
-
-                    outline-none
-
-                    transition-all
-
-                    placeholder:text-slate-500
-
-                    focus:border-emerald-400
-
-                    focus:ring-4
-
-                    focus:ring-emerald-400/10
-
-                  "
-
-                />
-
-
+        <div className="px-6 py-6">
+          <p className="text-sm leading-6 text-[#486581]">
+            Un asesor revisará tu situación y se pondrá en contacto contigo
+            para ayudarte a comparar alternativas.
+          </p>
+
+          <div className="mt-5 rounded-xl border border-[#DCE5EC] bg-[#F8FAFC] p-4">
+            <div className="space-y-3">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#16A66A]" />
+
+                <span className="text-xs leading-5 text-[#486581]">
+                  Revisaremos la información que enviaste.
+                </span>
               </div>
 
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#16A66A]" />
 
-            );
+                <span className="text-xs leading-5 text-[#486581]">
+                  Evaluaremos cobertura y costos.
+                </span>
+              </div>
 
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#16A66A]" />
 
-          })
+                <span className="text-xs leading-5 text-[#486581]">
+                  Buscaremos alternativas acordes a tu situación.
+                </span>
+              </div>
+            </div>
+          </div>
 
-
-        }
-
-
-      </div>
-
-
-
-
-
-
-
-      <div className="mt-3">
-
-
-        <label
-
-          className="
-
-            mb-1.5
-
-            flex
-
-            items-center
-
-            gap-2
-
-            text-sm
-
-            font-semibold
-
-            text-slate-100
-
-          "
-
-        >
-
-
-          <MessageSquare
-
+          <a
+            href="https://wa.me/56974171917"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
-
-              h-4
-
-              w-4
-
-              text-emerald-400
-
+              mt-5
+              flex
+              h-11
+              w-full
+              items-center
+              justify-center
+              rounded-lg
+              bg-[#16A66A]
+              text-sm
+              font-bold
+              text-white
+              transition
+              hover:bg-[#118455]
             "
+          >
+            Hablar ahora por WhatsApp
+            <span className="ml-2">→</span>
+          </a>
 
-          />
+          <div className="mt-4 flex items-center justify-center gap-2 text-[11px] text-[#7B8794]">
+            <ShieldCheck className="h-3.5 w-3.5 text-[#16A66A]" />
 
+            Tus datos fueron recibidos correctamente.
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-          ¿Qué estás buscando mejorar o revisar?
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="overflow-hidden rounded-2xl bg-white"
+    >
+      {/* CABECERA */}
+      <div className="border-b border-[#E7EEF3] px-6 py-5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#16A66A]">
+              Cotización gratuita
+            </p>
 
+            <h2
+              className="
+                mt-1.5
+                text-[22px]
+                font-black
+                leading-tight
+                tracking-tight
+                text-[#123B63]
+              "
+            >
+              Cotiza tu plan de Isapre
+            </h2>
 
-        </label>
+            <p className="mt-1.5 max-w-[390px] text-[11px] leading-5 text-[#60758A]">
+              Completa tus datos y te enviaremos las mejores alternativas según
+              tu situación.
+            </p>
+          </div>
 
-
-
-
-
-
-
-        <textarea
-
-
-          name="comentario"
-
-
-          value={form.comentario}
-
-
-          onChange={handleChange}
-
-
-          placeholder="Ej: Quiero pagar menos, mejorar mi cobertura, revisar mi plan actual..."
-
-
-          rows={3}
-
-
-          className="
-
-            w-full
-
-            resize-none
-
-            rounded-xl
-
-            border
-
-            border-white/10
-
-            bg-[#071A33]
-
-            px-4
-
-            py-3
-
-            text-white
-
-            outline-none
-
-            transition-all
-
-            placeholder:text-slate-500
-
-            focus:border-emerald-400
-
-            focus:ring-4
-
-            focus:ring-emerald-400/10
-
-          "
-
-
-        />
-
-
-
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#E8F7F0] text-[#16A66A]">
+            <ShieldCheck className="h-4.5 w-4.5" />
+          </div>
+        </div>
       </div>
 
+      {/* CAMPOS */}
+      <div className="px-6 py-5">
+        {/* NOMBRE + TELÉFONO */}
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label
+              htmlFor="nombre"
+              className="
+                mb-1.5
+                flex
+                items-center
+                gap-1.5
+                text-[10px]
+                font-bold
+                text-[#123B63]
+              "
+            >
+              <User className="h-3.5 w-3.5 text-[#16A66A]" />
 
+              Nombre
 
+              <span className="text-[#16A66A]">*</span>
+            </label>
 
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              required
+              value={form.nombre}
+              onChange={handleChange}
+              placeholder="Tu nombre"
+              className="
+                h-10
+                w-full
+                rounded-lg
+                border
+                border-[#DCE5EC]
+                bg-[#F8FAFC]
+                px-3
+                text-xs
+                text-[#123B63]
+                outline-none
+                transition
+                placeholder:text-[#AAB5C0]
+                hover:border-[#C5D3DE]
+                focus:border-[#16A66A]
+                focus:bg-white
+                focus:ring-4
+                focus:ring-[#16A66A]/10
+              "
+            />
+          </div>
 
+          <div>
+            <label
+              htmlFor="telefono"
+              className="
+                mb-1.5
+                flex
+                items-center
+                gap-1.5
+                text-[10px]
+                font-bold
+                text-[#123B63]
+              "
+            >
+              <Phone className="h-3.5 w-3.5 text-[#16A66A]" />
 
+              Número de teléfono
 
-      <Button
+              <span className="text-[#16A66A]">*</span>
+            </label>
 
+            <input
+              id="telefono"
+              name="telefono"
+              type="tel"
+              required
+              value={form.telefono}
+              onChange={handleChange}
+              placeholder="Ej. +56 9 1234 5678"
+              className="
+                h-10
+                w-full
+                rounded-lg
+                border
+                border-[#DCE5EC]
+                bg-[#F8FAFC]
+                px-3
+                text-xs
+                text-[#123B63]
+                outline-none
+                transition
+                placeholder:text-[#AAB5C0]
+                hover:border-[#C5D3DE]
+                focus:border-[#16A66A]
+                focus:bg-white
+                focus:ring-4
+                focus:ring-[#16A66A]/10
+              "
+            />
+          </div>
+        </div>
 
-        type="submit"
+        {/* RENTA + EDAD */}
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <div>
+            <label
+              htmlFor="renta"
+              className="
+                mb-1.5
+                flex
+                items-center
+                gap-1.5
+                text-[10px]
+                font-bold
+                text-[#123B63]
+              "
+            >
+              <DollarSign className="h-3.5 w-3.5 text-[#16A66A]" />
 
+              Renta imponible
 
-        disabled={loading}
+              <span className="text-[#16A66A]">*</span>
+            </label>
 
+            <input
+              id="renta"
+              name="renta"
+              type="text"
+              required
+              value={form.renta}
+              onChange={handleChange}
+              placeholder="Ej. $1.500.000"
+              className="
+                h-10
+                w-full
+                rounded-lg
+                border
+                border-[#DCE5EC]
+                bg-[#F8FAFC]
+                px-3
+                text-xs
+                text-[#123B63]
+                outline-none
+                transition
+                placeholder:text-[#AAB5C0]
+                hover:border-[#C5D3DE]
+                focus:border-[#16A66A]
+                focus:bg-white
+                focus:ring-4
+                focus:ring-[#16A66A]/10
+              "
+            />
+          </div>
 
-        className="
+          <div>
+            <label
+              htmlFor="edad"
+              className="
+                mb-1.5
+                flex
+                items-center
+                gap-1.5
+                text-[10px]
+                font-bold
+                text-[#123B63]
+              "
+            >
+              <Calendar className="h-3.5 w-3.5 text-[#16A66A]" />
 
-          mt-6
+              Edad
 
-          w-full
+              <span className="text-[#16A66A]">*</span>
+            </label>
 
-          py-3
+            <input
+              id="edad"
+              name="edad"
+              type="number"
+              min="18"
+              max="99"
+              required
+              value={form.edad}
+              onChange={handleChange}
+              placeholder="Ej. 34"
+              className="
+                h-10
+                w-full
+                rounded-lg
+                border
+                border-[#DCE5EC]
+                bg-[#F8FAFC]
+                px-3
+                text-xs
+                text-[#123B63]
+                outline-none
+                transition
+                placeholder:text-[#AAB5C0]
+                hover:border-[#C5D3DE]
+                focus:border-[#16A66A]
+                focus:bg-white
+                focus:ring-4
+                focus:ring-[#16A66A]/10
+              "
+            />
+          </div>
+        </div>
 
-        "
+        {/* CARGAS — OPCIONAL */}
+        <div className="mt-3">
+          <label
+            htmlFor="cargas"
+            className="
+              mb-1.5
+              flex
+              items-center
+              gap-1.5
+              text-[10px]
+              font-bold
+              text-[#123B63]
+            "
+          >
+            <Users className="h-3.5 w-3.5 text-[#16A66A]" />
 
+            Edad de las cargas
 
-      >
+            <span className="ml-1 text-[10px] font-normal text-[#7B8794]">
+              opcional
+            </span>
+          </label>
 
+          <input
+            id="cargas"
+            name="cargas"
+            type="text"
+            value={form.cargas}
+            onChange={handleChange}
+            placeholder="Ej. 5, 8, 12"
+            className="
+              h-10
+              w-full
+              rounded-lg
+              border
+              border-[#DCE5EC]
+              bg-[#F8FAFC]
+              px-3
+              text-xs
+              text-[#123B63]
+              outline-none
+              transition
+              placeholder:text-[#AAB5C0]
+              hover:border-[#C5D3DE]
+              focus:border-[#16A66A]
+              focus:bg-white
+              focus:ring-4
+              focus:ring-[#16A66A]/10
+            "
+          />
+        </div>
 
-        {
+        {/* COMENTARIO — OPCIONAL */}
+        <div className="mt-3">
+          <label
+            htmlFor="comentario"
+            className="
+              mb-1.5
+              flex
+              items-center
+              gap-1.5
+              text-[10px]
+              font-bold
+              text-[#123B63]
+            "
+          >
+            <MessageSquare className="h-3.5 w-3.5 text-[#16A66A]" />
 
+            ¿Qué estás buscando mejorar o revisar?
 
-          loading
+            <span className="ml-1 text-[10px] font-normal text-[#7B8794]">
+              opcional
+            </span>
+          </label>
 
-            ? "⏳ Analizando información..."
+          <textarea
+            id="comentario"
+            name="comentario"
+            value={form.comentario}
+            onChange={handleChange}
+            placeholder="Ej. Quiero revisar mi cobertura o pagar menos..."
+            rows={2}
+            className="
+              h-14
+              w-full
+              resize-none
+              rounded-lg
+              border
+              border-[#DCE5EC]
+              bg-[#F8FAFC]
+              px-3
+              py-2.5
+              text-xs
+              leading-5
+              text-[#123B63]
+              outline-none
+              transition
+              placeholder:text-[#AAB5C0]
+              hover:border-[#C5D3DE]
+              focus:border-[#16A66A]
+              focus:bg-white
+              focus:ring-4
+              focus:ring-[#16A66A]/10
+            "
+          />
+        </div>
 
-            : "🚀 Quiero mejorar mi plan"
+        {/* CTA */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="
+            mt-4
+            flex
+            h-11
+            w-full
+            items-center
+            justify-center
+            rounded-lg
+            bg-[#16A66A]
+            px-5
+            text-sm
+            font-bold
+            text-white
+            shadow-sm
+            transition
+            hover:bg-[#118455]
+            hover:shadow-md
+            disabled:cursor-not-allowed
+            disabled:opacity-60
+          "
+        >
+          {loading ? (
+            <>
+              <span
+                className="
+                  mr-2
+                  h-3.5
+                  w-3.5
+                  animate-spin
+                  rounded-full
+                  border-2
+                  border-white/30
+                  border-t-white
+                "
+              />
 
+              Enviando...
+            </>
+          ) : (
+            <>
+              Ver mis alternativas
+              <span className="ml-2">→</span>
+            </>
+          )}
+        </button>
 
-        }
+        <div className="mt-3 flex items-center justify-center gap-2">
+          <ShieldCheck className="h-3.5 w-3.5 text-[#16A66A]" />
 
-
-      </Button>
-
-
-
-
-
-
+          <p className="text-[10px] text-[#7B8794]">
+            Tus datos son 100% confidenciales.
+          </p>
+        </div>
+      </div>
     </form>
-
-
   );
-
-
 }

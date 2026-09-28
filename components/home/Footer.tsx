@@ -1,127 +1,107 @@
-import {
-  Mail,
-  MapPin,
-  Phone,
-  ShieldCheck,
-  ChevronRight,
-} from "lucide-react";
-
+import Image from "next/image";
 import Link from "next/link";
 
 import Container from "@/components/ui/Container";
 
+const navigation = [
+  { label: "Inicio", href: "/" },
+  { label: "Isapres", href: "/#isapres" },
+  { label: "Cotizador", href: "/#cotizacion" },
+  { label: "Guías y contenidos", href: "/contenidos" },
+  { label: "Cómo funciona", href: "/#como-funciona" },
+  { label: "Contacto", href: "/#cotizacion" },
+];
+
 export default function Footer() {
-  const links = [
-    {
-      title: "Inicio",
-      href: "/",
-    },
-    {
-      title: "Beneficios",
-      href: "/#beneficios",
-    },
-    {
-      title: "Cómo funciona",
-      href: "/#como-funciona",
-    },
-    {
-      title: "Preguntas frecuentes",
-      href: "/#faq",
-    },
-    {
-      title: "Guías de salud",
-      href: "/contenidos",
-    },
-  ];
-
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-[#050816]">
-      {/* Glow */}
-      <div className="absolute left-1/2 top-0 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-600/10 blur-[180px]" />
-
+    <footer className="border-t border-[#DCE5EC] bg-white">
       <Container>
-        <div className="grid gap-14 py-20 lg:grid-cols-4">
-          {/* Marca */}
-          <div className="lg:col-span-2">
-            <h2 className="text-3xl font-black text-white">
-              Isapre Cotiza Inteligente
-            </h2>
+        <div className="grid gap-6 py-6 md:grid-cols-[1.4fr_1fr_1fr] md:gap-10 lg:py-7">
+          <div className="max-w-sm">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3"
+              aria-label="Isapre Cotiza Inteligente"
+            >
+              <Image
+                src="/android-chrome-512x512.png"
+                alt="Isapre Cotiza Inteligente"
+                width={512}
+                height={512}
+                className="h-11 w-11 object-contain"
+              />
 
-            <p className="mt-6 max-w-lg leading-8 text-slate-400">
-              Te ayudamos a comparar las principales Isapres de Chile
-              para encontrar un plan acorde a tus necesidades, con una
-              asesoría personalizada, gratuita y sin compromiso.
+              <div>
+                <div className="text-base font-black leading-none text-[#123B63]">
+                  Isapre
+                </div>
+
+                <div className="mt-1 text-xs font-semibold text-[#16A66A]">
+                  Cotiza Inteligente
+                </div>
+              </div>
+            </Link>
+
+            <p className="mt-3 max-w-sm text-xs leading-5 text-[#60758A]">
+              Te ayudamos a comparar alternativas de Isapre según tu renta,
+              edad, cargas, necesidades y prestadores preferidos.
             </p>
-
-            <div className="mt-8 flex items-center gap-3 rounded-2xl border border-blue-500/20 bg-blue-500/10 p-5">
-              <ShieldCheck className="h-7 w-7 shrink-0 text-blue-400" />
-
-              <p className="text-slate-300">
-                Tus datos son tratados de forma confidencial y solo se
-                utilizan para preparar tu cotización.
-              </p>
-            </div>
           </div>
 
-          {/* Navegación */}
           <div>
-            <h3 className="text-lg font-bold text-white">
+            <h3 className="text-xs font-black uppercase tracking-[0.14em] text-[#123B63]">
               Navegación
             </h3>
 
-            <div className="mt-6 space-y-4">
-              {links.map((item) => (
+            <nav className="mt-3 grid gap-2">
+              {navigation.map((item) => (
                 <Link
-                  key={item.title}
+                  key={item.label}
                   href={item.href}
-                  className="group flex items-center gap-2 text-slate-400 transition hover:text-white"
+                  className="w-fit text-xs font-medium text-[#60758A] transition-colors hover:text-[#123B63]"
                 >
-                  <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
-
-                  {item.title}
+                  {item.label}
                 </Link>
               ))}
-            </div>
+            </nav>
           </div>
 
-          {/* Contacto */}
           <div>
-            <h3 className="text-lg font-bold text-white">
+            <h3 className="text-xs font-black uppercase tracking-[0.14em] text-[#123B63]">
               Contacto
             </h3>
 
-            <div className="mt-6 space-y-5">
-              <div className="flex items-start gap-3 text-slate-400">
-                <Mail className="mt-1 h-5 w-5 shrink-0 text-blue-400" />
+            <div className="mt-3 space-y-3">
+              <a
+                href="https://wa.me/56974171917"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-fit text-xs font-medium text-[#60758A] transition-colors hover:text-[#16A66A]"
+              >
+                WhatsApp
+              </a>
 
-                <span className="break-all">
-                  isaprecotizainteligente@gmail.com
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 text-slate-400">
-                <Phone className="h-5 w-5 shrink-0 text-blue-400" />
-
-                Atención por WhatsApp
-              </div>
-
-              <div className="flex items-center gap-3 text-slate-400">
-                <MapPin className="h-5 w-5 shrink-0 text-blue-400" />
-
-                Atención en todo Chile
-              </div>
+              <a
+                href="https://wa.me/56974171917"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-md border border-[#16A66A] px-3 py-2 text-xs font-bold text-[#16A66A] transition-colors hover:bg-[#16A66A] hover:text-white"
+              >
+                Hablar con un asesor
+                <span className="ml-2">→</span>
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-8 text-center text-sm text-slate-500 lg:flex-row lg:text-left">
+        <div className="border-t border-[#E7EDF2] py-3.5 pr-24 text-[10px] text-[#7B8794] sm:flex sm:items-center sm:justify-between sm:gap-6 sm:pr-24">
           <p>
-            © {new Date().getFullYear()} Isapre Cotiza Inteligente.
-            Todos los derechos reservados.
+            © {new Date().getFullYear()} Isapre Cotiza Inteligente. Todos los
+            derechos reservados.
           </p>
 
-          <p>
-            Diseñado para ayudarte a elegir el plan de salud más conveniente.
+          <p className="mt-1.5 sm:mt-0">
+            Asesoría gratuita y personalizada.
           </p>
         </div>
       </Container>

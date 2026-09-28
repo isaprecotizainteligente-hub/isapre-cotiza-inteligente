@@ -1,537 +1,303 @@
 "use client";
 
+import Image from "next/image";
+import { ShieldCheck, Users, Clock3 } from "lucide-react";
 import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
 
 import Button from "@/components/ui/Button";
-import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-
 import QuoteForm from "@/components/forms/QuoteForm";
-import TrustBar from "./TrustBar";
 
-
-const benefits = [
+const heroBenefits = [
   {
-    title: "Revisión gratuita",
-    text: "Analizamos tu situación sin costo ni compromiso.",
+    icon: ShieldCheck,
+    title: "Asesoría gratuita",
+    text: "Sin costo ni compromiso.",
   },
   {
-    title: "Comparamos las principales Isapres",
-    text: "Buscamos la alternativa que mejor se adapte a ti.",
+    icon: Clock3,
+    title: "Respuesta en menos de 15 minutos",
+    text: "Atención rápida por WhatsApp.",
   },
   {
-    title: "Respuesta rápida",
-    text: "Normalmente por WhatsApp en menos de 15 minutos.",
+    icon: Users,
+    title: "+2.500 personas",
+    text: "Ya han cotizado con nosotros.",
   },
 ];
 
-
 export default function Hero() {
-
-
   const [highlightForm, setHighlightForm] = useState(false);
 
-
-
   function goToQuote() {
-
-
     const form = document.getElementById("cotizacion");
 
-
     form?.scrollIntoView({
-
-      behavior:"smooth",
-
-      block:"center",
-
+      behavior: "smooth",
+      block: "center",
     });
-
-
 
     setHighlightForm(true);
 
-
-
-    setTimeout(()=>{
-
+    setTimeout(() => {
       setHighlightForm(false);
-
-    },1500);
-
-
+    }, 1500);
   }
 
-
-
-
-
   return (
-
-
-<Section
-
-className="
-relative
-min-h-[calc(100vh-80px)]
-overflow-hidden
-bg-[#081B35]
-pt-36
-pb-10
-lg:pt-32
-"
-
->
-
-
-{/* FONDO */}
-
-<div
-
-className="
-absolute
-inset-0
--z-30
-bg-[#081B35]
-"
-
-/>
-
-
-
-{/* GLOW AZUL */}
-
-<div
-
-className="
-absolute
-left-[-250px]
-top-[-250px]
--z-20
-h-[650px]
-w-[650px]
-rounded-full
-bg-blue-500/20
-blur-[180px]
-"
-
-/>
-
-
-
-
-{/* GLOW VERDE */}
-
-<div
-
-className="
-absolute
-right-[-250px]
-bottom-[-250px]
--z-20
-h-[650px]
-w-[650px]
-rounded-full
-bg-emerald-400/10
-blur-[180px]
-"
-
-/>
-
-
-
-
-{/* GRID */}
-
-<div
-
-className="
-absolute
-inset-0
--z-10
-opacity-[0.035]
-"
-
-style={{
-
-backgroundImage:`
-
-linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
-
-linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)
-
-`,
-
-backgroundSize:"60px 60px",
-
-}}
-
-/>
-
-
-
-
-
-<Container>
-
-
-<div
-
-className="
-grid
-items-center
-gap-10
-lg:grid-cols-2
-lg:gap-12
-"
-
->
-
-
-
-{/* IZQUIERDA */}
-
-
-<div className="order-2 lg:order-1">
-
-
-
-<div
-
-className="
-inline-flex
-items-center
-gap-3
-rounded-full
-border
-border-emerald-500/20
-bg-emerald-500/10
-px-4
-py-2
-text-sm
-font-semibold
-text-emerald-300
-"
-
->
-
-
-<span
-
-className="
-flex
-h-6
-w-6
-items-center
-justify-center
-rounded-full
-bg-emerald-500
-text-white
-"
-
->
-
-✓
-
-</span>
-
-
-Más de 10 años ayudando a personas en todo Chile
-
-
-</div>
-
-
-
-
-
-<h1
-
-className="
-mt-6
-text-4xl
-font-black
-leading-[1.05]
-tracking-tight
-text-white
-sm:text-5xl
-lg:text-6xl
-"
-
->
-
-
-¿Estás pagando de más por tu
-
-
-
-<span
-
-className="
-mt-2
-block
-bg-gradient-to-r
-from-emerald-400
-via-green-500
-to-teal-400
-bg-clip-text
-text-transparent
-"
-
->
-
-plan de salud?
-
-
-</span>
-
-
-</h1>
-
-
-
-
-
-
-<p
-
-className="
-mt-5
-max-w-xl
-text-lg
-leading-8
-text-slate-300
-"
-
->
-
-Descubre en menos de{" "}
-
-<strong className="text-white">
-
-2 minutos
-
-</strong>
-
-{" "}
-
-si puedes acceder a una mejor cobertura o pagar menos por tu plan.
-Comparamos las principales Isapres de Chile.
-
-
-</p>
-
-
-
-
-
-
-<div className="mt-5 space-y-3">
-
-
-{
-
-benefits.map((item)=>(
-
-
-<div
-
-key={item.title}
-
-className="
-flex
-items-center
-gap-3
-rounded-2xl
-border
-border-white/10
-bg-white/[0.06]
-p-3
-backdrop-blur-xl
-"
-
->
-
-
-<div
-
-className="
-flex
-h-9
-w-9
-shrink-0
-items-center
-justify-center
-rounded-full
-bg-green-500
-shadow-lg
-shadow-green-500/30
-"
-
->
-
-<CheckCircle2 className="h-5 w-5 text-white"/>
-
-</div>
-
-
-
-
-<div>
-
-<p className="font-semibold text-white">
-
-{item.title}
-
-</p>
-
-
-<p className="text-sm text-slate-400">
-
-{item.text}
-
-</p>
-
-
-</div>
-
-
-
-</div>
-
-
-))
-
-}
-
-
-</div>
-
-
-
-
-
-
-
-<div className="mt-6 flex flex-wrap gap-3">
-
-
-<Button onClick={goToQuote}>
-
-🔎 Revisar mi plan
-
-</Button>
-
-
-
-<a
-
-href="#como-funciona"
-
-className="
-rounded-2xl
-border
-border-white/10
-bg-white/[0.04]
-px-7
-py-4
-font-semibold
-text-white
-transition
-hover:border-emerald-400
-"
-
->
-
-Cómo funciona
-
-
-</a>
-
-
-</div>
-
-
-
-
-
-<TrustBar />
-
-
-
-</div>
-
-
-
-
-
-
-
-
-{/* FORMULARIO */}
-
-<div
-  id="cotizacion"
-  className={`
-    order-1 lg:order-2
-    relative
-    lg:-mt-12
-    transition-all
-    duration-500
-
-    ${
-      highlightForm
-        ? "scale-[1.02] drop-shadow-[0_0_35px_rgba(34,197,94,.35)]"
-        : ""
-    }
-  `}
->
-
-
-
-
-<div
-
-className="
-absolute
--inset-5
-rounded-[40px]
-bg-emerald-500/10
-blur-3xl
-"
-
-/>
-
-
-
-<div className="relative">
-
-
-<QuoteForm />
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-</Container>
-
-
-
-</Section>
-
-
+    <Section
+      className="
+        relative
+        isolate
+        overflow-hidden
+        bg-white
+        !py-0
+        pt-[108px]
+      "
+    >
+      {/* IMAGEN DEL HERO */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div
+          className="
+            absolute
+            left-0
+            top-0
+            h-full
+            w-[118%]
+            max-w-none
+            translate-x-[4%]
+          "
+        >
+          <Image
+            src="/images/hero-background.png"
+            alt=""
+            fill
+            priority
+            sizes="118vw"
+            className="
+              h-full
+              w-full
+              object-cover
+              object-left
+            "
+          />
+        </div>
+
+        {/* DEGRADADO MÁS BLANCO DESDE EL BORDE IZQUIERDO */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            bg-[linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(255,255,255,0.99)_12%,rgba(255,255,255,0.96)_20%,rgba(255,255,255,0.84)_27%,rgba(255,255,255,0.58)_34%,rgba(255,255,255,0.22)_40%,rgba(255,255,255,0)_46%)]
+          "
+        />
+      </div>
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          w-full
+          max-w-[1720px]
+          px-5
+          sm:px-7
+          lg:px-10
+          xl:px-12
+        "
+      >
+        <div
+          className="
+            grid
+            min-h-[650px]
+            items-start
+            lg:grid-cols-[32%_30%_38%]
+            xl:min-h-[675px]
+          "
+        >
+          {/* TEXTO */}
+          <div
+            className="
+              relative
+              z-20
+              py-10
+              lg:pt-24
+              lg:pb-8
+            "
+          >
+            <div
+              className="
+                inline-flex
+                items-center
+                gap-2
+                text-[10px]
+                font-bold
+                uppercase
+                tracking-[0.18em]
+                text-[#123B63]
+                sm:text-xs
+              "
+            >
+              <span className="h-2 w-2 rounded-full bg-[#16A66A]" />
+
+              Asesoría experta en Isapres
+            </div>
+
+            <h1
+              className="
+                mt-4
+                w-full
+                max-w-[560px]
+                text-[37px]
+                font-black
+                leading-[1.01]
+                tracking-[-0.035em]
+                text-[#123B63]
+                sm:text-[42px]
+                lg:text-[47px]
+                xl:text-[50px]
+              "
+            >
+              Encuentra un plan de salud que realmente se ajuste a ti
+            </h1>
+
+            <p
+              className="
+                mt-5
+                max-w-[560px]
+                text-[14px]
+                leading-6
+                text-[#344E68]
+                sm:text-[15px]
+                lg:text-[16px]
+              "
+            >
+              Comparamos las principales Isapres según tu renta, edad, cargas
+              y prestadores preferidos, para que tomes una decisión informada
+              y sin costo.
+            </p>
+
+            <div className="mt-6">
+              <Button
+                onClick={goToQuote}
+                className="
+                  min-h-11
+                  px-6
+                  text-sm
+                "
+              >
+                Revisar mi plan
+                <span className="ml-2">→</span>
+              </Button>
+            </div>
+
+            <div
+              className="
+                mt-7
+                grid
+                gap-4
+                border-t
+                border-white/60
+                pt-5
+              "
+            >
+              {heroBenefits.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={item.title}
+                    className="flex items-start gap-2.5"
+                  >
+                    <div
+                      className="
+                        flex
+                        h-8
+                        w-8
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-[#A8DFC4]
+                        bg-white
+                        text-[#16A66A]
+                        shadow-sm
+                      "
+                    >
+                      <Icon
+                        className="h-3.5 w-3.5"
+                        strokeWidth={2}
+                      />
+                    </div>
+
+                    <div>
+                      <p
+                        className="
+                          text-[11px]
+                          font-bold
+                          leading-4
+                          text-[#123B63]
+                        "
+                      >
+                        {item.title}
+                      </p>
+
+                      <p
+                        className="
+                          mt-0.5
+                          text-[10px]
+                          leading-4
+                          text-[#486581]
+                        "
+                      >
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ZONA CENTRAL */}
+          <div className="relative min-h-full" />
+
+          {/* FORMULARIO */}
+          <div
+            id="cotizacion"
+            className={`
+              relative
+              z-30
+              self-start
+              justify-self-end
+              lg:translate-y-24
+              ${
+                highlightForm
+                  ? "scale-[1.01]"
+                  : "scale-100"
+              }
+              transition-transform
+              duration-300
+            `}
+          >
+            <div
+              className="
+                w-full
+                max-w-[500px]
+                rounded-2xl
+                border
+                border-white
+                bg-white
+                shadow-[0_18px_45px_rgba(16,42,67,0.16)]
+              "
+            >
+              <QuoteForm />
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
   );
-
-
 }

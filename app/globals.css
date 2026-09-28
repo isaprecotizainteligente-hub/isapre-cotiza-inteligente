@@ -1,125 +1,258 @@
 @import "tailwindcss";
 
+/* =========================================================
+   ISAPRE COTIZA INTELIGENTE
+   SISTEMA VISUAL PROFESIONAL
+   ========================================================= */
 
 :root {
+  /* =======================================================
+     COLORES BASE
+     ======================================================= */
 
-  /* =========================
-     ISAPRE COTIZA INTELIGENTE
-     NUEVA IDENTIDAD VISUAL
-     ========================= */
-
-
-  /* Fondo principal */
-  --background: #081B35;
-
-
-  /* Texto general */
-  --foreground: #F8FAFC;
-
-
-  /* Marca */
-  --brand-blue: #2563EB;
-  --brand-blue-light: #60A5FA;
-
-  /* Conversión */
-  --brand-green: #22C55E;
-  --brand-green-dark: #16A34A;
-
-
-  /* Superficies */
-  --surface: #102542;
-  --surface-light: rgba(255,255,255,0.08);
-
-  /* Bordes */
-  --border: rgba(255,255,255,0.15);
-
+  /* Fondos */
+  --background: #ffffff;
+  --background-soft: #f5f8fb;
+  --background-muted: #eef3f7;
 
   /* Textos */
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
+  --foreground: #102a43;
+  --text-primary: #102a43;
+  --text-secondary: #486581;
+  --text-muted: #7b8794;
 
+  /* =======================================================
+     MARCA
+     ======================================================= */
+
+  /* Azul institucional */
+  --brand-blue: #123b63;
+  --brand-blue-light: #2f6fa3;
+
+  /* Verde de conversión */
+  --brand-green: #16a66a;
+  --brand-green-dark: #118455;
+  --brand-green-light: #e8f7f0;
+
+  /* =======================================================
+     SUPERFICIES
+     ======================================================= */
+
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --surface-muted: #f1f5f8;
+
+  /* =======================================================
+     BORDES
+     ======================================================= */
+
+  --border: #dce5ec;
+  --border-light: #e9eff4;
+  --border-strong: #c7d4df;
+
+  /* =======================================================
+     ESTADOS
+     ======================================================= */
+
+  --success: #16a66a;
+  --success-dark: #118455;
+
+  /* =======================================================
+     SOMBRAS
+     ======================================================= */
+
+  --shadow-sm: 0 1px 3px rgba(16, 42, 67, 0.06);
+  --shadow-md: 0 8px 24px rgba(16, 42, 67, 0.08);
+  --shadow-lg: 0 16px 40px rgba(16, 42, 67, 0.1);
 }
 
-
+/* =========================================================
+   TEMA TAILWIND
+   ========================================================= */
 
 @theme inline {
-
   --color-background: var(--background);
-
   --color-foreground: var(--foreground);
 
   --font-sans: var(--font-geist-sans);
-
   --font-mono: var(--font-geist-mono);
 
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-light: var(--brand-blue-light);
+
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-dark: var(--brand-green-dark);
+  --color-brand-green-light: var(--brand-green-light);
+
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-muted: var(--surface-muted);
+
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+  --color-border-strong: var(--border-strong);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
 }
 
-
-
+/* =========================================================
+   BASE
+   ========================================================= */
 
 html {
-
   scroll-behavior: smooth;
-
 }
-
-
 
 body {
-
+  margin: 0;
   background: var(--background);
-
   color: var(--foreground);
-
   font-family: Arial, Helvetica, sans-serif;
-
   overflow-x: hidden;
-
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+::selection {
+  background: rgba(22, 166, 106, 0.18);
+  color: var(--brand-blue);
+}
 
+/* =========================================================
+   LINKS
+   ========================================================= */
 
-/* =========================
+a {
+  text-decoration: none;
+}
+
+/* =========================================================
    UTILIDADES DE MARCA
-   ========================= */
-
+   Mantener compatibilidad con componentes existentes.
+   ========================================================= */
 
 .brand-text {
-
   color: var(--brand-green);
-
 }
 
-
+/* =========================================================
+   SUPERFICIE PROFESIONAL
+   Sustituye la apariencia "glass / IA".
+   ========================================================= */
 
 .card-glass {
-
-  background: var(--surface-light);
-
+  background: var(--surface);
   border: 1px solid var(--border);
-
-  backdrop-filter: blur(20px);
-
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: none;
 }
 
-
+/* =========================================================
+   BOTÓN PRINCIPAL
+   ========================================================= */
 
 .btn-success {
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--brand-green);
-
-  color: white;
-
-  transition: all .3s ease;
-
+  color: #ffffff;
+  border: 1px solid var(--brand-green);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
-
 .btn-success:hover {
-
   background: var(--brand-green-dark);
+  border-color: var(--brand-green-dark);
+  box-shadow: 0 6px 16px rgba(22, 166, 106, 0.18);
+  transform: translateY(-1px);
+}
 
-  transform: translateY(-2px);
+/* =========================================================
+   BOTÓN SECUNDARIO
+   ========================================================= */
 
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--brand-blue);
+  border: 1px solid var(--border-strong);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.btn-secondary:hover {
+  background: var(--surface-soft);
+  border-color: var(--brand-blue-light);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   CONTENEDORES DE CONTENIDO
+   ========================================================= */
+
+.section-light {
+  background: var(--background);
+}
+
+.section-soft {
+  background: var(--background-soft);
+}
+
+.section-muted {
+  background: var(--background-muted);
+}
+
+.section-dark {
+  background: var(--brand-blue);
+  color: #ffffff;
+}
+
+/* =========================================================
+   CAMPOS DE FORMULARIO
+   ========================================================= */
+
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef3f7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b9c8d4;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #93a7b7;
 }

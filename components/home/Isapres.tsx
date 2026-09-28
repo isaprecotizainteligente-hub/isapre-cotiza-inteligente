@@ -1,429 +1,214 @@
+"use client";
+
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
-
-import Container from "@/components/ui/Container";
-import Section from "@/components/ui/Section";
-
+import { useEffect, useRef } from "react";
 
 const isapres = [
   {
-    name:"Banmédica",
-    logo:"/logos/banmedica.png",
+    name: "Banmédica",
+    logo: "/logos/banmedica.png",
   },
   {
-    name:"Colmena",
-    logo:"/logos/colmena.png",
+    name: "Colmena",
+    logo: "/logos/colmena.png",
   },
   {
-    name:"Consalud",
-    logo:"/logos/consalud.png",
+    name: "Consalud",
+    logo: "/logos/consalud.png",
   },
   {
-    name:"Cruz Blanca",
-    logo:"/logos/cruzblanca.png",
+    name: "Cruz Blanca",
+    logo: "/logos/cruzblanca.png",
   },
   {
-    name:"Nueva Masvida",
-    logo:"/logos/masvida.png",
+    name: "Nueva Masvida",
+    logo: "/logos/masvida.png",
   },
   {
-    name:"Vida Tres",
-    logo:"/logos/vidatres.png",
+    name: "Vida Tres",
+    logo: "/logos/vidatres.png",
   },
   {
-    name:"Esencial",
-    logo:"/logos/esencial.png",
+    name: "Esencial",
+    logo: "/logos/esencial.png",
   },
 ];
 
-
-
-export default function Isapres(){
-
-
-return (
-
-
-<Section
-
-id="isapres"
-
-className="
-scroll-mt-24
-relative
-"
-
->
-
-
-
-{/* GLOW */}
-
-
-<div
-
-className="
-absolute
-right-0
-top-0
--z-10
-h-[450px]
-w-[450px]
-rounded-full
-bg-emerald-400/10
-blur-[160px]
-"
-
-/>
-
-
-
-<div
-
-className="
-absolute
-left-0
-bottom-0
--z-10
-h-[350px]
-w-[350px]
-rounded-full
-bg-blue-400/10
-blur-[140px]
-"
-
-/>
-
-
-
-
-
-
-<Container>
-
-
-
-
-
-<div
-
-className="
-mx-auto
-max-w-3xl
-text-center
-"
-
->
-
-
-
-
-<span
-
-className="
-inline-flex
-rounded-full
-border
-border-emerald-400/20
-bg-emerald-400/10
-px-5
-py-2
-text-sm
-font-semibold
-text-emerald-300
-"
-
->
-
-Comparamos las principales Isapres
-
-</span>
-
-
-
-
-
-
-
-<h2
-
-className="
-mt-6
-text-4xl
-font-black
-tracking-tight
-text-white
-lg:text-5xl
-"
-
->
-
-Encuentra la alternativa
-
-<br/>
-
-que realmente se adapta a ti.
-
-
-</h2>
-
-
-
-
-
-
-
-<p
-
-className="
-mt-6
-text-lg
-leading-8
-text-slate-400
-"
-
->
-
-Analizamos las principales Isapres del país para ayudarte
-a encontrar una mejor cobertura según tu edad, renta,
-clínica y necesidades.
-
-
-</p>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-{/* LOGOS */}
-
-
-
-<div
-
-className="
-mt-20
-grid
-gap-6
-sm:grid-cols-2
-lg:grid-cols-4
-"
-
->
-
-
-
-
-{
-isapres.map((item)=>(
-
-
-
-<div
-
-key={item.name}
-
-className="
-group
-relative
-overflow-hidden
-rounded-[28px]
-border
-border-slate-200
-bg-white
-p-8
-shadow-sm
-transition-all
-duration-500
-hover:-translate-y-2
-hover:border-emerald-400/40
-hover:shadow-[0_25px_60px_rgba(16,185,129,.15)]
-"
-
->
-
-
-
-
-
-<div
-
-className="
-absolute
-right-0
-top-0
-h-20
-w-20
-rounded-full
-bg-emerald-400/10
-blur-2xl
-transition
-group-hover:scale-150
-"
-
-/>
-
-
-
-
-
-
-
-
-<div
-
-className="
-relative
-flex
-h-28
-items-center
-justify-center
-"
-
->
-
-
-
-<Image
-
-src={item.logo}
-
-alt={item.name}
-
-width={220}
-
-height={100}
-
-className="
-h-auto
-w-auto
-max-h-20
-object-contain
-transition
-duration-300
-group-hover:scale-105
-"
-
-/>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-))
-
-
-}
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-{/* MENSAJE FINAL */}
-
-
-
-<div
-
-className="
-mt-16
-flex
-flex-col
-items-center
-justify-center
-gap-4
-rounded-3xl
-border
-border-emerald-400/20
-bg-emerald-400/5
-px-8
-py-8
-text-center
-lg:flex-row
-"
-
->
-
-
-
-<CheckCircle2
-
-className="
-h-6
-w-6
-text-emerald-400
-"
-
-/>
-
-
-
-
-
-<p
-
-className="
-text-lg
-text-slate-300
-"
-
->
-
-
-Comparamos las distintas alternativas disponibles para ayudarte
-a tomar una decisión informada, siempre de acuerdo con tu situación
-y necesidades.
-
-
-</p>
-
-
-
-
-
-</div>
-
-
-
-
-
-</Container>
-
-
-
-
-</Section>
-
-
-);
-
-
+export default function Isapres() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    let animationId = 0;
+    let position = 0;
+    let lastTime = performance.now();
+    let paused = false;
+
+    const speed = 35;
+
+    const animate = (time: number) => {
+      const delta = (time - lastTime) / 1000;
+      lastTime = time;
+
+      if (!paused) {
+        position -= speed * delta;
+
+        const halfWidth = track.scrollWidth / 2;
+
+        if (Math.abs(position) >= halfWidth) {
+          position = 0;
+        }
+
+        track.style.transform = `translate3d(${position}px, 0, 0)`;
+      }
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    const handleMouseEnter = () => {
+      paused = true;
+    };
+
+    const handleMouseLeave = () => {
+      paused = false;
+      lastTime = performance.now();
+    };
+
+    track.addEventListener("mouseenter", handleMouseEnter);
+    track.addEventListener("mouseleave", handleMouseLeave);
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      track.removeEventListener("mouseenter", handleMouseEnter);
+      track.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
+  return (
+    <section
+      id="isapres"
+      className="
+        scroll-mt-20
+        overflow-hidden
+        border-y
+        border-[#E8EEF3]
+        bg-white
+      "
+    >
+      <div
+        className="
+          mx-auto
+          w-full
+          max-w-[1500px]
+          px-5
+          py-8
+          sm:px-8
+          sm:py-9
+          lg:px-12
+          lg:py-10
+          xl:px-16
+        "
+      >
+        <div className="text-center">
+          <h2
+            className="
+              text-[22px]
+              font-black
+              leading-tight
+              tracking-tight
+              text-[#123B63]
+              sm:text-2xl
+              lg:text-[28px]
+            "
+          >
+            Trabajamos con todas las Isapres
+          </h2>
+        </div>
+
+        <div className="relative mt-7 overflow-hidden">
+          {/* DEGRADADO IZQUIERDO */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-y-0
+              left-0
+              z-10
+              w-16
+              bg-gradient-to-r
+              from-white
+              to-transparent
+              sm:w-24
+            "
+          />
+
+          {/* DEGRADADO DERECHO */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-y-0
+              right-0
+              z-10
+              w-16
+              bg-gradient-to-l
+              from-white
+              to-transparent
+              sm:w-24
+            "
+          />
+
+          <div
+            ref={trackRef}
+            className="
+              flex
+              w-max
+              items-center
+              gap-10
+              will-change-transform
+            "
+          >
+            {[...isapres, ...isapres].map((item, index) => (
+              <div
+                key={`${item.name}-${index}`}
+                className="
+                  flex
+                  h-[72px]
+                  w-[170px]
+                  shrink-0
+                  items-center
+                  justify-center
+                  px-4
+                "
+              >
+                <Image
+                  src={item.logo}
+                  alt={item.name}
+                  width={210}
+                  height={70}
+                  className="
+                    h-auto
+                    max-h-14
+                    w-auto
+                    max-w-[175px]
+                    object-contain
+                    transition-transform
+                    duration-200
+                    hover:scale-105
+                  "
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,422 +1,199 @@
-import { Star, Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
+const instagramPostUrl =
+  "https://www.instagram.com/p/DWly5uHgCjP/?stkn=MWdzYTNjNXRqemVvcQ==";
 
 const testimonials = [
   {
-    initials: "JP",
-    city: "Santiago",
-    text: "Me ayudaron a comparar distintas alternativas de Isapre y encontré un plan que se ajustaba mucho mejor a lo que necesitaba. Todo fue rápido y muy claro.",
+    text: "Buena asesoría y atención, 100% recomendados!",
   },
   {
-    initials: "CM",
-    city: "Concepción",
-    text: "Respondieron mi consulta por WhatsApp muy rápido. Me explicaron las diferencias entre los planes y pude tomar una decisión con mucha más tranquilidad.",
+    text: "Muy buena asesoría, 100% personalizado y profesional.",
   },
   {
-    initials: "AR",
-    city: "Viña del Mar",
-    text: "Pensé que el proceso sería complicado, pero fue todo lo contrario. La asesoría fue clara, personalizada y completamente gratuita.",
+    text: "Trabajé con ellos y la verdad me ayudaron y asesoraron en todo el proceso para mejorar mi plan... 100% recomendado.",
   },
 ];
 
-
-
 export default function Testimonials() {
-
-
   return (
-
-
     <Section
       className="
-      relative
-      overflow-hidden
-      bg-[#081B35]
+        border-y
+        border-[#E7EDF2]
+        bg-[#F5F9FC]
+        !py-12
+        lg:!py-14
       "
     >
-
-
-
-      {/* Glow */}
-
-
-      <div
-        className="
-        absolute
-        right-0
-        top-0
-        -z-10
-        h-96
-        w-96
-        rounded-full
-        bg-emerald-500/10
-        blur-[150px]
-        "
-      />
-
-
-
-      <div
-        className="
-        absolute
-        left-0
-        bottom-0
-        -z-10
-        h-72
-        w-72
-        rounded-full
-        bg-blue-500/10
-        blur-[140px]
-        "
-      />
-
-
-
-
-
       <Container>
+        {/* ENCABEZADO */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p
+              className="
+                text-[10px]
+                font-bold
+                uppercase
+                tracking-[0.18em]
+                text-[#16A66A]
+                sm:text-xs
+              "
+            >
+              Opiniones
+            </p>
 
+            <h2
+              className="
+                mt-2
+                text-3xl
+                font-black
+                leading-tight
+                tracking-tight
+                text-[#123B63]
+                sm:text-4xl
+                lg:text-[38px]
+              "
+            >
+              Lo que dicen nuestros clientes
+            </h2>
 
-        <div className="mx-auto max-w-3xl text-center">
+            <p
+              className="
+                mt-2
+                text-sm
+                leading-6
+                text-[#60758A]
+                sm:text-base
+              "
+            >
+              Opiniones sobre nuestra asesoría y acompañamiento.
+            </p>
+          </div>
 
-
-
-          <span
+          <a
+            href={instagramPostUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="
-            inline-flex
-            rounded-full
-            border
-            border-emerald-400/20
-            bg-emerald-400/10
-            px-5
-            py-2
-            text-sm
-            font-semibold
-            text-emerald-300
+              inline-flex
+              shrink-0
+              items-center
+              text-sm
+              font-bold
+              text-[#1769C2]
+              transition-colors
+              hover:text-[#123B63]
             "
           >
-
-            Opiniones
-
-
-          </span>
-
-
-
-
-
-          <h2
-            className="
-            mt-6
-            text-4xl
-            font-black
-            tracking-tight
-            text-white
-            lg:text-5xl
-            "
-          >
-
-            La confianza se gana
-            con resultados.
-
-
-          </h2>
-
-
-
-
-
-          <p
-            className="
-            mt-6
-            text-lg
-            leading-8
-            text-slate-400
-            "
-          >
-
-            Nuestro compromiso es ayudarte a encontrar el plan que mejor se
-            adapte a tus necesidades, con una asesoría clara, cercana y sin
-            costo.
-
-
-          </p>
-
-
-
+            Opiniones publicadas en Instagram
+            <span className="ml-2">→</span>
+          </a>
         </div>
 
-
-
-
-
-
-
-        <div
-          className="
-          mt-12
-          grid
-          gap-8
-          lg:grid-cols-3
-          "
-        >
-
-
-
-
-
-          {testimonials.map((item)=>(
-
-
-
+        {/* TESTIMONIOS */}
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          {testimonials.map((testimonial) => (
             <article
-
-              key={item.initials}
-
+              key={testimonial.text}
               className="
-              relative
-              overflow-hidden
-              rounded-[30px]
-              border
-              border-white/10
-              bg-[#111C34]/80
-              p-8
-              backdrop-blur-xl
-              transition-all
-              duration-500
-              hover:-translate-y-2
-              hover:border-emerald-400/30
-              hover:shadow-[0_25px_70px_rgba(16,185,129,.15)]
+                rounded-xl
+                border
+                border-[#DCE5EC]
+                bg-white
+                p-6
+                shadow-[0_8px_24px_rgba(16,42,67,0.04)]
               "
-
             >
-
-
-
-
-
-              <div
-                className="
-                absolute
-                -right-8
-                -top-8
-                h-28
-                w-28
-                rounded-full
-                bg-emerald-500/10
-                blur-3xl
-                "
-              />
-
-
-
-
-
-
-
-              <div className="relative">
-
-
-
-
-
-                <div
-                  className="
-                  flex
-                  items-center
-                  justify-between
-                  "
-                >
-
-
-
-                  <div className="flex gap-1">
-
-
-                    {[1,2,3,4,5].map((star)=>(
-
-
-                      <Star
-
-                        key={star}
-
-                        className="
-                        h-5
-                        w-5
-                        fill-yellow-400
-                        text-yellow-400
-                        "
-
-                      />
-
-
-                    ))}
-
-
-                  </div>
-
-
-
-
-
-                  <Quote
-                    className="
-                    h-8
-                    w-8
-                    text-emerald-400/40
-                    "
+              {/* ESTRELLAS */}
+              <div className="flex items-center gap-1 text-[#F2B84B]">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star
+                    key={index}
+                    className="h-4 w-4 fill-current"
+                    strokeWidth={1.5}
                   />
+                ))}
+              </div>
 
-
-
-                </div>
-
-
-
-
-
-
+              {/* CITA */}
+              <div className="mt-5 flex items-start gap-3">
+                <Quote
+                  className="
+                    mt-0.5
+                    h-5
+                    w-5
+                    shrink-0
+                    text-[#16A66A]
+                  "
+                  strokeWidth={2}
+                />
 
                 <p
                   className="
-                  mt-8
-                  leading-8
-                  text-slate-300
+                    text-sm
+                    leading-6
+                    text-[#344E68]
+                    sm:text-[15px]
                   "
                 >
-
-                  "{item.text}"
-
+                  “{testimonial.text}”
                 </p>
-
-
-
-
-
-
-
-
-                <div
-                  className="
-                  mt-10
-                  flex
-                  items-center
-                  gap-4
-                  border-t
-                  border-white/10
-                  pt-6
-                  "
-                >
-
-
-
-
-                  <div
-                    className="
-                    flex
-                    h-14
-                    w-14
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-gradient-to-br
-                    from-emerald-500
-                    to-teal-400
-                    text-lg
-                    font-bold
-                    text-white
-                    "
-                  >
-
-                    {item.initials}
-
-
-                  </div>
-
-
-
-
-
-                  <div>
-
-
-                    <h3
-                      className="
-                      font-bold
-                      text-white
-                      "
-                    >
-
-                      Cliente verificado
-
-
-                    </h3>
-
-
-
-
-                    <p
-                      className="
-                      text-sm
-                      text-slate-400
-                      "
-                    >
-
-                      {item.city}
-
-
-                    </p>
-
-
-
-                  </div>
-
-
-
-
-
-                </div>
-
-
-
-
-
               </div>
 
-
-
-
-
+              {/* FUENTE */}
+              <div
+                className="
+                  mt-6
+                  border-t
+                  border-[#E7EDF2]
+                  pt-4
+                "
+              >
+                <p
+                  className="
+                    text-[10px]
+                    font-bold
+                    uppercase
+                    tracking-[0.12em]
+                    text-[#16A66A]
+                  "
+                >
+                  Opinión publicada en Instagram
+                </p>
+              </div>
             </article>
-
-
-
-
           ))}
-
-
-
-
-
         </div>
 
-
-
-
-
+        {/* CIERRE */}
+        <div
+          className="
+            mx-auto
+            mt-9
+            max-w-3xl
+            border-t
+            border-[#D7E2EA]
+            pt-6
+            text-center
+          "
+        >
+          <p
+            className="
+              text-sm
+              leading-6
+              text-[#60758A]
+              sm:text-base
+            "
+          >
+            Una buena asesoría empieza por entender tu situación y acompañarte
+            durante todo el proceso.
+          </p>
+        </div>
       </Container>
-
-
-
-
-
     </Section>
-
-
   );
-
-
 }

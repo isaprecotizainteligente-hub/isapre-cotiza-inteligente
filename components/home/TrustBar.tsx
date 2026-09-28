@@ -1,13 +1,10 @@
 import {
-  ShieldCheck,
-  Clock3,
   BadgeCheck,
+  Clock3,
+  ShieldCheck,
 } from "lucide-react";
 
-
 export default function TrustBar() {
-
-
   const items = [
     {
       icon: BadgeCheck,
@@ -26,180 +23,76 @@ export default function TrustBar() {
     },
   ];
 
-
-
   return (
+    <div className="mt-10 border-t border-[#DCE5EC] pt-7">
+      <div className="grid grid-cols-1 divide-y divide-[#E9EFF4] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        {items.map((item) => {
+          const Icon = item.icon;
 
-    <div
-
-      className="
-      mt-10
-      grid
-      grid-cols-1
-      gap-4
-      sm:grid-cols-3
-      "
-
-    >
-
-
-
-      {items.map((item) => {
-
-
-        const Icon = item.icon;
-
-
-
-        return (
-
-
-          <div
-
-            key={item.title}
-
-            className="
-            flex
-            min-h-[110px]
-            items-center
-            rounded-3xl
-            border
-            border-white/10
-            bg-white/[0.05]
-            px-5
-            py-4
-            backdrop-blur-xl
-            transition-all
-            duration-300
-            hover:-translate-y-1
-            hover:border-emerald-400/30
-            hover:bg-white/[0.08]
-            "
-
-          >
-
-
-
-
+          return (
             <div
-
+              key={item.title}
               className="
-              flex
-              items-center
-              gap-4
-              "
-
-            >
-
-
-
-
-
-              <div
-
-                className="
                 flex
-                h-14
-                w-14
-                shrink-0
                 items-center
-                justify-center
-                rounded-2xl
-                bg-gradient-to-br
-                from-emerald-500
-                to-green-600
-                shadow-lg
-                shadow-emerald-500/30
+                gap-3
+                py-4
+                first:pt-0
+                last:pb-0
+                sm:px-6
+                sm:py-2
+                sm:first:pl-0
+                sm:last:pr-0
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-10
+                  w-10
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-lg
+                  bg-[#E8F7F0]
+                  text-[#16A66A]
                 "
-
               >
-
-
                 <Icon
-
-                  className="
-                  h-7
-                  w-7
-                  text-white
-                  "
-
+                  className="h-5 w-5"
+                  strokeWidth={2}
                 />
-
-
               </div>
-
-
-
-
-
-
 
               <div>
-
-
                 <p
-
                   className="
-                  text-2xl
-                  font-black
-                  leading-none
-                  text-white
+                    text-xl
+                    font-black
+                    leading-none
+                    tracking-tight
+                    text-[#123B63]
                   "
-
                 >
-
                   {item.title}
-
-
                 </p>
-
-
-
-
 
                 <p
-
                   className="
-                  mt-2
-                  text-sm
-                  leading-tight
-                  text-slate-300
+                    mt-1
+                    text-xs
+                    font-medium
+                    leading-5
+                    text-[#7B8794]
                   "
-
                 >
-
                   {item.subtitle}
-
-
                 </p>
-
-
-
               </div>
-
-
-
-
-
             </div>
-
-
-
-
-
-          </div>
-
-
-        );
-
-
-      })}
-
-
-
+          );
+        })}
+      </div>
     </div>
-
-
   );
-
 }

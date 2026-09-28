@@ -1,11 +1,11 @@
 import Image from "next/image";
 import {
   BadgeCheck,
-  Building2,
-  ClipboardCheck,
   HeartHandshake,
   ShieldCheck,
   Users,
+  ClipboardCheck,
+  Building2,
 } from "lucide-react";
 
 import Section from "@/components/ui/Section";
@@ -37,53 +37,59 @@ const benefits = [
   },
 ];
 
-export default function WhyUs() {
+export default function Advisory() {
   return (
     <Section
-      id="beneficios"
       className="
+        relative
+        -mt-12
         border-y
         border-[#E8EEF3]
         bg-white
         !py-0
       "
     >
-      <div
-        className="
-          grid
-          w-full
-          lg:grid-cols-[44%_56%]
-        "
-      >
-        {/* =====================================================
-            IMAGEN
-           ===================================================== */}
+      <div className="relative grid w-full lg:grid-cols-[48%_52%]">
+        {/* IMAGEN */}
         <div
           className="
             relative
-            min-h-[330px]
+            min-h-[360px]
             overflow-hidden
-            bg-[#EAF4F8]
-            sm:min-h-[390px]
-            lg:min-h-[430px]
+            bg-[#EAF3F9]
+            sm:min-h-[430px]
+            lg:min-h-[500px]
           "
         >
           <Image
             src="/images/familia-asesoria.png"
-            alt="Familia revisando alternativas de salud"
+            alt="Familia recibiendo orientación sobre su plan de salud"
             fill
-            sizes="44vw"
+            priority
+            sizes="48vw"
             className="
               object-cover
               object-center
             "
-            priority
+          />
+
+          {/* FUSIÓN NATURAL HACIA EL BLANCO */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-y-0
+              right-0
+              w-[32%]
+              bg-gradient-to-r
+              from-transparent
+              via-white/45
+              to-white
+            "
           />
         </div>
 
-        {/* =====================================================
-            CONTENIDO
-           ===================================================== */}
+        {/* CONTENIDO */}
         <div
           className="
             flex
@@ -95,22 +101,12 @@ export default function WhyUs() {
             lg:px-12
             lg:py-14
             xl:px-16
-            2xl:px-20
           "
         >
           <div className="w-full max-w-[820px]">
-            <p
-              className="
-                text-[10px]
-                font-bold
-                uppercase
-                tracking-[0.18em]
-                text-[#16A66A]
-                sm:text-xs
-              "
-            >
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#16A66A] sm:text-xs">
               Más que una cotización
-            </p>
+            </span>
 
             <h2
               className="
@@ -146,9 +142,6 @@ export default function WhyUs() {
               para ti.
             </p>
 
-            {/* =================================================
-                BENEFICIOS
-               ================================================= */}
             <div
               className="
                 mt-7
@@ -159,17 +152,13 @@ export default function WhyUs() {
                 lg:max-w-[820px]
               "
             >
-              {benefits.map((benefit) => {
-                const Icon = benefit.icon;
+              {benefits.map((item) => {
+                const Icon = item.icon;
 
                 return (
                   <div
-                    key={benefit.text}
-                    className="
-                      flex
-                      items-start
-                      gap-3
-                    "
+                    key={item.text}
+                    className="flex items-start gap-3"
                   >
                     <div
                       className="
@@ -199,7 +188,7 @@ export default function WhyUs() {
                         text-[#123B63]
                       "
                     >
-                      {benefit.text}
+                      {item.text}
                     </p>
                   </div>
                 );

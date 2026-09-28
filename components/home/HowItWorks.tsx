@@ -1,458 +1,202 @@
-import {
-  ClipboardList,
-  SearchCheck,
-  MessageCircleMore,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
-
 const steps = [
   {
-    number:"01",
-    icon:ClipboardList,
-    title:"Cuéntanos sobre ti",
+    number: "1",
+    title: "Cuéntanos tu situación",
     description:
-      "Completa el formulario con tu edad, renta, sistema de salud y la clínica donde prefieres atenderte.",
+      "Completa un breve formulario con tu edad, renta y necesidades.",
   },
   {
-    number:"02",
-    icon:SearchCheck,
-    title:"Analizamos las alternativas",
+    number: "2",
+    title: "Analizamos las alternativas",
     description:
-      "Comparamos las principales Isapres para encontrar la opción que mejor se adapte a tu situación.",
+      "Comparamos planes según tu perfil y los prestadores que te interesan.",
   },
   {
-    number:"03",
-    icon:MessageCircleMore,
-    title:"Recibe una propuesta",
+    number: "3",
+    title: "Recibe una propuesta personalizada",
     description:
-      "Te contactaremos por WhatsApp con una recomendación clara y resolveremos todas tus dudas.",
+      "Te enviaremos las opciones con sus beneficios, coberturas y valor estimado.",
   },
 ];
 
-
-
-export default function HowItWorks(){
-
-
-return (
-
-
-<Section
-
-id="como-funciona"
-
-className="
-relative
-scroll-mt-24
-!py-12
-lg:!py-16
-"
-
->
-
-
-
-
-
-{/* GLOW */}
-
-
-<div
-
-className="
-absolute
-left-1/2
-top-0
--z-10
-h-[450px]
-w-[450px]
--translate-x-1/2
-rounded-full
-bg-emerald-400/10
-blur-[170px]
-"
-
-/>
-
-
-
-
-
-
-
-<Container>
-
-
-
-
-
-<div
-
-className="
-mx-auto
--mt-4
-max-w-3xl
-text-center
-"
-
->
-
-
-
-
-<span
-
-className="
-inline-flex
-rounded-full
-border
-border-emerald-400/20
-bg-emerald-400/10
-px-5
-py-2
-text-sm
-font-semibold
-text-emerald-300
-"
-
->
-
-¿Cómo funciona?
-
-</span>
-
-
-
-
-
-
-
-<h2
-
-className="
-mt-4
-text-4xl
-font-black
-tracking-tight
-text-white
-lg:text-5xl
-"
-
->
-
-
-En solo 3 pasos
-
-<br/>
-
-encuentras tu mejor alternativa.
-
-
-</h2>
-
-
-
-
-
-
-
-<p
-
-className="
-mt-4
-text-lg
-leading-8
-text-slate-400
-"
-
->
-
-Nuestro proceso es rápido, gratuito y completamente personalizado.
-
-
-</p>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div
-
-className="
-relative
-mt-12
-grid
-gap-8
-lg:grid-cols-3
-"
-
->
-
-
-
-
-
-{
-steps.map((step,index)=>{
-
-
-const Icon = step.icon;
-
-
-
-return (
-
-
-
-<div
-
-key={step.number}
-
-className="
-group
-relative
-overflow-hidden
-rounded-[30px]
-border
-border-white/10
-bg-[#102B4E]/80
-p-7
-backdrop-blur-xl
-transition-all
-duration-500
-hover:-translate-y-2
-hover:border-emerald-400/30
-hover:shadow-[0_25px_70px_rgba(16,185,129,.15)]
-"
-
->
-
-
-
-
-
-
-
-<div
-
-className="
-absolute
-right-0
-top-0
-h-24
-w-24
-rounded-full
-bg-emerald-400/10
-blur-3xl
-transition
-group-hover:scale-150
-"
-
-/>
-
-
-
-
-
-
-
-<span
-
-className="
-absolute
-right-8
-top-6
-text-6xl
-font-black
-text-white/5
-"
-
->
-
-{step.number}
-
-</span>
-
-
-
-
-
-
-
-
-
-<div className="relative">
-
-
-
-
-
-
-
-<div
-
-className="
-flex
-h-16
-w-16
-items-center
-justify-center
-rounded-2xl
-bg-gradient-to-br
-from-emerald-500
-to-green-600
-shadow-lg
-shadow-emerald-500/30
-"
-
->
-
-
-<Icon
-
-className="
-h-8
-w-8
-text-white
-"
-
-/>
-
-
-</div>
-
-
-
-
-
-
-
-
-<h3
-
-className="
-mt-8
-text-2xl
-font-bold
-text-white
-"
-
->
-
-{step.title}
-
-</h3>
-
-
-
-
-
-
-
-
-<p
-
-className="
-mt-5
-leading-8
-text-slate-400
-"
-
->
-
-{step.description}
-
-</p>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-{
-index < steps.length - 1 && (
-
-
-<ArrowRight
-
-className="
-absolute
--right-4
-top-1/2
-hidden
-h-8
-w-8
--translate-y-1/2
-text-emerald-400
-xl:block
-"
-
-/>
-
-
-)
-
-}
-
-
-
-
-
-</div>
-
-
-
-);
-
-
-})
-
-}
-
-
-
-
-</div>
-
-
-
-
-
-
-</Container>
-
-
-
-
-</Section>
-
-
-);
-
-
+export default function HowItWorks() {
+  return (
+    <Section
+      id="como-funciona"
+      className="
+        scroll-mt-20
+        border-y
+        border-[#E7EDF2]
+        bg-[#F5F9FC]
+        !py-12
+        sm:!py-14
+        lg:!py-16
+      "
+    >
+      <Container>
+        {/* ENCABEZADO */}
+        <div className="mx-auto max-w-3xl text-center">
+          <h2
+            className="
+              text-3xl
+              font-black
+              leading-tight
+              tracking-[-0.02em]
+              text-[#123B63]
+              sm:text-4xl
+              lg:text-[42px]
+            "
+          >
+            ¿Cómo funciona?
+          </h2>
+
+          <p
+            className="
+              mt-2
+              text-sm
+              leading-7
+              text-[#60758A]
+              sm:text-base
+            "
+          >
+            Un proceso simple, rápido y con asesoría experta.
+          </p>
+        </div>
+
+        {/* PASOS */}
+        <div className="relative mt-10 lg:mt-12">
+          {/* LÍNEA CENTRAL */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-[16.5%]
+              right-[16.5%]
+              top-7
+              hidden
+              h-px
+              bg-[#C7D6E1]
+              lg:block
+            "
+          />
+
+          <div className="grid gap-10 lg:grid-cols-3 lg:gap-0">
+            {steps.map((step, index) => (
+              <div
+                key={step.number}
+                className="
+                  relative
+                  z-10
+                  px-5
+                  text-center
+                  sm:px-8
+                  lg:px-10
+                "
+              >
+                {/* NÚMERO */}
+                <div className="relative mx-auto flex w-fit items-center justify-center">
+                  <div
+                    className="
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-[#1769C2]
+                      text-white
+                      shadow-[0_8px_22px_rgba(23,105,194,0.18)]
+                    "
+                  >
+                    <span className="text-lg font-black">
+                      {step.number}
+                    </span>
+                  </div>
+                </div>
+
+                {/* TITULO */}
+                <h3
+                  className="
+                    mx-auto
+                    mt-6
+                    max-w-[330px]
+                    text-lg
+                    font-black
+                    leading-tight
+                    text-[#123B63]
+                    sm:text-xl
+                  "
+                >
+                  {step.title}
+                </h3>
+
+                {/* DESCRIPCIÓN */}
+                <p
+                  className="
+                    mx-auto
+                    mt-3
+                    max-w-[360px]
+                    text-sm
+                    leading-6
+                    text-[#60758A]
+                    sm:text-[15px]
+                  "
+                >
+                  {step.description}
+                </p>
+
+                {/* FLECHA ENTRE PASOS */}
+                {index < steps.length - 1 && (
+                  <ArrowRight
+                    className="
+                      pointer-events-none
+                      absolute
+                      -right-3
+                      top-5
+                      hidden
+                      h-5
+                      w-5
+                      text-[#1769C2]
+                      lg:block
+                    "
+                    strokeWidth={1.8}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FRASE FINAL */}
+        <div
+          className="
+            mx-auto
+            mt-10
+            max-w-3xl
+            border-t
+            border-[#D7E2EA]
+            pt-6
+            text-center
+          "
+        >
+          <p
+            className="
+              text-sm
+              leading-6
+              text-[#60758A]
+              sm:text-base
+            "
+          >
+            Tú nos cuentas lo que necesitas. Nosotros ordenamos la información,
+            comparamos alternativas y te ayudamos a entender las diferencias.
+          </p>
+        </div>
+      </Container>
+    </Section>
+  );
 }

@@ -5,10 +5,9 @@ import Hero from "@/components/home/Hero";
 import HowItWorks from "@/components/home/HowItWorks";
 import Isapres from "@/components/home/Isapres";
 import Navbar from "@/components/home/Navbar";
-import Stats from "@/components/home/Stats";
 import Testimonials from "@/components/home/Testimonials";
-import WhyUs from "@/components/home/WhyUs";
-
+import Advisory from "@/components/home/Advisory";
+import Guides from "@/components/home/Guides";
 
 export default function Home() {
   return (
@@ -17,15 +16,15 @@ export default function Home() {
 
       <Hero />
 
-      <WhyUs />
-
-      <Stats />
-
       <Isapres />
 
       <HowItWorks />
 
+      <Advisory />
+
       <Testimonials />
+
+      <Guides />
 
       <FAQ />
 

@@ -21,36 +21,71 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="relative border-y border-white/10 bg-[#08101f] py-20">
-
+    <section
+      className="
+        border-y
+        border-[#DCE5EC]
+        bg-white
+      "
+    >
       <Container>
-
-        <div className="grid gap-12 text-center md:grid-cols-4">
-
-          {stats.map((item) => (
-
-            <div key={item.title}>
-
-              <h3 className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-5xl font-black text-transparent lg:text-6xl">
-
+        <div className="grid grid-cols-2 lg:grid-cols-4">
+          {stats.map((item, index) => (
+            <div
+              key={item.title}
+              className={`
+                px-6
+                py-9
+                text-center
+                sm:px-8
+                lg:py-10
+                ${
+                  index > 0
+                    ? "border-l border-[#DCE5EC]"
+                    : ""
+                }
+                ${
+                  index === 2
+                    ? "border-t border-[#DCE5EC] lg:border-t-0"
+                    : ""
+                }
+                ${
+                  index === 3
+                    ? "border-t border-[#DCE5EC] lg:border-t-0"
+                    : ""
+                }
+              `}
+            >
+              <p
+                className="
+                  text-3xl
+                  font-black
+                  leading-none
+                  tracking-tight
+                  text-[#123B63]
+                  sm:text-4xl
+                  lg:text-5xl
+                "
+              >
                 {item.value}
-
-              </h3>
-
-              <p className="mt-4 text-lg text-slate-400">
-
-                {item.title}
-
               </p>
 
+              <p
+                className="
+                  mt-3
+                  text-xs
+                  font-medium
+                  leading-5
+                  text-[#7B8794]
+                  sm:text-sm
+                "
+              >
+                {item.title}
+              </p>
             </div>
-
           ))}
-
         </div>
-
       </Container>
-
     </section>
   );
 }

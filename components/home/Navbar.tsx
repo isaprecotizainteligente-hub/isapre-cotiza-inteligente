@@ -11,16 +11,7 @@ import Container from "@/components/ui/Container";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  function goToQuote() {
-    document
-      .getElementById("cotizacion")
-      ?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-
-    setOpen(false);
-  }
+  const whatsappUrl = "https://wa.me/56974171917";
 
   const menuItems = [
     {
@@ -28,24 +19,24 @@ export default function Navbar() {
       href: "/",
     },
     {
-      title: "Cómo funciona",
-      href: "/#como-funciona",
-    },
-    {
       title: "Isapres",
       href: "/#isapres",
     },
     {
-      title: "Beneficios",
-      href: "/#beneficios",
+      title: "Cotizador",
+      href: "/#cotizacion",
     },
     {
-      title: "Preguntas frecuentes",
-      href: "/#faq",
-    },
-    {
-      title: "Guías de salud",
+      title: "Guías y contenidos",
       href: "/contenidos",
+    },
+    {
+      title: "Cómo funciona",
+      href: "/#como-funciona",
+    },
+    {
+      title: "Contacto",
+      href: "/#cotizacion",
     },
   ];
 
@@ -53,64 +44,90 @@ export default function Navbar() {
     <header
       className="
         fixed
+        inset-x-0
         top-0
-        left-0
-        right-0
         z-50
-        h-20
         border-b
-        border-white/10
-        bg-[#081B35]/95
-        backdrop-blur-xl
+        border-[#E7EDF2]
+        bg-white
       "
     >
       <Container>
-        <div
-          className="
-            flex
-            h-20
-            items-center
-            justify-between
-          "
-        >
+        <div className="flex h-[72px] items-center justify-between">
           {/* LOGO */}
           <Link
             href="/"
-            className="flex items-center gap-3"
             onClick={() => setOpen(false)}
+            className="
+              flex
+              shrink-0
+              items-center
+              gap-2.5
+            "
           >
-            <Image
-              src="/logos/logo-v3.png"
-              alt="Isapre Cotiza Inteligente"
-              width={70}
-              height={70}
-              className="h-14 w-14 object-contain"
-              priority
-            />
+            <div className="flex h-[48px] w-[48px] items-center justify-center overflow-visible">
+              <Image
+                src="/android-chrome-512x512.png"
+                alt="Isapre Cotiza Inteligente"
+                width={512}
+                height={512}
+                priority
+                className="
+                  h-[48px]
+                  w-[48px]
+                  object-contain
+                  scale-[1.12]
+                "
+              />
+            </div>
 
-            <div>
-              <h2 className="text-xl font-black text-white">
+            <div className="leading-none">
+              <div
+                className="
+                  text-[18px]
+                  font-black
+                  tracking-[-0.02em]
+                  text-[#123B63]
+                "
+              >
                 Isapre
-              </h2>
+              </div>
 
-              <p className="text-sm font-medium text-emerald-400">
+              <div
+                className="
+                  mt-1
+                  text-[11px]
+                  font-bold
+                  tracking-[-0.01em]
+                  text-[#16A66A]
+                "
+              >
                 Cotiza Inteligente
-              </p>
+              </div>
             </div>
           </Link>
 
-          {/* DESKTOP MENU */}
-          <nav className="hidden items-center gap-7 lg:flex">
+          {/* DESKTOP NAV */}
+          <nav
+            className="
+              hidden
+              items-center
+              gap-7
+              lg:flex
+            "
+          >
             {menuItems.map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
                 className="
-                  text-sm
+                  whitespace-nowrap
+                  text-[13px]
                   font-medium
-                  text-slate-300
-                  transition
-                  hover:text-white
+                  text-[#274C6E]
+                  transition-colors
+                  duration-200
+                  hover:text-[#123B63]
                 "
               >
                 {item.title}
@@ -118,11 +135,27 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* DESKTOP BUTTON */}
+          {/* WHATSAPP DESKTOP */}
           <div className="hidden lg:block">
-            <Button onClick={goToQuote}>
-              🚀 Cotizar gratis
-            </Button>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                className="
+                  min-h-10
+                  rounded-lg
+                  px-5
+                  py-2.5
+                  text-[13px]
+                  font-bold
+                "
+              >
+                Hablar por WhatsApp
+                <span className="ml-2">→</span>
+              </Button>
+            </a>
           </div>
 
           {/* MOBILE BUTTON */}
@@ -133,15 +166,15 @@ export default function Navbar() {
             aria-expanded={open}
             className="
               flex
-              h-11
-              w-11
+              h-10
+              w-10
               items-center
               justify-center
-              rounded-xl
+              rounded-lg
               border
-              border-white/10
-              bg-white/5
-              text-white
+              border-[#DCE5EC]
+              bg-white
+              text-[#123B63]
               lg:hidden
             "
           >
@@ -157,39 +190,49 @@ export default function Navbar() {
         {open && (
           <div
             className="
-              absolute
-              left-0
-              right-0
-              top-20
-              border-b
-              border-white/10
-              bg-[#081B35]
-              px-6
-              py-6
-              shadow-2xl
+              border-t
+              border-[#E7EDF2]
+              bg-white
+              py-5
               lg:hidden
             "
           >
-            <nav className="flex flex-col gap-5">
+            <nav className="flex flex-col gap-1">
               {menuItems.map((item) => (
                 <Link
                   key={item.title}
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="
-                    text-base
+                    rounded-lg
+                    px-3
+                    py-3
+                    text-sm
                     font-semibold
-                    text-slate-200
-                    hover:text-white
+                    text-[#274C6E]
+                    transition-colors
+                    hover:bg-[#F5F9FC]
+                    hover:text-[#123B63]
                   "
                 >
                   {item.title}
                 </Link>
               ))}
 
-              <Button onClick={goToQuote}>
-                🚀 Cotizar gratis
-              </Button>
+              <div className="mt-3">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="block"
+                >
+                  <Button className="w-full">
+                    Hablar por WhatsApp
+                    <span className="ml-2">→</span>
+                  </Button>
+                </a>
+              </div>
             </nav>
           </div>
         )}

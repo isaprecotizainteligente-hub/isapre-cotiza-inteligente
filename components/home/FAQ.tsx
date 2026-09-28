@@ -1,22 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
-
 
 const questions = [
   {
     question: "¿La asesoría tiene algún costo?",
     answer:
-      "No. Nuestro servicio es completamente gratuito. Analizamos tu situación y te orientamos para encontrar el plan que mejor se adapte a tus necesidades.",
+      "No. Nuestro servicio de asesoría es gratuito. Analizamos tu situación y te orientamos para comparar alternativas.",
   },
   {
     question: "¿Qué Isapres comparan?",
     answer:
-      "Comparamos las principales Isapres disponibles para ayudarte a encontrar la alternativa más conveniente según tu edad, renta y cobertura requerida.",
+      "Comparamos las principales Isapres para ayudarte a revisar alternativas según tu edad, renta, cargas y necesidades de cobertura.",
   },
   {
     question: "¿Cuánto demora la cotización?",
@@ -26,390 +25,210 @@ const questions = [
   {
     question: "¿Puedo cambiarme desde Fonasa?",
     answer:
-      "Sí. Revisamos tu caso y te explicamos si cambiarte a una Isapre puede ser una buena alternativa para ti y tu familia.",
+      "Sí. Revisamos tu situación y te orientamos sobre las alternativas disponibles para ti.",
   },
   {
-    question: "¿Mis datos son confidenciales?",
+    question: "¿Qué pasa si ya tengo una Isapre?",
     answer:
-      "Sí. Toda la información que compartes con nosotros es confidencial y únicamente será utilizada para preparar tu cotización.",
+      "Podemos revisar tu plan actual, tus necesidades y tus prestadores preferidos para comparar alternativas.",
+  },
+  {
+    question: "¿Me ayudan durante todo el proceso?",
+    answer:
+      "Sí. Te acompañamos durante el proceso y te ayudamos a entender las diferencias entre las alternativas que revisemos.",
   },
 ];
 
-
-
 export default function FAQ() {
+  const [open, setOpen] = useState<number | null>(null);
 
-
-  const [open, setOpen] = useState<number | null>(0);
-
-
+  function toggleQuestion(index: number) {
+    setOpen((current) => (current === index ? null : index));
+  }
 
   return (
-
-
     <Section
       id="faq"
       className="
-      relative
-      overflow-hidden
-      bg-[#081B35]
+        scroll-mt-24
+        border-t
+        border-[#E7EDF2]
+        bg-white
+        !py-12
+        sm:!py-14
+        lg:!py-16
       "
     >
-
-
-
-
-      {/* Glow */}
-
-
-      <div
-        className="
-        absolute
-        left-0
-        top-0
-        -z-10
-        h-96
-        w-96
-        rounded-full
-        bg-emerald-500/10
-        blur-[160px]
-        "
-      />
-
-
-      <div
-        className="
-        absolute
-        right-0
-        bottom-0
-        -z-10
-        h-80
-        w-80
-        rounded-full
-        bg-blue-500/10
-        blur-[150px]
-        "
-      />
-
-
-
-
-
-
       <Container>
+        {/* ENCABEZADO */}
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-3xl">
+            <p
+              className="
+                text-[10px]
+                font-bold
+                uppercase
+                tracking-[0.18em]
+                text-[#16A66A]
+                sm:text-xs
+              "
+            >
+              Preguntas frecuentes
+            </p>
 
+            <h2
+              className="
+                mt-2
+                text-3xl
+                font-black
+                leading-tight
+                tracking-[-0.025em]
+                text-[#123B63]
+                sm:text-4xl
+                lg:text-[40px]
+              "
+            >
+              Resolvemos tus dudas
+            </h2>
 
+            <p
+              className="
+                mt-2
+                max-w-2xl
+                text-sm
+                leading-6
+                text-[#60758A]
+                sm:text-base
+              "
+            >
+              Antes de tomar una decisión, revisa las preguntas más comunes.
+            </p>
+          </div>
 
-        <div
-          className="
-          mx-auto
-          max-w-3xl
-          text-center
-          "
-        >
-
-
-
-          <span
+          <a
+            href="/contenidos"
             className="
-            inline-flex
-            rounded-full
-            border
-            border-emerald-400/20
-            bg-emerald-400/10
-            px-5
-            py-2
-            text-sm
-            font-semibold
-            text-emerald-300
+              inline-flex
+              shrink-0
+              items-center
+              text-xs
+              font-bold
+              text-[#1769C2]
+              transition-colors
+              hover:text-[#123B63]
+              sm:text-sm
             "
           >
-
-            Preguntas frecuentes
-
-
-          </span>
-
-
-
-
-
-
-          <h2
-            className="
-            mt-6
-            text-4xl
-            font-black
-            tracking-tight
-            text-white
-            lg:text-5xl
-            "
-          >
-
-            Respondemos las dudas
-            más comunes.
-
-
-          </h2>
-
-
-
-
-
-
-          <p
-            className="
-            mt-6
-            text-lg
-            leading-8
-            text-slate-400
-            "
-          >
-
-            Antes de tomar una decisión, queremos que tengas toda la información
-            necesaria para elegir con tranquilidad.
-
-
-          </p>
-
-
-
+            Ver nuestras guías
+            <span className="ml-2">→</span>
+          </a>
         </div>
 
-
-
-
-
-
-
-        <div
-          className="
-          mx-auto
-          mt-20
-          max-w-4xl
-          space-y-5
-          "
-        >
-
-
-
-
-          {questions.map((item,index)=>{
-
-
+        {/* PREGUNTAS */}
+        <div className="mt-8 grid gap-x-6 gap-y-3 lg:grid-cols-2">
+          {questions.map((item, index) => {
             const isOpen = open === index;
 
-
-
             return (
-
-
-
               <div
-
                 key={item.question}
-
                 className="
-                overflow-hidden
-                rounded-3xl
-                border
-                border-white/10
-                bg-[#111C34]/80
-                backdrop-blur-xl
-                transition-all
-                duration-300
-                hover:border-emerald-400/30
+                  overflow-hidden
+                  rounded-lg
+                  border
+                  border-[#DCE5EC]
+                  bg-white
+                  transition-colors
+                  hover:border-[#C6D4DE]
                 "
-
               >
-
-
-
-
-
-
                 <button
-
-                  onClick={()=>setOpen(isOpen ? null : index)}
-
+                  type="button"
+                  onClick={() => toggleQuestion(index)}
+                  aria-expanded={isOpen}
                   className="
-                  flex
-                  w-full
-                  items-center
-                  justify-between
-                  gap-6
-                  p-7
-                  text-left
-                  "
-
-                >
-
-
-
-
-                  <div
-                    className="
                     flex
+                    w-full
                     items-center
+                    justify-between
                     gap-4
+                    px-4
+                    py-4
+                    text-left
+                  "
+                >
+                  <span
+                    className="
+                      text-sm
+                      font-bold
+                      leading-5
+                      text-[#123B63]
+                      sm:text-[15px]
                     "
                   >
+                    {item.question}
+                  </span>
 
-
-
-
-
-                    <div
-
-                      className="
+                  <span
+                    className="
                       flex
-                      h-12
-                      w-12
+                      h-7
+                      w-7
+                      shrink-0
                       items-center
                       justify-center
-                      rounded-xl
-                      bg-gradient-to-br
-                      from-emerald-500
-                      to-teal-400
-                      shadow-lg
-                      shadow-emerald-500/30
-                      "
-
-                    >
-
-
-                      <HelpCircle className="h-6 w-6 text-white"/>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    <span
-                      className="
-                      text-lg
-                      font-semibold
-                      text-white
-                      "
-                    >
-
-                      {item.question}
-
-
-                    </span>
-
-
-
-
-                  </div>
-
-
-
-
-
-
-
-                  <ChevronDown
-
-                    className={`
-                    h-6
-                    w-6
-                    text-slate-400
-                    transition-transform
-                    duration-300
-                    ${isOpen ? "rotate-180" : ""}
-                    `}
-
-                  />
-
-
-
-
+                      rounded-full
+                      bg-[#F1F5F8]
+                      text-[#123B63]
+                      transition-colors
+                    "
+                  >
+                    <Plus
+                      className={`
+                        h-4
+                        w-4
+                        transition-transform
+                        duration-200
+                        ${isOpen ? "rotate-45 text-[#16A66A]" : ""}
+                      `}
+                      strokeWidth={1.8}
+                    />
+                  </span>
                 </button>
 
-
-
-
-
-
-
-
                 <div
-
                   className={`
-                  grid
-                  transition-all
-                  duration-300
-                  ${
-                    isOpen
-                    ? "grid-rows-[1fr]"
-                    : "grid-rows-[0fr]"
-                  }
+                    grid
+                    transition-[grid-template-rows]
+                    duration-300
+                    ${
+                      isOpen
+                        ? "grid-rows-[1fr]"
+                        : "grid-rows-[0fr]"
+                    }
                   `}
-
                 >
-
-
-
                   <div className="overflow-hidden">
-
-
-                    <div
-                      className="
-                      border-t
-                      border-white/10
-                      px-7
-                      py-6
-                      leading-8
-                      text-slate-400
-                      "
-                    >
-
-                      {item.answer}
-
-
+                    <div className="border-t border-[#E7EDF2] px-4 pb-4 pt-3">
+                      <p className="text-xs leading-6 text-[#60758A] sm:text-sm">
+                        {item.answer}
+                      </p>
                     </div>
-
-
                   </div>
-
-
                 </div>
-
-
-
-
-
               </div>
-
-
-
             );
-
-
           })}
-
-
-
         </div>
 
-
-
-
-
+        {/* CIERRE */}
+        <div className="mt-8 text-center">
+          <p className="text-sm leading-6 text-[#7B8794]">
+            ¿Tienes una situación particular? Puedes solicitar una cotización
+            y recibir orientación personalizada.
+          </p>
+        </div>
       </Container>
-
-
-
-
-
     </Section>
-
-
   );
-
 }
