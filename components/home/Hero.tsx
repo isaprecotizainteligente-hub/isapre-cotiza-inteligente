@@ -51,10 +51,8 @@ export default function Hero() {
   return (
     <div className="relative">
       {/* =========================================================
-          DESKTOP
-          ESTE BLOQUE MANTIENE EL HERO QUE GUARDASTE
-          ========================================================= */}
-
+          DESKTOP — SE MANTIENE INTACTO
+      ========================================================== */}
       <div className="hidden lg:block">
         <Section
           className="
@@ -67,7 +65,6 @@ export default function Hero() {
           "
         >
           {/* IMAGEN DEL HERO */}
-
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <div
               className="
@@ -96,7 +93,6 @@ export default function Hero() {
             </div>
 
             {/* DEGRADADO MÁS BLANCO DESDE EL BORDE IZQUIERDO */}
-
             <div
               className="
                 pointer-events-none
@@ -130,7 +126,6 @@ export default function Hero() {
               "
             >
               {/* TEXTO */}
-
               <div
                 className="
                   relative
@@ -275,11 +270,9 @@ export default function Hero() {
               </div>
 
               {/* ZONA CENTRAL */}
-
               <div className="relative min-h-full" />
 
               {/* FORMULARIO */}
-
               <div
                 id="cotizacion"
                 className={`
@@ -317,38 +310,27 @@ export default function Hero() {
       </div>
 
       {/* =========================================================
-          MOBILE
-          BLOQUE COMPLETAMENTE INDEPENDIENTE DEL DESKTOP
-          ========================================================= */}
-
+          MOBILE — FORMULARIO PRIMERO
+      ========================================================== */}
       <div className="lg:hidden">
         <Section
           className="
             relative
             overflow-hidden
             bg-white
-            !py-0
-            pt-[82px]
-            pb-8
+            !pt-[108px]
+            !pb-8
           "
         >
           <div className="mx-auto w-full max-w-[720px] px-5 sm:px-7">
-            {/* FORMULARIO PRIMERO */}
-
+            {/* FORMULARIO */}
             <div
               id="cotizacion-mobile"
-              className={`
-                relative
-                z-20
-                w-full
-                ${
-                  highlightForm
-                    ? "scale-[1.01]"
-                    : "scale-100"
-                }
-                transition-transform
-                duration-300
-              `}
+              className={`relative z-20 w-full ${
+                highlightForm
+                  ? "scale-[1.01]"
+                  : "scale-100"
+              } transition-transform duration-300`}
             >
               <div
                 className="
@@ -366,7 +348,6 @@ export default function Hero() {
             </div>
 
             {/* IMAGEN */}
-
             <div
               className="
                 relative
@@ -396,7 +377,6 @@ export default function Hero() {
             </div>
 
             {/* TEXTO */}
-
             <div className="relative z-10 pt-7">
               <div
                 className="
@@ -418,12 +398,12 @@ export default function Hero() {
               <h1
                 className="
                   mt-4
-                  text-[30px]
+                  w-full
+                  text-[34px]
                   font-black
-                  leading-[1.04]
+                  leading-[1.02]
                   tracking-[-0.035em]
                   text-[#123B63]
-                  sm:text-[36px]
                 "
               >
                 Encuentra un plan de salud que realmente se ajuste a ti
@@ -435,19 +415,19 @@ export default function Hero() {
                   text-[14px]
                   leading-6
                   text-[#344E68]
-                  sm:text-[15px]
                 "
               >
-                Comparamos las principales Isapres según tu renta, edad, cargas
-                y prestadores preferidos, para que tomes una decisión
+                Comparamos las principales Isapres según tu renta, edad,
+                cargas y prestadores preferidos, para que tomes una decisión
                 informada y sin costo.
               </p>
 
-              <div className="mt-5">
+              <div className="mt-6">
                 <Button
                   onClick={goToQuote}
                   className="
                     min-h-11
+                    w-full
                     px-6
                     text-sm
                   "
@@ -457,15 +437,13 @@ export default function Hero() {
                 </Button>
               </div>
 
-              {/* BENEFICIOS */}
-
               <div
                 className="
                   mt-7
                   grid
                   gap-4
                   border-t
-                  border-[#E1E8EE]
+                  border-[#E7EDF2]
                   pt-5
                 "
               >
