@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 
   metadataBase: new URL(
-    "https://isaprecotizainteligente.cl"
+    "https://www.isaprecotizainteligente.cl"
   ),
 
 
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   alternates: {
 
     canonical:
-      "https://isaprecotizainteligente.cl/",
+      "https://www.isaprecotizainteligente.cl/",
 
   },
 
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
       "Revisamos tu plan actual y buscamos una alternativa más conveniente para ti.",
 
     url:
-      "https://isaprecotizainteligente.cl/",
+      "https://www.isaprecotizainteligente.cl/",
 
     siteName:
       "Isapre Cotiza Inteligente",
@@ -329,7 +329,7 @@ export default function RootLayout({
 
 
               "url":
-                "https://isaprecotizainteligente.cl/",
+                "https://www.isaprecotizainteligente.cl/",
 
 
 

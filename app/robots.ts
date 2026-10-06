@@ -16,11 +16,11 @@ export default function robots(): MetadataRoute.Robots {
 
 
     sitemap:
-      "https://isaprecotizainteligente.cl/sitemap.xml",
+      "https://www.isaprecotizainteligente.cl/sitemap.xml",
 
 
     host:
-      "https://isaprecotizainteligente.cl",
+      "https://www.isaprecotizainteligente.cl",
 
   };
 

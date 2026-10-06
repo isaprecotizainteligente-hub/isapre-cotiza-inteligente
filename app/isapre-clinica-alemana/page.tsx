@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     "cotizar Isapre Clínica Alemana",
   ],
   alternates: {
-    canonical: "https://isaprecotizainteligente.cl/isapre-clinica-alemana",
+    canonical: "https://www.isaprecotizainteligente.cl/isapre-clinica-alemana",
   },
   openGraph: {
     title: "Planes de Isapre con cobertura en Clínica Alemana",
     description:
       "Revisa qué aspectos debes comparar al elegir un plan de Isapre si Clínica Alemana es uno de tus prestadores de preferencia.",
-    url: "https://isaprecotizainteligente.cl/isapre-clinica-alemana",
+    url: "https://www.isaprecotizainteligente.cl/isapre-clinica-alemana",
     siteName: "Isapre Cotiza Inteligente",
     locale: "es_CL",
     type: "website",
@@ -71,8 +71,8 @@ const structuredData = {
     {
       "@type": "WebPage",
       "@id":
-        "https://isaprecotizainteligente.cl/isapre-clinica-alemana#webpage",
-      url: "https://isaprecotizainteligente.cl/isapre-clinica-alemana",
+        "https://www.isaprecotizainteligente.cl/isapre-clinica-alemana#webpage",
+      url: "https://www.isaprecotizainteligente.cl/isapre-clinica-alemana",
       name: "Planes de Isapre con cobertura en Clínica Alemana",
       description:
         "Guía para revisar y comparar planes de Isapre cuando Clínica Alemana es uno de tus prestadores de preferencia.",
@@ -80,13 +80,13 @@ const structuredData = {
       isPartOf: {
         "@type": "WebSite",
         name: "Isapre Cotiza Inteligente",
-        url: "https://isaprecotizainteligente.cl",
+        url: "https://www.isaprecotizainteligente.cl",
       },
     },
     {
       "@type": "FAQPage",
       "@id":
-        "https://isaprecotizainteligente.cl/isapre-clinica-alemana#faq",
+        "https://www.isaprecotizainteligente.cl/isapre-clinica-alemana#faq",
       mainEntity: faqs.map((faq) => ({
         "@type": "Question",
         name: faq.question,

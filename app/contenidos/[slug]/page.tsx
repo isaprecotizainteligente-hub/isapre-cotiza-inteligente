@@ -114,7 +114,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const articleUrl = `https://isaprecotizainteligente.cl/contenidos/${contenido.slug}`;
+  const articleUrl = `https://www.isaprecotizainteligente.cl/contenidos/${contenido.slug}`;
 
   return {
     title: contenido.title,
@@ -154,7 +154,7 @@ export default async function ContenidoPage({ params }: PageProps) {
     notFound();
   }
 
-  const articleUrl = `https://isaprecotizainteligente.cl/contenidos/${contenido.slug}`;
+  const articleUrl = `https://www.isaprecotizainteligente.cl/contenidos/${contenido.slug}`;
 
   const internalLink = getInternalLink(contenido.slug);
 
@@ -180,13 +180,13 @@ export default async function ContenidoPage({ params }: PageProps) {
     author: {
       "@type": "Organization",
       name: "Isapre Cotiza Inteligente",
-      url: "https://isaprecotizainteligente.cl",
+      url: "https://www.isaprecotizainteligente.cl",
     },
 
     publisher: {
       "@type": "Organization",
       name: "Isapre Cotiza Inteligente",
-      url: "https://isaprecotizainteligente.cl",
+      url: "https://www.isaprecotizainteligente.cl",
     },
 
     mainEntityOfPage: {

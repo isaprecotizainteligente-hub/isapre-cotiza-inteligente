@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     "isapres chile",
   ],
   alternates: {
-    canonical: "https://isaprecotizainteligente.cl/cotizador-isapre/",
+    canonical: "https://www.isaprecotizainteligente.cl/cotizador-isapre/",
   },
   openGraph: {
     title: "Cotizador de Isapres | Compara Planes de Salud",
     description:
       "Compara alternativas de planes de Isapre según tu situación, presupuesto y necesidades de cobertura.",
-    url: "https://isaprecotizainteligente.cl/cotizador-isapre/",
+    url: "https://www.isaprecotizainteligente.cl/cotizador-isapre/",
     siteName: "Isapre Cotiza Inteligente",
     locale: "es_CL",
     type: "website",
@@ -170,13 +170,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Inicio",
-      item: "https://isaprecotizainteligente.cl/",
+      item: "https://www.isaprecotizainteligente.cl/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Cotizador de Isapres",
-      item: "https://isaprecotizainteligente.cl/cotizador-isapre/",
+      item: "https://www.isaprecotizainteligente.cl/cotizador-isapre/",
     },
   ],
 };
