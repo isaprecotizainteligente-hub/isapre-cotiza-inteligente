@@ -46,7 +46,7 @@ export default function Hero() {
 
   return (
     <Section
-      className="relative isolate overflow-hidden bg-white !py-0 pt-[108px] lg:pt-[108px]"
+      className="relative isolate overflow-hidden bg-white py-0 pt-[108px] lg:pt-[108px]"
     >
       <div className="relative z-10 mx-auto grid w-full max-w-[1720px] grid-cols-1 px-5 sm:px-7 lg:min-h-[650px] lg:grid-cols-[32%_30%_38%] lg:px-10 xl:min-h-[675px] xl:px-12">
         {/* IMAGEN ÚNICA DEL HERO */}
