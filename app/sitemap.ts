@@ -14,7 +14,7 @@ const MAIN_PAGE_DATES = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const paginasPrincipales: MetadataRoute.Sitemap = [
     {
-      url: SITE_URL,
+      url: `${SITE_URL}/`,
       lastModified: MAIN_PAGE_DATES.home,
       changeFrequency: "weekly",
       priority: 1,
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const paginasContenido: MetadataRoute.Sitemap = contenidos.map(
     (contenido) => ({
-      url: `${SITE_URL}/contenidos/${contenido.slug}`,
+      url: `${SITE_URL}/contenidos/${contenido.slug.replace(/^\/+|\/+$/g, "")}`,
       lastModified: contenido.date,
       changeFrequency: "monthly",
       priority: 0.8,

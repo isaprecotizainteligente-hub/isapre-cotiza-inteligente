@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "isapres chile",
   ],
   alternates: {
-    canonical: "https://www.isaprecotizainteligente.cl/cotizador-isapre/",
+    canonical: "https://www.isaprecotizainteligente.cl/cotizador-isapre",
   },
   openGraph: {
     title: "Cotizador de Isapres | Compara Planes de Salud",
