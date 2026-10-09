@@ -1,9 +1,11 @@
+
 import type { MetadataRoute } from "next";
 import { contenidos } from "@/data/contenidos";
 import { SITE_URL } from "@/lib/site";
 
 const MAIN_PAGE_DATES = {
   home: "2026-09-28",
+  cotizaIsapre: "2026-09-28",
   cotizador: "2026-09-22",
   clinicaAlemana: "2026-09-27",
   contenidos: "2026-09-11",
@@ -16,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: MAIN_PAGE_DATES.home,
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/cotiza-isapre`,
+      lastModified: MAIN_PAGE_DATES.cotizaIsapre,
+      changeFrequency: "weekly",
+      priority: 0.95,
     },
     {
       url: `${SITE_URL}/cotizador-isapre`,
@@ -37,12 +45,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const paginasContenido: MetadataRoute.Sitemap = contenidos.map((contenido) => ({
-    url: `${SITE_URL}/contenidos/${contenido.slug}`,
-    lastModified: contenido.date,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
+  const paginasContenido: MetadataRoute.Sitemap = contenidos.map(
+    (contenido) => ({
+      url: `${SITE_URL}/contenidos/${contenido.slug}`,
+      lastModified: contenido.date,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    })
+  );
 
   return [...paginasPrincipales, ...paginasContenido];
 }
