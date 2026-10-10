@@ -47,8 +47,8 @@ export default function Hero() {
   return (
     <Section
       className="
-        relative isolate w-full overflow-hidden bg-white !py-0
-        lg:mt-[72px] lg:h-[calc(100svh-72px)] lg:min-h-0
+        relative isolate mt-[72px] w-full overflow-hidden bg-white !py-0
+        lg:h-[calc(100svh-72px)] lg:min-h-0
       "
     >
       {/* FONDO SOLO ESCRITORIO */}
@@ -71,8 +71,8 @@ export default function Hero() {
       <div
         className="
           relative z-10 mx-auto grid w-full max-w-[1800px]
-          grid-cols-1 gap-6 px-5 pb-7 pt-10
-          sm:px-7 sm:pt-12
+          grid-cols-1 gap-6 px-5 pb-7 pt-5
+          sm:px-7 sm:pt-6
           lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,1fr)_minmax(420px,490px)]
           lg:items-center lg:gap-6 lg:px-8 lg:py-3
           xl:grid-cols-[minmax(0,1fr)_500px] xl:gap-10 xl:px-12
