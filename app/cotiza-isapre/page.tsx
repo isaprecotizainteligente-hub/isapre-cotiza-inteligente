@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Cotizar Isapre Online | Compara Planes de Salud",
     description:
       "Compara alternativas de Isapre según tu situación y encuentra un plan de salud que se adapte a tus necesidades.",
-    url: "https://www.isaprecotizainteligente.cl/cotiza-isapre/",
+    url: "https://www.isaprecotizainteligente.cl/cotiza-isapre",
     siteName: "Isapre Cotiza Inteligente",
     locale: "es_CL",
     type: "website",

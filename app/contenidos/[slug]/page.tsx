@@ -37,56 +37,56 @@ function formatDate(date: string) {
 function getInternalLink(slug: string): InternalLinkConfig {
   const links: Record<string, InternalLinkConfig> = {
     "como-elegir-un-plan-de-isapre": {
-      href: "/cotizador-isapre/",
+      href: "/cotizador-isapre",
       title: "¿Quieres comparar planes de Isapre?",
       text:
         "Puedes utilizar nuestro cotizador de Isapres para revisar alternativas según tu renta, edad, cargas y necesidades de cobertura.",
     },
 
     "que-es-la-renta-imponible-para-cotizar-isapre": {
-      href: "/cotiza-isapre/",
+      href: "/cotiza-isapre",
       title: "¿Quieres cotizar una Isapre?",
       text:
         "Conoce las alternativas disponibles y revisa una cotización considerando tu renta imponible y las características de tu situación.",
     },
 
     "isapre-o-fonasa-cual-conviene": {
-      href: "/cotiza-isapre/",
+      href: "/cotiza-isapre",
       title: "¿Quieres conocer alternativas de Isapre?",
       text:
         "Puedes solicitar una cotización y comparar alternativas de planes de salud según tu situación actual.",
     },
 
     "como-comparar-planes-de-isapre": {
-      href: "/cotizador-isapre/",
+      href: "/cotizador-isapre",
       title: "Compara planes de Isapre",
       text:
         "Nuestro cotizador te permite iniciar una comparación considerando precio, cobertura, prestadores y tus necesidades.",
     },
 
     "cuando-conviene-cambiarse-de-isapre": {
-      href: "/cotiza-isapre/",
+      href: "/cotiza-isapre",
       title: "¿Estás evaluando cambiarte de Isapre?",
       text:
         "Antes de tomar una decisión puedes cotizar y comparar otras alternativas de planes de salud.",
     },
 
     "que-revisar-antes-de-contratar-un-plan-de-salud": {
-      href: "/cotizador-isapre/",
+      href: "/cotizador-isapre",
       title: "¿Quieres comparar un plan de salud?",
       text:
         "Revisa alternativas mediante nuestro cotizador de Isapres y considera cobertura, precio, prestadores y necesidades personales.",
     },
 
     "que-isapre-cubre-clinica-alemana": {
-      href: "/isapre-clinica-alemana/",
+      href: "/isapre-clinica-alemana",
       title: "Planes de Isapre con cobertura en Clínica Alemana",
       text:
         "Revisa qué aspectos debes comparar si Clínica Alemana es uno de tus prestadores de preferencia y conoce las alternativas disponibles según tu situación.",
     },
 
     "planes-isapre-clinica-alemana": {
-      href: "/isapre-clinica-alemana/",
+      href: "/isapre-clinica-alemana",
       title: "Compara planes con foco en Clínica Alemana",
       text:
         "Revisa cobertura, prestadores, topes, copagos y presupuesto para encontrar una alternativa que se ajuste a tus necesidades de atención.",
@@ -95,7 +95,7 @@ function getInternalLink(slug: string): InternalLinkConfig {
 
   return (
     links[slug] ?? {
-      href: "/cotiza-isapre/",
+      href: "/cotiza-isapre",
       title: "¿Quieres cotizar una Isapre?",
       text:
         "Puedes revisar alternativas de planes de salud y solicitar una cotización personalizada.",
@@ -315,7 +315,7 @@ export default async function ContenidoPage({ params }: PageProps) {
               </p>
 
               <Link
-                href="/cotiza-isapre/"
+                href="/cotiza-isapre"
                 className="
                   mt-6
                   inline-flex

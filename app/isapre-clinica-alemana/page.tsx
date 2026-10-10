@@ -126,7 +126,7 @@ export default function IsapreClinicaAlemanaPage() {
 
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Link
-                  href="/cotiza-isapre/"
+                  href="/cotiza-isapre"
                   className="inline-flex items-center rounded-xl bg-emerald-500 px-7 py-4 font-bold text-white transition hover:bg-emerald-600"
                 >
                   Cotizar mi plan
@@ -322,7 +322,7 @@ export default function IsapreClinicaAlemanaPage() {
 
               <div className="mt-8">
                 <Link
-                  href="/cotiza-isapre/"
+                  href="/cotiza-isapre"
                   className="inline-flex items-center rounded-xl bg-emerald-500 px-6 py-3 font-bold text-white transition hover:bg-emerald-600"
                 >
                   Revisar alternativas
@@ -472,7 +472,7 @@ export default function IsapreClinicaAlemanaPage() {
               </p>
 
               <Link
-                href="/cotiza-isapre/"
+                href="/cotiza-isapre"
                 className="mt-8 inline-flex rounded-xl bg-emerald-500 px-8 py-4 font-bold text-white transition hover:bg-emerald-600"
               >
                 Cotizar gratis

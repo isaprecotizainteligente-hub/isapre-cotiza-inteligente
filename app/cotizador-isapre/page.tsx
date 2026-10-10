@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Cotizador de Isapres | Compara Planes de Salud",
     description:
       "Compara alternativas de planes de Isapre según tu situación, presupuesto y necesidades de cobertura.",
-    url: "https://www.isaprecotizainteligente.cl/cotizador-isapre/",
+    url: "https://www.isaprecotizainteligente.cl/cotizador-isapre",
     siteName: "Isapre Cotiza Inteligente",
     locale: "es_CL",
     type: "website",
@@ -176,7 +176,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 2,
       name: "Cotizador de Isapres",
-      item: "https://www.isaprecotizainteligente.cl/cotizador-isapre/",
+      item: "https://www.isaprecotizainteligente.cl/cotizador-isapre",
     },
   ],
 };
@@ -797,7 +797,7 @@ export default function CotizadorIsaprePage() {
 
               <div className="mt-7 flex flex-wrap justify-center gap-3">
                 <Link
-                  href="/cotiza-isapre/"
+                  href="/cotiza-isapre"
                   className="
                     rounded-2xl
                     border
