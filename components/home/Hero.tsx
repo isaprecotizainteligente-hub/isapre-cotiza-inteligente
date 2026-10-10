@@ -51,15 +51,15 @@ export default function Hero() {
         lg:mt-[72px] lg:h-[calc(100svh-72px)] lg:min-h-0
       "
     >
-      {/* FONDO A TODO EL ANCHO DEL HERO */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-white">
+      {/* FONDO SOLO ESCRITORIO */}
+      <div className="pointer-events-none absolute inset-0 z-0 hidden bg-white lg:block">
         <Image
           src="/images/hero-background.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[65%_center] lg:translate-x-[18%] lg:object-[25%_45%]"
+          className="translate-x-[18%] object-cover object-[25%_45%]"
         />
 
         <div className="absolute inset-0 bg-white/10" />
@@ -78,8 +78,25 @@ export default function Hero() {
           xl:grid-cols-[minmax(0,1fr)_500px] xl:gap-10 xl:px-12
         "
       >
-        {/* TEXTO Y BENEFICIOS */}
-        <div className="relative z-20 min-w-0 lg:max-w-[590px]">
+        {/* FORMULARIO: primero en móvil, a la derecha en escritorio */}
+        <div
+          id="cotizacion"
+          className={`
+            relative z-30 order-1 w-full min-w-0 justify-self-end
+            ${highlightForm ? "scale-[1.01]" : "scale-100"}
+            transition-transform duration-300
+            lg:order-none lg:origin-right
+            lg:scale-[0.90]
+            xl:scale-[0.94]
+          `}
+        >
+          <div className="mx-auto w-full max-w-[500px] rounded-2xl border border-white bg-white shadow-[0_18px_45px_rgba(16,42,67,0.16)] lg:mx-0">
+            <QuoteForm />
+          </div>
+        </div>
+
+        {/* TEXTO Y BENEFICIOS: segundo en móvil, a la izquierda en escritorio */}
+        <div className="relative z-20 order-2 min-w-0 lg:order-none lg:col-start-1 lg:row-start-1 lg:max-w-[590px]">
           <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#123B63] sm:text-xs">
             <span className="h-2 w-2 shrink-0 rounded-full bg-[#16A66A]" />
             Asesoría experta en Isapres
@@ -137,21 +154,18 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* FORMULARIO */}
-        <div
-          id="cotizacion"
-          className={`
-            relative z-30 w-full min-w-0 justify-self-end
-            ${highlightForm ? "scale-[1.01]" : "scale-100"}
-            transition-transform duration-300
-            lg:origin-right
-            lg:scale-[0.90]
-            xl:scale-[0.94]
-          `}
-        >
-          <div className="mx-auto w-full max-w-[500px] rounded-2xl border border-white bg-white shadow-[0_18px_45px_rgba(16,42,67,0.16)] lg:mx-0">
-            <QuoteForm />
-          </div>
+        {/* IMAGEN SOLO MÓVIL Y TABLET: al final */}
+        <div className="relative order-3 -mx-5 h-[300px] overflow-hidden sm:-mx-7 sm:h-[380px] lg:hidden">
+          <Image
+            src="/images/hero-background.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-[20%_20%] sm:object-[25%_25%]"
+          />
+
+          <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
         </div>
       </div>
     </Section>
